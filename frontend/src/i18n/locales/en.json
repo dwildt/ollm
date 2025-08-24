@@ -1,0 +1,27 @@
+{
+  "app": {
+    "title": "Ollama Chat Interface",
+    "welcomeTitle": "Welcome to Ollama Chat!",
+    "welcomeMessage": "Start a conversation by typing a message below.",
+    "ollamaDisconnected": "⚠️ Ollama appears to be disconnected. Please ensure Ollama is running on localhost:11434"
+  },
+  "chat": {
+    "model": "Model:",
+    "noModelsAvailable": "No models available",
+    "clearChat": "Clear Chat",
+    "inputPlaceholder": "Type your message here... (Press Enter to send, Shift+Enter for new line)",
+    "send": "Send",
+    "sending": "Sending...",
+    "errorMessage": "Sorry, I encountered an error. Please make sure Ollama is running and try again."
+  },
+  "status": {
+    "connected": "🟢 Connected",
+    "disconnected": "🔴 Disconnected",
+    "checking": "🟡 Checking..."
+  },
+  "language": {
+    "english": "English",
+    "portuguese": "Português",
+    "switchTo": "Switch to {{language}}"
+  }
+}
