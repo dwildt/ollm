@@ -65,7 +65,7 @@ A simple and clean web interface for interacting with Ollama directly via HTTP A
    
    Edit `backend/.env` to match your Ollama configuration:
    ```env
-   PORT=5000
+   PORT=3002
    OLLAMA_BASE_URL=http://localhost:11434
    DEFAULT_MODEL=llama2
    ```
@@ -80,7 +80,7 @@ npm run dev
 
 This will start:
 - Frontend on `http://localhost:3000`
-- Backend on `http://localhost:5000`
+- Backend on `http://localhost:3002`
 
 ### Individual Services
 
@@ -159,7 +159,7 @@ npm start
 ### Backend Configuration
 Environment variables in `backend/.env`:
 
-- `PORT` - Backend server port (default: 5000)
+- `PORT` - Backend server port (default: 3002)
 - `OLLAMA_BASE_URL` - Ollama server URL (default: http://localhost:11434)
 - `DEFAULT_MODEL` - Default model to use (default: llama2)
 
@@ -167,7 +167,7 @@ Environment variables in `backend/.env`:
 Create `frontend/.env` for frontend-specific variables:
 
 ```env
-REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_API_URL=http://localhost:3002/api
 ```
 
 ## Using with Ollama
@@ -241,7 +241,7 @@ docker build -t ollama-chat-interface .
 
 **Run the container:**
 ```bash
-docker run -d -p 3000:3000 -p 5000:5000 \
+docker run -d -p 3000:3000 -p 3002:3002 \
   -e OLLAMA_BASE_URL=http://host.docker.internal:11434 \
   --name ollama-chat \
   ollama-chat-interface
@@ -256,7 +256,7 @@ docker-compose up -d
 
 This will start:
 - Frontend on `http://localhost:3000`
-- Backend on `http://localhost:5000`
+- Backend on `http://localhost:3002`
 - Ollama service on `http://localhost:11434`
 
 **To run without the Ollama container** (if you have Ollama running locally):
@@ -270,7 +270,7 @@ docker-compose up -d ollama-chat
 The Docker setup includes these environment variables:
 - `OLLAMA_BASE_URL` - Points to Ollama server (uses `host.docker.internal` for local Ollama)
 - `NODE_ENV=production` - Runs in production mode
-- `PORT=5000` - Backend port
+- `PORT=3002` - Backend port
 
 ## Troubleshooting
 
@@ -286,7 +286,7 @@ The Docker setup includes these environment variables:
    - Restart the backend after pulling new models
 
 3. **CORS errors**
-   - Ensure backend is running on port 5000
+   - Ensure backend is running on port 3002
    - Check `REACT_APP_API_URL` in frontend configuration
 
 4. **Build errors**

@@ -18,7 +18,7 @@ This document outlines the key architectural decisions, coding standards, and de
 
 ### Backend Architecture (Node.js + Express)
 - **Minimal and focused**: Single-purpose Express server
-- **LlamaIndex integration**: Direct integration with Ollama through LlamaIndex
+- **Direct HTTP API integration**: Direct integration with Ollama via HTTP API (no LlamaIndex dependency)
 - **Error handling**: Comprehensive error handling for Ollama connectivity issues
 - **Environment driven**: All configuration through environment variables
 
@@ -414,5 +414,28 @@ All code changes must:
 - **TypeScript**: Type safety and compile-time error detection
 
 Remember: **Quality is not negotiable**. Tests are not optional extras - they are a fundamental part of the codebase that ensure reliability, enable confident refactoring, and provide living documentation of how the system should behave.
+
+## Current Configuration
+
+### Port Configuration
+- **Frontend**: Port 3000 (`http://localhost:3000`)
+- **Backend**: Port 3002 (`http://localhost:3002`)
+- **Ollama**: Port 11434 (default, running locally)
+
+### Docker Configuration
+- Uses `host.docker.internal:11434` to connect to local Ollama instance
+- Port mapping: `3000:3000` (frontend), `3002:3002` (backend)
+- No Ollama container needed - uses existing local installation
+- Environment variables:
+  - `PORT=3002` (backend)
+  - `FRONTEND_PORT=3000`
+  - `OLLAMA_BASE_URL=http://host.docker.internal:11434`
+
+### API Integration
+- Backend connects directly to Ollama HTTP API endpoints:
+  - `/api/tags` for model listing
+  - `/api/generate` for chat completions
+- No external dependencies like LlamaIndex
+- Uses native Node.js `fetch()` for HTTP requests
 
 Remember: The goal is to keep this project simple, maintainable, and focused on providing an excellent chat experience with Ollama.
