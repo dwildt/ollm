@@ -154,12 +154,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1059,
+                      "duration": 1015,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:51.043Z",
+                      "startTime": "2025-08-25T02:48:39.939Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -188,12 +188,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1004,
+                      "duration": 1013,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:51.080Z",
+                      "startTime": "2025-08-25T02:48:39.952Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -222,12 +222,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 1073,
+                      "duration": 1045,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:51.016Z",
+                      "startTime": "2025-08-25T02:48:39.919Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -256,7 +256,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 1381,
+                      "duration": 1470,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Hello, world!') resolved to 2 elements:\n    1) <div class=\"message-text\">Hello, world!</div> aka getByText('Hello, world!', { exact: true })\n    2) <p>Echo: Hello, world!</p> aka getByText('Echo: Hello, world!')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Hello, world!')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Hello, world!') resolved to 2 elements:\n    1) <div class=\"message-text\">Hello, world!</div> aka getByText('Hello, world!', { exact: true })\n    2) <p>Echo: Hello, world!</p> aka getByText('Echo: Hello, world!')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Hello, world!')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:93:51",
@@ -280,7 +280,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:51.069Z",
+                      "startTime": "2025-08-25T02:48:39.924Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -327,15 +327,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 474,
+                      "duration": 604,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:52.693Z",
+                      "startTime": "2025-08-25T02:48:41.324Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -361,10 +361,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 5467,
+                      "duration": 5588,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Line 1')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Line 1')\u001b[22m\n\u001b[2m    9 × locator resolved to <textarea rows=\"3\" placeholder=\"Type your message here... (Press Enter to send, Shift+Enter for new line)\">Line 1↵Line 2</textarea>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Line 1')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Line 1')\u001b[22m\n\u001b[2m    9 × locator resolved to <textarea rows=\"3\" placeholder=\"Type your message here... (Press Enter to send, Shift+Enter for new line)\">Line 1↵Line 2</textarea>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:126:48",
@@ -388,7 +388,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:52.706Z",
+                      "startTime": "2025-08-25T02:48:41.328Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -438,7 +438,7 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 516,
+                      "duration": 643,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Message to be cleared') resolved to 2 elements:\n    1) <div class=\"message-text\">Message to be cleared</div> aka getByText('Message to be cleared', { exact: true })\n    2) <p>Echo: Message to be cleared</p> aka getByText('Echo: Message to be cleared')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Message to be cleared')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Message to be cleared') resolved to 2 elements:\n    1) <div class=\"message-text\">Message to be cleared</div> aka getByText('Message to be cleared', { exact: true })\n    2) <p>Echo: Message to be cleared</p> aka getByText('Echo: Message to be cleared')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Message to be cleared')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:138:59",
@@ -462,7 +462,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:52.722Z",
+                      "startTime": "2025-08-25T02:48:41.356Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -512,7 +512,7 @@
                       "workerIndex": 4,
                       "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 560,
+                      "duration": 659,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Test with mistral') resolved to 2 elements:\n    1) <div class=\"message-text\">Test with mistral</div> aka getByText('Test with mistral', { exact: true })\n    2) <p>Echo: Test with mistral</p> aka getByText('Echo: Test with mistral')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Test with mistral')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Test with mistral') resolved to 2 elements:\n    1) <div class=\"message-text\">Test with mistral</div> aka getByText('Test with mistral', { exact: true })\n    2) <p>Echo: Test with mistral</p> aka getByText('Echo: Test with mistral')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Test with mistral')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:168:55",
@@ -536,7 +536,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:53.558Z",
+                      "startTime": "2025-08-25T02:48:42.347Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -583,10 +583,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 242,
+                      "duration": 238,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByRole('button', { name: 'EN' }) resolved to 2 elements:\n    1) <button class=\"lang-button \">EN</button> aka getByRole('button', { name: 'EN', exact: true })\n    2) <button disabled class=\"send-button\">Send</button> aka getByRole('button', { name: 'Send' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'EN' })\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByRole('button', { name: 'EN' }) resolved to 2 elements:\n    1) <button class=\"lang-button \">EN</button> aka getByRole('button', { name: 'EN', exact: true })\n    2) <button disabled class=\"send-button\">Send</button> aka getByRole('button', { name: 'Send' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'EN' })\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:174:60",
@@ -610,7 +610,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:53.182Z",
+                      "startTime": "2025-08-25T02:48:41.945Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -660,12 +660,12 @@
                       "workerIndex": 5,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 2576,
+                      "duration": 2507,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:53.707Z",
+                      "startTime": "2025-08-25T02:48:42.453Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -692,14 +692,14 @@
                   "results": [
                     {
                       "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 350,
+                      "duration": 431,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:54.185Z",
+                      "startTime": "2025-08-25T02:48:42.757Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -728,12 +728,12 @@
                       "workerIndex": 7,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 415,
+                      "duration": 308,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:54.965Z",
+                      "startTime": "2025-08-25T02:48:43.788Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -760,9 +760,9 @@
                   "results": [
                     {
                       "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 537,
+                      "duration": 455,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Mobile test message') resolved to 2 elements:\n    1) <div class=\"message-text\">Mobile test message</div> aka getByText('Mobile test message', { exact: true })\n    2) <p>Echo: Mobile test message</p> aka getByText('Echo: Mobile test message')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Mobile test message')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Mobile test message') resolved to 2 elements:\n    1) <div class=\"message-text\">Mobile test message</div> aka getByText('Mobile test message', { exact: true })\n    2) <p>Echo: Mobile test message</p> aka getByText('Echo: Mobile test message')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Mobile test message')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:278:57",
@@ -786,7 +786,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:54.770Z",
+                      "startTime": "2025-08-25T02:48:43.487Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -834,9 +834,9 @@
                   "results": [
                     {
                       "workerIndex": 8,
-                      "parallelIndex": 1,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 545,
+                      "duration": 543,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. ') resolved to 2 elements:\n    1) <div class=\"message-text\">This is a very long message that tests how the ap…</div> aka getByText('This is a very long message').first()\n    2) <p>Echo: This is a very long message that tests how …</p> aka getByText('Echo: This is a very long')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. ')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. ') resolved to 2 elements:\n    1) <div class=\"message-text\">This is a very long message that tests how the ap…</div> aka getByText('This is a very long message').first()\n    2) <p>Echo: This is a very long message that tests how …</p> aka getByText('Echo: This is a very long')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. ')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:292:47",
@@ -860,7 +860,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:55.998Z",
+                      "startTime": "2025-08-25T02:48:44.398Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -910,7 +910,7 @@
                       "workerIndex": 7,
                       "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 3071,
+                      "duration": 2940,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Message 5') resolved to 2 elements:\n    1) <div class=\"message-text\">Message 5</div> aka getByText('Message 5', { exact: true })\n    2) <p>Echo: Message 5</p> aka getByText('Echo: Message 5')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Message 5')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Message 5') resolved to 2 elements:\n    1) <div class=\"message-text\">Message 5</div> aka getByText('Message 5', { exact: true })\n    2) <p>Echo: Message 5</p> aka getByText('Echo: Message 5')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Message 5')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:309:47",
@@ -934,7 +934,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:55.582Z",
+                      "startTime": "2025-08-25T02:48:44.211Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -982,9 +982,9 @@
                   "results": [
                     {
                       "workerIndex": 9,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 1,
+                      "duration": 2,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -997,7 +997,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:56.856Z",
+                      "startTime": "2025-08-25T02:48:45.460Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1024,9 +1024,9 @@
                   "results": [
                     {
                       "workerIndex": 10,
-                      "parallelIndex": 1,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 1,
+                      "duration": 2,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1039,7 +1039,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:57.052Z",
+                      "startTime": "2025-08-25T02:48:45.500Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1066,9 +1066,9 @@
                   "results": [
                     {
                       "workerIndex": 11,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 3,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1081,7 +1081,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:57.246Z",
+                      "startTime": "2025-08-25T02:48:45.917Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1108,7 +1108,7 @@
                   "results": [
                     {
                       "workerIndex": 12,
-                      "parallelIndex": 1,
+                      "parallelIndex": 2,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -1123,7 +1123,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:57.439Z",
+                      "startTime": "2025-08-25T02:48:45.940Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1150,7 +1150,7 @@
                   "results": [
                     {
                       "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -1165,7 +1165,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:57.642Z",
+                      "startTime": "2025-08-25T02:48:46.360Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1192,9 +1192,9 @@
                   "results": [
                     {
                       "workerIndex": 14,
-                      "parallelIndex": 1,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 4,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1207,7 +1207,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:57.839Z",
+                      "startTime": "2025-08-25T02:48:46.366Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1234,9 +1234,9 @@
                   "results": [
                     {
                       "workerIndex": 15,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 4,
+                      "duration": 2,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1249,7 +1249,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:58.042Z",
+                      "startTime": "2025-08-25T02:48:46.808Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1276,7 +1276,7 @@
                   "results": [
                     {
                       "workerIndex": 16,
-                      "parallelIndex": 1,
+                      "parallelIndex": 2,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -1291,7 +1291,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:58.299Z",
+                      "startTime": "2025-08-25T02:48:46.811Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1318,9 +1318,9 @@
                   "results": [
                     {
                       "workerIndex": 17,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 1,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1333,7 +1333,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:58.515Z",
+                      "startTime": "2025-08-25T02:48:47.231Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1360,7 +1360,7 @@
                   "results": [
                     {
                       "workerIndex": 18,
-                      "parallelIndex": 0,
+                      "parallelIndex": 2,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -1375,7 +1375,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:58.617Z",
+                      "startTime": "2025-08-25T02:48:47.239Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1417,7 +1417,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:58.756Z",
+                      "startTime": "2025-08-25T02:48:47.364Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1444,9 +1444,9 @@
                   "results": [
                     {
                       "workerIndex": 20,
-                      "parallelIndex": 2,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 1,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/firefox-1490/firefox/Nightly.app/Contents/MacOS/firefox\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1459,7 +1459,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:58.957Z",
+                      "startTime": "2025-08-25T02:48:47.604Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1501,7 +1501,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:59.077Z",
+                      "startTime": "2025-08-25T02:48:47.671Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1528,7 +1528,7 @@
                   "results": [
                     {
                       "workerIndex": 22,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -1543,7 +1543,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:59.104Z",
+                      "startTime": "2025-08-25T02:48:47.685Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1585,7 +1585,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:59.188Z",
+                      "startTime": "2025-08-25T02:48:47.825Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1612,9 +1612,9 @@
                   "results": [
                     {
                       "workerIndex": 24,
-                      "parallelIndex": 2,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 4,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1627,7 +1627,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:59.385Z",
+                      "startTime": "2025-08-25T02:48:48.050Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1669,7 +1669,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:59.525Z",
+                      "startTime": "2025-08-25T02:48:48.140Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1696,7 +1696,7 @@
                   "results": [
                     {
                       "workerIndex": 26,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -1711,7 +1711,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:59.549Z",
+                      "startTime": "2025-08-25T02:48:48.160Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1740,7 +1740,7 @@
                       "workerIndex": 27,
                       "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 4,
+                      "duration": 2,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1753,7 +1753,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:59.671Z",
+                      "startTime": "2025-08-25T02:48:48.288Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1780,7 +1780,7 @@
                   "results": [
                     {
                       "workerIndex": 28,
-                      "parallelIndex": 2,
+                      "parallelIndex": 3,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -1795,7 +1795,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:52:59.880Z",
+                      "startTime": "2025-08-25T02:48:48.597Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1837,7 +1837,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.027Z",
+                      "startTime": "2025-08-25T02:48:48.659Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1864,7 +1864,7 @@
                   "results": [
                     {
                       "workerIndex": 30,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -1879,7 +1879,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.034Z",
+                      "startTime": "2025-08-25T02:48:48.657Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1921,7 +1921,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.092Z",
+                      "startTime": "2025-08-25T02:48:48.829Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1948,9 +1948,9 @@
                   "results": [
                     {
                       "workerIndex": 32,
-                      "parallelIndex": 2,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 1,
+                      "duration": 4,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -1963,7 +1963,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.318Z",
+                      "startTime": "2025-08-25T02:48:49.129Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1989,8 +1989,8 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 34,
-                      "parallelIndex": 0,
+                      "workerIndex": 33,
+                      "parallelIndex": 2,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -2005,7 +2005,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.490Z",
+                      "startTime": "2025-08-25T02:48:49.197Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2031,8 +2031,8 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 33,
-                      "parallelIndex": 3,
+                      "workerIndex": 34,
+                      "parallelIndex": 0,
                       "status": "failed",
                       "duration": 3,
                       "error": {
@@ -2047,7 +2047,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.483Z",
+                      "startTime": "2025-08-25T02:48:49.196Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2089,7 +2089,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.559Z",
+                      "startTime": "2025-08-25T02:48:49.376Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2116,9 +2116,9 @@
                   "results": [
                     {
                       "workerIndex": 36,
-                      "parallelIndex": 2,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 5,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -2131,7 +2131,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.797Z",
+                      "startTime": "2025-08-25T02:48:49.674Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2160,7 +2160,7 @@
                       "workerIndex": 37,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 3,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -2173,7 +2173,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.957Z",
+                      "startTime": "2025-08-25T02:48:49.687Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2200,9 +2200,9 @@
                   "results": [
                     {
                       "workerIndex": 38,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 3,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -2215,7 +2215,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:00.940Z",
+                      "startTime": "2025-08-25T02:48:49.714Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2244,12 +2244,12 @@
                       "workerIndex": 39,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 379,
+                      "duration": 486,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:01.020Z",
+                      "startTime": "2025-08-25T02:48:50.005Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2276,14 +2276,14 @@
                   "results": [
                     {
                       "workerIndex": 40,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 581,
+                      "duration": 649,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:01.342Z",
+                      "startTime": "2025-08-25T02:48:50.453Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2312,12 +2312,12 @@
                       "workerIndex": 41,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 552,
+                      "duration": 695,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:01.647Z",
+                      "startTime": "2025-08-25T02:48:50.511Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2344,9 +2344,9 @@
                   "results": [
                     {
                       "workerIndex": 42,
-                      "parallelIndex": 0,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 700,
+                      "duration": 774,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Hello, world!') resolved to 2 elements:\n    1) <div class=\"message-text\">Hello, world!</div> aka getByText('Hello, world!', { exact: true })\n    2) <p>Echo: Hello, world!</p> aka getByText('Echo: Hello, world!')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Hello, world!')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Hello, world!') resolved to 2 elements:\n    1) <div class=\"message-text\">Hello, world!</div> aka getByText('Hello, world!', { exact: true })\n    2) <p>Echo: Hello, world!</p> aka getByText('Echo: Hello, world!')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Hello, world!')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:93:51",
@@ -2370,7 +2370,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:01.690Z",
+                      "startTime": "2025-08-25T02:48:50.542Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2420,7 +2420,7 @@
                       "workerIndex": 39,
                       "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 588,
+                      "duration": 735,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Test message via Enter') resolved to 2 elements:\n    1) <div class=\"message-text\">Test message via Enter</div> aka getByText('Test message via Enter', { exact: true })\n    2) <p>Echo: Test message via Enter</p> aka getByText('Echo: Test message via Enter')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Test message via Enter')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Test message via Enter') resolved to 2 elements:\n    1) <div class=\"message-text\">Test message via Enter</div> aka getByText('Test message via Enter', { exact: true })\n    2) <p>Echo: Test message via Enter</p> aka getByText('Echo: Test message via Enter')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Test message via Enter')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:110:60",
@@ -2444,7 +2444,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:01.550Z",
+                      "startTime": "2025-08-25T02:48:50.731Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2492,9 +2492,9 @@
                   "results": [
                     {
                       "workerIndex": 40,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 5530,
+                      "duration": 5447,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Line 1')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Line 1')\u001b[22m\n\u001b[2m    9 × locator resolved to <textarea rows=\"3\" placeholder=\"Type your message here... (Press Enter to send, Shift+Enter for new line)\">Line 1↵Line 2</textarea>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Line 1')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Line 1')\u001b[22m\n\u001b[2m    9 × locator resolved to <textarea rows=\"3\" placeholder=\"Type your message here... (Press Enter to send, Shift+Enter for new line)\">Line 1↵Line 2</textarea>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:126:48",
@@ -2518,7 +2518,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:02.124Z",
+                      "startTime": "2025-08-25T02:48:51.342Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2565,10 +2565,10 @@
                   "projectName": "Mobile Chrome",
                   "results": [
                     {
-                      "workerIndex": 43,
-                      "parallelIndex": 1,
+                      "workerIndex": 41,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 467,
+                      "duration": 405,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Message to be cleared') resolved to 2 elements:\n    1) <div class=\"message-text\">Message to be cleared</div> aka getByText('Message to be cleared', { exact: true })\n    2) <p>Echo: Message to be cleared</p> aka getByText('Echo: Message to be cleared')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Message to be cleared')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Message to be cleared') resolved to 2 elements:\n    1) <div class=\"message-text\">Message to be cleared</div> aka getByText('Message to be cleared', { exact: true })\n    2) <p>Echo: Message to be cleared</p> aka getByText('Echo: Message to be cleared')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Message to be cleared')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:138:59",
@@ -2592,7 +2592,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:03.134Z",
+                      "startTime": "2025-08-25T02:48:51.484Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2639,10 +2639,10 @@
                   "projectName": "Mobile Chrome",
                   "results": [
                     {
-                      "workerIndex": 41,
-                      "parallelIndex": 3,
+                      "workerIndex": 43,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 505,
+                      "duration": 619,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Test with mistral') resolved to 2 elements:\n    1) <div class=\"message-text\">Test with mistral</div> aka getByText('Test with mistral', { exact: true })\n    2) <p>Echo: Test with mistral</p> aka getByText('Echo: Test with mistral')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Test with mistral')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Test with mistral') resolved to 2 elements:\n    1) <div class=\"message-text\">Test with mistral</div> aka getByText('Test with mistral', { exact: true })\n    2) <p>Echo: Test with mistral</p> aka getByText('Echo: Test with mistral')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Test with mistral')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:168:55",
@@ -2666,7 +2666,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:02.587Z",
+                      "startTime": "2025-08-25T02:48:52.023Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2714,9 +2714,9 @@
                   "results": [
                     {
                       "workerIndex": 44,
-                      "parallelIndex": 0,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 358,
+                      "duration": 472,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByRole('button', { name: 'EN' }) resolved to 2 elements:\n    1) <button class=\"lang-button \">EN</button> aka getByRole('button', { name: 'EN', exact: true })\n    2) <button disabled class=\"send-button\">Send</button> aka getByRole('button', { name: 'Send' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'EN' })\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByRole('button', { name: 'EN' }) resolved to 2 elements:\n    1) <button class=\"lang-button \">EN</button> aka getByRole('button', { name: 'EN', exact: true })\n    2) <button disabled class=\"send-button\">Send</button> aka getByRole('button', { name: 'Send' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: 'EN' })\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:174:60",
@@ -2740,7 +2740,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:03.284Z",
+                      "startTime": "2025-08-25T02:48:52.068Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2790,12 +2790,12 @@
                       "workerIndex": 45,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 2304,
+                      "duration": 2338,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:03.710Z",
+                      "startTime": "2025-08-25T02:48:52.579Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2822,14 +2822,14 @@
                   "results": [
                     {
                       "workerIndex": 46,
-                      "parallelIndex": 1,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 509,
+                      "duration": 804,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:04.201Z",
+                      "startTime": "2025-08-25T02:48:53.281Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2856,14 +2856,14 @@
                   "results": [
                     {
                       "workerIndex": 47,
-                      "parallelIndex": 0,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 527,
+                      "duration": 713,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:04.242Z",
+                      "startTime": "2025-08-25T02:48:53.344Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2890,9 +2890,9 @@
                   "results": [
                     {
                       "workerIndex": 46,
-                      "parallelIndex": 1,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 523,
+                      "duration": 553,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Mobile test message') resolved to 2 elements:\n    1) <div class=\"message-text\">Mobile test message</div> aka getByText('Mobile test message', { exact: true })\n    2) <p>Echo: Mobile test message</p> aka getByText('Echo: Mobile test message')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Mobile test message')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Mobile test message') resolved to 2 elements:\n    1) <div class=\"message-text\">Mobile test message</div> aka getByText('Mobile test message', { exact: true })\n    2) <p>Echo: Mobile test message</p> aka getByText('Echo: Mobile test message')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Mobile test message')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:278:57",
@@ -2916,7 +2916,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:04.848Z",
+                      "startTime": "2025-08-25T02:48:54.217Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2964,9 +2964,9 @@
                   "results": [
                     {
                       "workerIndex": 47,
-                      "parallelIndex": 0,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 476,
+                      "duration": 462,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. ') resolved to 2 elements:\n    1) <div class=\"message-text\">This is a very long message that tests how the ap…</div> aka getByText('This is a very long message').first()\n    2) <p>Echo: This is a very long message that tests how …</p> aka getByText('Echo: This is a very long')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. ')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. ') resolved to 2 elements:\n    1) <div class=\"message-text\">This is a very long message that tests how the ap…</div> aka getByText('This is a very long message').first()\n    2) <p>Echo: This is a very long message that tests how …</p> aka getByText('Echo: This is a very long')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. This is a very long message that tests how the application handles lengthy text input. ')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:292:47",
@@ -2990,7 +2990,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:04.881Z",
+                      "startTime": "2025-08-25T02:48:54.380Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3038,9 +3038,9 @@
                   "results": [
                     {
                       "workerIndex": 48,
-                      "parallelIndex": 0,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 3103,
+                      "duration": 3142,
                       "error": {
                         "message": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Message 5') resolved to 2 elements:\n    1) <div class=\"message-text\">Message 5</div> aka getByText('Message 5', { exact: true })\n    2) <p>Echo: Message 5</p> aka getByText('Echo: Message 5')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Message 5')\u001b[22m\n",
                         "stack": "Error: expect.toBeVisible: Error: strict mode violation: getByText('Message 5') resolved to 2 elements:\n    1) <div class=\"message-text\">Message 5</div> aka getByText('Message 5', { exact: true })\n    2) <p>Echo: Message 5</p> aka getByText('Echo: Message 5')\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Message 5')\u001b[22m\n\n    at /Users/dwildt/Code/100daysofcode/ollm/e2e/chat.spec.ts:309:47",
@@ -3064,7 +3064,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:05.772Z",
+                      "startTime": "2025-08-25T02:48:55.178Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3127,7 +3127,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:05.774Z",
+                      "startTime": "2025-08-25T02:48:55.235Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3154,9 +3154,9 @@
                   "results": [
                     {
                       "workerIndex": 50,
-                      "parallelIndex": 1,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 3,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3169,7 +3169,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:06.283Z",
+                      "startTime": "2025-08-25T02:48:55.564Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3196,9 +3196,9 @@
                   "results": [
                     {
                       "workerIndex": 51,
-                      "parallelIndex": 3,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 1,
+                      "duration": 3,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3211,7 +3211,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:06.548Z",
+                      "startTime": "2025-08-25T02:48:55.752Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3238,7 +3238,7 @@
                   "results": [
                     {
                       "workerIndex": 52,
-                      "parallelIndex": 1,
+                      "parallelIndex": 3,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -3253,7 +3253,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:06.671Z",
+                      "startTime": "2025-08-25T02:48:55.988Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3280,7 +3280,7 @@
                   "results": [
                     {
                       "workerIndex": 53,
-                      "parallelIndex": 3,
+                      "parallelIndex": 1,
                       "status": "failed",
                       "duration": 3,
                       "error": {
@@ -3295,7 +3295,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:06.949Z",
+                      "startTime": "2025-08-25T02:48:56.148Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3322,9 +3322,9 @@
                   "results": [
                     {
                       "workerIndex": 54,
-                      "parallelIndex": 1,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 3,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3337,7 +3337,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:07.169Z",
+                      "startTime": "2025-08-25T02:48:56.445Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3364,9 +3364,9 @@
                   "results": [
                     {
                       "workerIndex": 55,
-                      "parallelIndex": 3,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 1,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3379,7 +3379,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:07.419Z",
+                      "startTime": "2025-08-25T02:48:56.586Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3406,9 +3406,9 @@
                   "results": [
                     {
                       "workerIndex": 56,
-                      "parallelIndex": 1,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 1,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3421,7 +3421,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:07.592Z",
+                      "startTime": "2025-08-25T02:48:56.871Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3448,9 +3448,9 @@
                   "results": [
                     {
                       "workerIndex": 57,
-                      "parallelIndex": 3,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 1,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3463,7 +3463,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:07.857Z",
+                      "startTime": "2025-08-25T02:48:57.016Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3490,7 +3490,7 @@
                   "results": [
                     {
                       "workerIndex": 58,
-                      "parallelIndex": 1,
+                      "parallelIndex": 0,
                       "status": "failed",
                       "duration": 2,
                       "error": {
@@ -3505,7 +3505,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:08.039Z",
+                      "startTime": "2025-08-25T02:48:57.191Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3532,9 +3532,9 @@
                   "results": [
                     {
                       "workerIndex": 59,
-                      "parallelIndex": 2,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 4,
+                      "duration": 3,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3547,7 +3547,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:08.103Z",
+                      "startTime": "2025-08-25T02:48:57.277Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3574,7 +3574,7 @@
                   "results": [
                     {
                       "workerIndex": 60,
-                      "parallelIndex": 3,
+                      "parallelIndex": 1,
                       "status": "failed",
                       "duration": 1,
                       "error": {
@@ -3589,7 +3589,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:08.269Z",
+                      "startTime": "2025-08-25T02:48:57.435Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3616,9 +3616,9 @@
                   "results": [
                     {
                       "workerIndex": 61,
-                      "parallelIndex": 1,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 1,
+                      "duration": 2,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3631,7 +3631,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:08.451Z",
+                      "startTime": "2025-08-25T02:48:57.636Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3658,9 +3658,9 @@
                   "results": [
                     {
                       "workerIndex": 62,
-                      "parallelIndex": 2,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 1,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3673,7 +3673,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:08.519Z",
+                      "startTime": "2025-08-25T02:48:57.695Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3700,9 +3700,9 @@
                   "results": [
                     {
                       "workerIndex": 63,
-                      "parallelIndex": 3,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 2,
+                      "duration": 1,
                       "error": {
                         "message": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝",
                         "stack": "Error: browserType.launch: Executable doesn't exist at /Users/dwildt/Library/Caches/ms-playwright/webkit-2203/pw_run.sh\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝"
@@ -3715,7 +3715,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-24T14:53:08.665Z",
+                      "startTime": "2025-08-25T02:48:57.815Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3735,8 +3735,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-24T14:52:50.334Z",
-    "duration": 18729.41,
+    "startTime": "2025-08-25T02:48:39.322Z",
+    "duration": 19173.134000000002,
     "expected": 13,
     "skipped": 0,
     "unexpected": 62,

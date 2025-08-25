@@ -20,11 +20,11 @@
     - generic [ref=e18]:
       - generic [ref=e20]:
         - generic [ref=e21]: Message to be cleared
-        - generic [ref=e23]: 11:52:53 AM
+        - generic [ref=e23]: 11:48:41 PM
       - generic [ref=e25]:
         - paragraph [ref=e27]: "Echo: Message to be cleared"
         - generic [ref=e28]:
-          - generic [ref=e29]: 11:52:53 AM
+          - generic [ref=e29]: 11:48:41 PM
           - generic [ref=e30]: (llama2)
     - generic [ref=e31]:
       - textbox "Type your message here... (Press Enter to send, Shift+Enter for new line)" [ref=e32]

@@ -20,11 +20,11 @@
     - generic [ref=e18]:
       - generic [ref=e20]:
         - generic [ref=e21]: Mobile test message
-        - generic [ref=e23]: 11:53:05 AM
+        - generic [ref=e23]: 11:48:54 PM
       - generic [ref=e25]:
         - paragraph [ref=e27]: "Echo: Mobile test message"
         - generic [ref=e28]:
-          - generic [ref=e29]: 11:53:05 AM
+          - generic [ref=e29]: 11:48:54 PM
           - generic [ref=e30]: (llama2)
     - generic [ref=e31]:
       - textbox "Type your message here... (Press Enter to send, Shift+Enter for new line)" [ref=e32]

@@ -91,3 +91,18 @@ tmp/
 temp/
 .tmp/
 
+# Test results and artifacts
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Jest coverage reports
+coverage/
+*.lcov
+
+# E2E test artifacts
+screenshots/
+videos/
+traces/
+
