@@ -1,7 +1,7 @@
 {
   "name": "ollama-chat-interface",
   "version": "1.0.0",
-  "description": "A simple web interface for Ollama using LlamaIndex",
+  "description": "A simple web interface for Ollama with direct HTTP API integration",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
@@ -32,13 +32,13 @@
   },
   "keywords": [
     "ollama",
-    "llamaindex",
     "chat",
     "ai",
     "react",
     "typescript",
     "node",
-    "express"
+    "express",
+    "http-api"
   ],
   "author": "",
   "license": "MIT",

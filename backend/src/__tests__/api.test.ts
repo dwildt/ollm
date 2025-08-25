@@ -5,7 +5,7 @@ import cors from 'cors';
 // Mock fetch globally before any imports
 global.fetch = jest.fn();
 
-// No LlamaIndex mock needed anymore
+// Direct HTTP API integration with Ollama
 
 // Create a test app similar to the main app
 const createTestApp = () => {
