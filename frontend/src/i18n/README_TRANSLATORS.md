@@ -1,6 +1,6 @@
-# Translation Guide for Ollama Chat Interface
+# Translation Guide for OLLM
 
-This guide explains how to add new language translations to the Ollama Chat Interface.
+This guide explains how to add new language translations to the OLLM (Ollama Chat Interface).
 
 ## File Structure
 
@@ -72,8 +72,8 @@ The JSON structure contains the following sections:
 ```json
 {
   "app": {
-    "title": "Interfaz de Chat Ollama",
-    "welcomeTitle": "¡Bienvenido al Chat Ollama!",
+    "title": "OLLM - Interfaz de Chat Ollama",
+    "welcomeTitle": "¡Bienvenido a OLLM!",
     "welcomeMessage": "Comienza una conversación escribiendo un mensaje a continuación.",
     "ollamaDisconnected": "⚠️ Ollama parece estar desconectado. Asegúrate de que Ollama esté ejecutándose en localhost:11434"
   },

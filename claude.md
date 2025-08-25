@@ -1,6 +1,6 @@
-# Claude Development Guidelines for Ollama Chat Interface
+# Claude Development Guidelines for OLLM
 
-This document outlines the key architectural decisions, coding standards, and development guidelines for the Ollama Chat Interface project. Follow these guidelines to maintain consistency and quality when extending or modifying the codebase.
+This document outlines the key architectural decisions, coding standards, and development guidelines for the OLLM (Ollama Chat Interface) project. Follow these guidelines to maintain consistency and quality when extending or modifying the codebase.
 
 ## Architecture Overview
 

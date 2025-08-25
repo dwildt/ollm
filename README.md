@@ -48,7 +48,7 @@ A simple and clean web interface for interacting with Ollama directly via HTTP A
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd ollama-chat-interface
+   cd ollm
    ```
 
 2. **Install all dependencies**
@@ -207,7 +207,7 @@ See `frontend/src/i18n/README_TRANSLATORS.md` for detailed instructions.
 ## Project Structure
 
 ```
-ollama/
+ollm/
 ├── frontend/           # React TypeScript application
 │   ├── src/
 │   │   ├── components/ # React components
@@ -236,15 +236,15 @@ This project includes full Docker support for easy deployment.
 
 **Build the Docker image:**
 ```bash
-docker build -t ollama-chat-interface .
+docker build -t ollm .
 ```
 
 **Run the container:**
 ```bash
 docker run -d -p 3000:3000 -p 3002:3002 \
   -e OLLAMA_BASE_URL=http://host.docker.internal:11434 \
-  --name ollama-chat \
-  ollama-chat-interface
+  --name ollm \
+  ollm
 ```
 
 ### Using Docker Compose (Recommended)
@@ -262,7 +262,7 @@ This will start:
 **To run without the Ollama container** (if you have Ollama running locally):
 ```bash
 # Edit docker-compose.yml and remove the 'depends_on: - ollama' line
-docker-compose up -d ollama-chat
+docker-compose up -d ollm-chat
 ```
 
 ### Configuration for Docker
