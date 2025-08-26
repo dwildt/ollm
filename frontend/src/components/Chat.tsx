@@ -1,19 +1,36 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
 import { Message, Model } from '../types';
+import { ConversationTemplate, SavedConversation } from '../types/templates';
 import { apiService } from '../services/api';
+import { conversationStorage } from '../services/conversationStorage';
+import { templateService } from '../services/templateService';
+import { useTemplateFromUrl } from '../hooks/useTemplateFromUrl';
 import LanguageSwitcher from './LanguageSwitcher';
+import TemplateSelector from './TemplateSelector';
+import ConversationSidebar from './ConversationSidebar';
+import ParameterForm from './ParameterForm';
 import './Chat.css';
 
 const Chat: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { conversationId } = useParams<{ conversationId?: string }>();
+  const { template: urlTemplate, parameters: urlParameters } = useTemplateFromUrl();
+  
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [selectedModel, setSelectedModel] = useState('');
   const [models, setModels] = useState<Model[]>([]);
   const [isOllamaConnected, setIsOllamaConnected] = useState<boolean | null>(null);
+  const [selectedTemplate, setSelectedTemplate] = useState<ConversationTemplate | null>(null);
+  const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showParameterForm, setShowParameterForm] = useState(false);
+  const [templateParameters, setTemplateParameters] = useState<Record<string, string>>({});
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -51,6 +68,100 @@ const Chat: React.FC = () => {
     checkOllamaHealth();
     loadModels();
   }, [checkOllamaHealth, loadModels]);
+
+  // Handle URL template and parameters
+  useEffect(() => {
+    if (urlTemplate) {
+      setSelectedTemplate(urlTemplate);
+      setTemplateParameters(urlParameters);
+      
+      // If we have all required parameters, auto-start the conversation
+      const validation = templateService.validateParameters(urlTemplate, urlParameters);
+      if (validation.isValid && Object.keys(urlParameters).length > 0) {
+        try {
+          const prompt = templateService.renderPrompt(urlTemplate, urlParameters);
+          startConversationWithPrompt(prompt);
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error('Error auto-starting conversation:', error);
+        }
+      } else if (urlTemplate.parameters.length > 0) {
+        // Show parameter form if template has parameters but not all are provided
+        setShowParameterForm(true);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlTemplate, urlParameters]);
+
+  // Handle conversation loading from URL
+  useEffect(() => {
+    if (conversationId && conversationId !== currentConversationId) {
+      loadConversationById(conversationId);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [conversationId, currentConversationId]);
+
+  // Auto-save conversation whenever messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      const saveDelay = setTimeout(() => {
+        const conversationId = conversationStorage.saveConversation(
+          messages,
+          selectedModel,
+          selectedTemplate?.id,
+          currentConversationId || undefined
+        );
+        if (!currentConversationId) {
+          setCurrentConversationId(conversationId);
+        }
+      }, 1000); // Debounce for 1 second
+
+      return () => clearTimeout(saveDelay);
+    }
+  }, [messages, selectedModel, selectedTemplate, currentConversationId]);
+
+  const startConversationWithPrompt = async (prompt: string) => {
+    if (isLoading || !selectedModel) return;
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      text: prompt,
+      isUser: true,
+      timestamp: new Date(),
+    };
+
+    setMessages([userMessage]);
+    setIsLoading(true);
+    setShowParameterForm(false);
+
+    try {
+      const response = await apiService.sendMessage(prompt, selectedModel);
+      
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: response.response,
+        isUser: false,
+        timestamp: new Date(),
+        model: response.model,
+      };
+
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to send message:', error);
+      
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: t('chat.errorMessage'),
+        isUser: false,
+        timestamp: new Date(),
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading || !selectedModel) return;
@@ -97,6 +208,64 @@ const Chat: React.FC = () => {
 
   const clearChat = () => {
     setMessages([]);
+    setCurrentConversationId(null);
+    setSelectedTemplate(null);
+    setShowParameterForm(false);
+    setTemplateParameters({});
+    navigate('/');
+  };
+
+  const handleTemplateSelect = (template: ConversationTemplate | null) => {
+    setSelectedTemplate(template);
+    setTemplateParameters({});
+    
+    // Show parameter form if template has parameters
+    if (template && template.parameters.length > 0) {
+      setShowParameterForm(true);
+    } else {
+      setShowParameterForm(false);
+    }
+    
+    // If we have an active conversation, clear it when changing templates
+    if (messages.length > 0) {
+      clearChat();
+    }
+  };
+
+  const loadConversationById = (id: string) => {
+    const conversation = conversationStorage.loadConversation(id);
+    if (conversation) {
+      loadConversation(conversation);
+    }
+  };
+
+  const loadConversation = (conversation: SavedConversation) => {
+    const loadedMessages: Message[] = conversation.messages.map(msg => ({
+      ...msg,
+      timestamp: new Date(msg.timestamp)
+    }));
+    
+    setMessages(loadedMessages);
+    setCurrentConversationId(conversation.id);
+    setSelectedModel(conversation.model);
+    
+    if (conversation.templateId) {
+      const template = templateService.getTemplateById(conversation.templateId);
+      setSelectedTemplate(template);
+    } else {
+      setSelectedTemplate(null);
+    }
+    
+    setShowParameterForm(false);
+    navigate(`/chat/conversation/${conversation.id}`);
+  };
+
+  const handleParameterFormSubmit = (finalPrompt: string) => {
+    startConversationWithPrompt(finalPrompt);
+  };
+
+  const handleParametersChange = (params: Record<string, string>) => {
+    setTemplateParameters(params);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -113,7 +282,34 @@ const Chat: React.FC = () => {
           <h1>{t('app.title')}</h1>
           <LanguageSwitcher />
         </div>
+        
+        <TemplateSelector
+          selectedTemplate={selectedTemplate}
+          onTemplateSelect={handleTemplateSelect}
+        />
+        
+        <ParameterForm
+          template={selectedTemplate!}
+          initialParameters={templateParameters}
+          onParametersChange={handleParametersChange}
+          onSubmit={handleParameterFormSubmit}
+          isVisible={showParameterForm && selectedTemplate !== null}
+        />
+        
         <div className="chat-controls">
+          <button 
+            onClick={() => setIsSidebarOpen(true)} 
+            className="hamburger-menu"
+            title="Ver conversas salvas"
+            aria-label="Abrir menu de conversas"
+          >
+            <div className="hamburger-lines">
+              <span />
+              <span />
+              <span />
+            </div>
+          </button>
+          
           <div className="model-selector">
             <label htmlFor="model-select">{t('chat.model')}</label>
             <select
@@ -133,11 +329,13 @@ const Chat: React.FC = () => {
               )}
             </select>
           </div>
+          
           <div className="status-indicator">
             <span className={`status ${isOllamaConnected === true ? 'connected' : isOllamaConnected === false ? 'disconnected' : 'checking'}`}>
               {isOllamaConnected === true ? t('status.connected') : isOllamaConnected === false ? t('status.disconnected') : t('status.checking')}
             </span>
           </div>
+          
           <button onClick={clearChat} className="clear-button">
             {t('chat.clearChat')}
           </button>
@@ -149,6 +347,12 @@ const Chat: React.FC = () => {
           <div className="welcome-message">
             <h2>{t('app.welcomeTitle')}</h2>
             <p>{t('app.welcomeMessage')}</p>
+            {selectedTemplate && (
+              <div className="active-template-info">
+                <h3>Template Ativo: {selectedTemplate.name}</h3>
+                <p>{selectedTemplate.description}</p>
+              </div>
+            )}
             {!isOllamaConnected && (
               <p className="error-message">
                 {t('app.ollamaDisconnected')}
@@ -197,6 +401,13 @@ const Chat: React.FC = () => {
         <div ref={messagesEndRef} />
       </div>
 
+      <ConversationSidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        onConversationSelect={loadConversation}
+        currentConversationId={currentConversationId}
+      />
+
       <div className="input-container">
         <textarea
           value={inputMessage}
@@ -208,7 +419,7 @@ const Chat: React.FC = () => {
         />
         <button
           onClick={sendMessage}
-          disabled={isLoading || !inputMessage.trim() || !selectedModel}
+          disabled={isLoading || !inputMessage.trim() || !selectedModel || showParameterForm}
           className="send-button"
         >
           {isLoading ? t('chat.sending') : t('chat.send')}

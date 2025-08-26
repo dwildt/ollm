@@ -27,3 +27,6 @@ export interface HealthResponse {
 export interface ModelsResponse {
   models: Model[];
 }
+
+// Re-export template types for convenience
+export * from './templates';

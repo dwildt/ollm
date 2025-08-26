@@ -1,0 +1,136 @@
+{
+  "templates": [
+    {
+      "id": "code-review",
+      "name": "Revisor de Código",
+      "slug": "code-review",
+      "description": "Analisa código e sugere melhorias focando em performance, legibilidade e boas práticas",
+      "category": "Desenvolvimento",
+      "tags": ["code", "review", "programming"],
+      "model": "llama3.2:latest",
+      "prompt": "Você é um revisor de código experiente. Analise o seguinte código em {language} e forneça sugestões de melhoria:\n\n{code}\n\nFoque em: performance, legibilidade, boas práticas e possíveis bugs.",
+      "parameters": [
+        {
+          "name": "language",
+          "type": "string",
+          "required": true,
+          "description": "Linguagem de programação do código"
+        },
+        {
+          "name": "code",
+          "type": "text",
+          "required": true,
+          "description": "Código a ser revisado"
+        }
+      ]
+    },
+    {
+      "id": "english-teacher",
+      "slug": "english-teacher",
+      "name": "Professor de Inglês",
+      "description": "Corrige textos em inglês e explica erros gramaticais e de estilo",
+      "category": "Educação",
+      "tags": ["english", "grammar", "writing"],
+      "prompt": "Você é um professor de inglês experiente. Corrija o seguinte texto e explique os erros encontrados:\n\n{text}",
+      "parameters": [
+        {
+          "name": "text",
+          "type": "text",
+          "required": true,
+          "description": "Texto em inglês para correção"
+        }
+      ]
+    },
+    {
+      "id": "brainstorm",
+      "slug": "brainstorm",
+      "name": "Sessão de Brainstorm",
+      "description": "Geração de ideias criativas sobre um tópico específico",
+      "category": "Criatividade",
+      "tags": ["brainstorm", "ideas", "creativity"],
+      "prompt": "Vamos fazer uma sessão de brainstorm sobre: {topic}\n\nObjetivo: {goal}\nPúblico-alvo: {audience}\n\nGere 10 ideias criativas e práticas.",
+      "parameters": [
+        {
+          "name": "topic",
+          "type": "string",
+          "required": true,
+          "description": "Tópico principal do brainstorm"
+        },
+        {
+          "name": "goal",
+          "type": "string", 
+          "required": false,
+          "description": "Objetivo específico",
+          "default": "explorar possibilidades"
+        },
+        {
+          "name": "audience",
+          "type": "string",
+          "required": false,
+          "description": "Público-alvo das ideias",
+          "default": "geral"
+        }
+      ]
+    },
+    {
+      "id": "sql-optimizer",
+      "slug": "sql-optimizer",
+      "name": "Otimizador SQL",
+      "description": "Analisa queries SQL e sugere otimizações de performance",
+      "category": "Banco de Dados",
+      "tags": ["sql", "database", "optimization"],
+      "prompt": "Você é um especialista em otimização de banco de dados. Analise a seguinte query SQL para {database} e sugira melhorias de performance:\n\n{query}\n\nConsidere: índices, joins, subqueries e estrutura da query.",
+      "parameters": [
+        {
+          "name": "database",
+          "type": "string",
+          "required": true,
+          "description": "Tipo de banco de dados (MySQL, PostgreSQL, etc.)"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "required": true,
+          "description": "Query SQL para otimização"
+        }
+      ]
+    },
+    {
+      "id": "marketing-copy",
+      "slug": "marketing-copy",
+      "name": "Redator de Marketing",
+      "description": "Cria textos persuasivos para campanhas de marketing",
+      "category": "Marketing",
+      "tags": ["marketing", "copywriting", "sales"],
+      "prompt": "Você é um copywriter experiente. Crie um texto de marketing persuasivo para:\n\nProduto/Serviço: {product}\nPúblico-alvo: {target_audience}\nObjetivo: {goal}\nTom: {tone}\n\nCrie um texto que gere conversão e engajamento.",
+      "parameters": [
+        {
+          "name": "product",
+          "type": "string",
+          "required": true,
+          "description": "Produto ou serviço a ser promovido"
+        },
+        {
+          "name": "target_audience",
+          "type": "string",
+          "required": true,
+          "description": "Público-alvo da campanha"
+        },
+        {
+          "name": "goal",
+          "type": "string",
+          "required": false,
+          "description": "Objetivo da campanha",
+          "default": "gerar interesse"
+        },
+        {
+          "name": "tone",
+          "type": "string",
+          "required": false,
+          "description": "Tom de voz desejado",
+          "default": "profissional e amigável"
+        }
+      ]
+    }
+  ]
+}

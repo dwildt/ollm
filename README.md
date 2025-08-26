@@ -265,12 +265,198 @@ This will start:
 docker-compose up -d ollm-chat
 ```
 
+### Docker Operations & Management
+
+**Rebuild Docker images** (after code changes):
+```bash
+# Rebuild with no cache to ensure fresh build
+docker-compose build --no-cache
+
+# Then restart containers
+docker-compose up -d
+```
+
+**View container status:**
+```bash
+docker-compose ps
+```
+
+**View logs:**
+```bash
+# All services
+docker-compose logs -f
+
+# Specific service
+docker-compose logs -f ollm-chat
+
+# Last 50 lines
+docker-compose logs --tail=50 ollm-chat
+```
+
+**Stop services:**
+```bash
+# Stop all services
+docker-compose down
+
+# Stop and remove volumes
+docker-compose down -v
+```
+
+**Clean up Docker resources:**
+```bash
+# Remove stopped containers, unused networks, images, and build cache
+docker system prune -a
+
+# Remove only unused Docker images
+docker image prune -a
+```
+
+**Access container shell:**
+```bash
+docker-compose exec ollm-chat /bin/sh
+```
+
+**Update after code changes:**
+```bash
+# Full rebuild and restart process
+docker-compose down
+docker-compose build --no-cache  
+docker-compose up -d
+```
+
 ### Configuration for Docker
 
 The Docker setup includes these environment variables:
 - `OLLAMA_BASE_URL` - Points to Ollama server (uses `host.docker.internal` for local Ollama)
 - `NODE_ENV=production` - Runs in production mode
 - `PORT=3002` - Backend port
+
+## Development Operations & Maintenance
+
+### Useful Commands for Daily Development
+
+**Quick Development Setup:**
+```bash
+# Install dependencies and start development
+npm run install:all
+npm run dev
+```
+
+**Code Quality Checks:**
+```bash
+# Run full quality check (recommended before commits)
+npm run quality
+
+# Individual checks
+npm run lint                 # Check code style
+npm run lint:fix            # Fix auto-fixable issues
+npm run type-check          # TypeScript type validation
+```
+
+**Testing Commands:**
+```bash
+# Run all tests with coverage
+npm test
+
+# Individual test suites
+npm run test:frontend       # Frontend unit tests
+npm run test:backend        # Backend unit tests  
+npm run test:e2e           # End-to-end tests
+npm run test:e2e:ui        # E2E with visual interface
+```
+
+**Build Operations:**
+```bash
+# Build for production
+npm run build
+
+# Build individual components
+npm run build:frontend     # Frontend only
+npm run build:backend      # Backend only
+```
+
+**Process Management:**
+```bash
+# Check what's running on ports
+lsof -i :3000              # Check frontend port
+lsof -i :3002              # Check backend port
+lsof -i :11434             # Check Ollama port
+
+# Kill processes on ports
+npx kill-port 3000         # Kill frontend
+npx kill-port 3002         # Kill backend
+```
+
+**Dependency Management:**
+```bash
+# Update all dependencies
+npm run install:all
+
+# Check for outdated packages
+npm outdated               # Root
+cd frontend && npm outdated # Frontend
+cd backend && npm outdated  # Backend
+
+# Clean install (when dependencies are corrupted)
+rm -rf node_modules frontend/node_modules backend/node_modules
+rm package-lock.json frontend/package-lock.json backend/package-lock.json
+npm run install:all
+```
+
+**Git Operations:**
+```bash
+# Check status before commits
+git status
+npm run quality            # Ensure tests pass
+git add .
+git commit -m "Your message"
+
+# Push changes and update Docker
+git push
+docker-compose build --no-cache
+docker-compose up -d
+```
+
+**Log Monitoring:**
+```bash
+# Development logs
+npm run dev                # Shows both frontend and backend logs
+
+# Docker logs
+docker-compose logs -f     # Follow all container logs
+docker-compose logs -f ollm-chat  # Follow specific service
+
+# Ollama logs (if running locally)
+ollama logs                # If available
+journalctl -u ollama       # On systemd systems
+```
+
+**Performance & Debugging:**
+```bash
+# Bundle analysis (frontend)
+cd frontend && npm run build
+npx webpack-bundle-analyzer build/static/js/*.js
+
+# Memory usage
+docker stats              # Docker container resources
+top -p $(pgrep node)      # Node.js processes
+
+# Network debugging
+curl -v http://localhost:3002/api/models  # Test backend API
+curl -v http://localhost:11434/api/tags   # Test Ollama connection
+```
+
+**Backup & Recovery:**
+```bash
+# Export Docker images
+docker save ollm-ollm-chat > ollm-backup.tar
+
+# Import Docker images
+docker load < ollm-backup.tar
+
+# Backup configuration
+tar -czf ollm-config-backup.tar.gz backend/.env frontend/.env docker-compose.yml
+```
 
 ## Troubleshooting
 
@@ -292,6 +478,16 @@ The Docker setup includes these environment variables:
 4. **Build errors**
    - Clear node_modules and reinstall: `rm -rf node_modules && npm install`
    - Ensure Node.js version is 16 or higher
+
+5. **Docker showing old version** (after code changes)
+   - Rebuild Docker images: `docker-compose build --no-cache`
+   - Restart containers: `docker-compose up -d`
+   - Verify logs: `docker-compose logs -f ollm-chat`
+
+6. **Port conflicts**
+   - Check what's using ports: `lsof -i :3000` and `lsof -i :3002`
+   - Kill conflicting processes: `npx kill-port 3000`
+   - Or change ports in docker-compose.yml and backend/.env
 
 ## Contributing
 
