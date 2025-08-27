@@ -23,6 +23,23 @@
   "language": {
     "english": "English",
     "portuguese": "Português",
+    "spanish": "Español",
     "switchTo": "Trocar para {{language}}"
+  },
+  "templates": {
+    "conversationTemplate": "Template de Conversa:",
+    "showTemplates": "Mostrar Templates",
+    "hideTemplates": "Ocultar Templates",
+    "freeConversation": "Conversa Livre",
+    "configureParameters": "Configure os Parâmetros",
+    "startConversation": "Iniciar Conversa",
+    "promptPreview": "Preview do Prompt:",
+    "copyResponse": "Copiar resposta",
+    "requiredParameter": "Este parâmetro é obrigatório",
+    "fillAllRequired": "Preencha todos os parâmetros obrigatórios para ver o preview",
+    "renderError": "Erro ao renderizar template",
+    "category": "Categoria:",
+    "parameters": "Parâmetros:",
+    "required": "*"
   }
 }

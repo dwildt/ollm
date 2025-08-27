@@ -23,6 +23,12 @@ const LanguageSwitcher: React.FC = () => {
       >
         PT
       </button>
+      <button
+        onClick={() => changeLanguage('es')}
+        className={`lang-button ${i18n.language === 'es' ? 'active' : ''}`}
+      >
+        ES
+      </button>
     </div>
   );
 };

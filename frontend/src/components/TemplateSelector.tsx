@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ConversationTemplate } from '../types/templates';
 import { templateService } from '../services/templateService';
 import './TemplateSelector.css';
@@ -12,6 +13,7 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({
   onTemplateSelect,
   selectedTemplate
 }) => {
+  const { t } = useTranslation();
   const [templates, setTemplates] = useState<ConversationTemplate[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -50,14 +52,14 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({
   return (
     <div className="template-selector">
       <div className="template-selector-header">
-        <label htmlFor="template-select">Template de Conversa:</label>
+        <label htmlFor="template-select">{t('templates.conversationTemplate')}</label>
         <button 
           type="button"
           className="template-toggle"
           onClick={toggleExpanded}
           aria-expanded={isExpanded}
         >
-          {isExpanded ? 'Ocultar' : 'Mostrar'} Templates
+          {isExpanded ? t('templates.hideTemplates') : t('templates.showTemplates')}
         </button>
       </div>
 
@@ -69,7 +71,7 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({
             onChange={(e) => handleTemplateChange(e.target.value)}
             className="template-select"
           >
-            <option value="">Conversa Livre</option>
+            <option value="">{t('templates.freeConversation')}</option>
             {templates.map((template) => (
               <option key={template.id} value={template.id}>
                 {template.name} - {template.category}
@@ -82,10 +84,10 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({
               <h4>{selectedTemplate.name}</h4>
               <p className="template-description">{selectedTemplate.description}</p>
               <div className="template-meta">
-                <span className="template-category">Categoria: {selectedTemplate.category}</span>
+                <span className="template-category">{t('templates.category')} {selectedTemplate.category}</span>
                 {selectedTemplate.parameters.length > 0 && (
                   <span className="template-params">
-                    Parâmetros: {selectedTemplate.parameters.length}
+                    {t('templates.parameters')} {selectedTemplate.parameters.length}
                   </span>
                 )}
               </div>

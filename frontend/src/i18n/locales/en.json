@@ -23,6 +23,23 @@
   "language": {
     "english": "English",
     "portuguese": "Português",
+    "spanish": "Español",
     "switchTo": "Switch to {{language}}"
+  },
+  "templates": {
+    "conversationTemplate": "Conversation Template:",
+    "showTemplates": "Show Templates",
+    "hideTemplates": "Hide Templates",
+    "freeConversation": "Free Conversation",
+    "configureParameters": "Configure Parameters",
+    "startConversation": "Start Conversation",
+    "promptPreview": "Prompt Preview:",
+    "copyResponse": "Copy response",
+    "requiredParameter": "This parameter is required",
+    "fillAllRequired": "Fill all required parameters to see preview",
+    "renderError": "Error rendering template",
+    "category": "Category:",
+    "parameters": "Parameters:",
+    "required": "*"
   }
 }

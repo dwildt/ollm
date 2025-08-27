@@ -501,8 +501,8 @@ const Chat: React.FC = () => {
                       <button 
                         className="copy-button"
                         onClick={() => copyMessageText(message.text)}
-                        title="Copiar resposta"
-                        aria-label="Copiar resposta"
+                        title={t('templates.copyResponse')}
+                        aria-label={t('templates.copyResponse')}
                       >
                         📋
                       </button>

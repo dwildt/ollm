@@ -1,0 +1,45 @@
+{
+  "app": {
+    "title": "Interfaz de Chat Ollama",
+    "welcomeTitle": "¡Bienvenido al Chat Ollama!",
+    "welcomeMessage": "Comienza una conversación escribiendo un mensaje abajo.",
+    "ollamaDisconnected": "⚠️ Ollama parece estar desconectado. Por favor, asegúrate de que Ollama esté funcionando en localhost:11434"
+  },
+  "chat": {
+    "model": "Modelo:",
+    "noModelsAvailable": "No hay modelos disponibles",
+    "clearChat": "Limpiar Chat",
+    "inputPlaceholder": "Escribe tu mensaje aquí... (Presiona Enter para enviar, Shift+Enter para nueva línea)",
+    "send": "Enviar",
+    "sending": "Enviando...",
+    "errorMessage": "Lo siento, encontré un error. Por favor asegúrate de que Ollama esté funcionando e inténtalo de nuevo.",
+    "timeoutError": "Tiempo de espera agotado. El modelo puede estar tardando demasiado en responder. Intenta usar un modelo más pequeño o un mensaje más corto."
+  },
+  "status": {
+    "connected": "🟢 Conectado",
+    "disconnected": "🔴 Desconectado",
+    "checking": "🟡 Verificando..."
+  },
+  "language": {
+    "english": "English",
+    "portuguese": "Português",
+    "spanish": "Español",
+    "switchTo": "Cambiar a {{language}}"
+  },
+  "templates": {
+    "conversationTemplate": "Plantilla de Conversación:",
+    "showTemplates": "Mostrar Plantillas",
+    "hideTemplates": "Ocultar Plantillas",
+    "freeConversation": "Conversación Libre",
+    "configureParameters": "Configurar Parámetros",
+    "startConversation": "Iniciar Conversación",
+    "promptPreview": "Vista Previa del Prompt:",
+    "copyResponse": "Copiar respuesta",
+    "requiredParameter": "Este parámetro es obligatorio",
+    "fillAllRequired": "Completa todos los parámetros obligatorios para ver la vista previa",
+    "renderError": "Error al renderizar plantilla",
+    "category": "Categoría:",
+    "parameters": "Parámetros:",
+    "required": "*"
+  }
+}

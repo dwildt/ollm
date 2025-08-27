@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ConversationTemplate, TemplateParameter } from '../types/templates';
 import { templateService } from '../services/templateService';
 import './ParameterForm.css';
@@ -18,6 +19,7 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
   onSubmit,
   isVisible
 }) => {
+  const { t } = useTranslation();
   const [parameters, setParameters] = useState<Record<string, string>>(initialParameters);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [previewPrompt, setPreviewPrompt] = useState('');
@@ -59,10 +61,10 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
         setPreviewPrompt(prompt);
         setErrors({});
       } else {
-        setPreviewPrompt('Preencha todos os parâmetros obrigatórios para ver o preview');
+        setPreviewPrompt(t('templates.fillAllRequired'));
         const newErrors: Record<string, string> = {};
         validation.missingRequired.forEach(param => {
-          newErrors[param] = 'Este parâmetro é obrigatório';
+          newErrors[param] = t('templates.requiredParameter');
         });
         validation.invalidTypes.forEach(error => {
           const paramName = error.split(' ')[0];
@@ -71,7 +73,7 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
         setErrors(newErrors);
       }
     } catch (error) {
-      setPreviewPrompt('Erro ao renderizar template');
+      setPreviewPrompt(t('templates.renderError'));
       // eslint-disable-next-line no-console
       console.error('Error rendering template preview:', error);
     }
@@ -121,7 +123,7 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
       <div key={param.name} className="parameter-field">
         <label htmlFor={`param-${param.name}`} className="parameter-label">
           {param.name}
-          {param.required && <span className="required">*</span>}
+          {param.required && <span className="required">{t('templates.required')}</span>}
         </label>
         
         <div className="parameter-description">
@@ -158,7 +160,7 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
   return (
     <div className="parameter-form-container">
       <div className="parameter-form">
-        <h3>Configure os Parâmetros</h3>
+        <h3>{t('templates.configureParameters')}</h3>
         <p className="template-description">{template.description}</p>
 
         <form onSubmit={handleSubmit} className="parameters-form">
@@ -170,13 +172,13 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
               className="submit-button"
               disabled={Object.keys(errors).length > 0}
             >
-              Iniciar Conversa
+              {t('templates.startConversation')}
             </button>
           </div>
         </form>
 
         <div className="prompt-preview">
-          <h4>Preview do Prompt:</h4>
+          <h4>{t('templates.promptPreview')}</h4>
           <div className="preview-content">
             {previewPrompt}
           </div>

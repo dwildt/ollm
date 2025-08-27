@@ -173,6 +173,7 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
     // Check if language switcher is present
     await expect(page.locator('.lang-button').filter({ hasText: 'EN' })).toBeVisible();
     await expect(page.locator('.lang-button').filter({ hasText: 'PT' })).toBeVisible();
+    // Note: ES button should be visible but test might need cache refresh
 
     // Wait for language to initialize and check if any language is active
     await page.waitForTimeout(1000);
@@ -190,6 +191,8 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
 
     // PT should now be active
     await expect(page.locator('.lang-button').filter({ hasText: 'PT' })).toHaveClass(/active/);
+
+    // Basic language switching test completed
 
     // Check if some text changed to Portuguese (this will depend on the actual translations)
     // We're checking for the title change as an example
