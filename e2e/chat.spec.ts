@@ -314,4 +314,42 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
     await expect(page.locator('.user-message .message-text').filter({ hasText: 'Message 5' })).toBeVisible();
     await expect(page.locator('.bot-message .message-text').filter({ hasText: 'Echo: Message 5' })).toBeVisible();
   });
+
+  test('shows expandable error details when message fails', async ({ page }) => {
+    await page.waitForSelector('select');
+    
+    // Mock a network error by intercepting the API call
+    await page.route('**/api/chat', route => {
+      route.abort('connectionfailed');
+    });
+
+    // Try to send a message
+    const messageInput = page.getByPlaceholder('Type your message here');
+    await messageInput.fill('This will fail');
+    await page.getByRole('button', { name: 'Send' }).click();
+
+    // Wait for error message to appear
+    await page.waitForSelector('.bot-message .message-text', { timeout: 10000 });
+    
+    // Check if error details toggle button is present
+    const errorToggle = page.locator('.error-details-toggle');
+    await expect(errorToggle).toBeVisible();
+    await expect(errorToggle).toContainText('Ver detalhes do erro');
+    
+    // Click to expand error details
+    await errorToggle.click();
+    
+    // Check if error details are now visible
+    await expect(page.locator('.error-details-content')).toBeVisible();
+    await expect(page.locator('.error-type')).toBeVisible();
+    await expect(page.locator('.error-details-text')).toBeVisible();
+    
+    // Check if toggle text changed
+    await expect(errorToggle).toContainText('Ocultar detalhes');
+    
+    // Click again to collapse
+    await errorToggle.click();
+    await expect(page.locator('.error-details-content')).not.toBeVisible();
+    await expect(errorToggle).toContainText('Ver detalhes do erro');
+  });
 });

@@ -12,7 +12,8 @@
     "inputPlaceholder": "Type your message here... (Press Enter to send, Shift+Enter for new line)",
     "send": "Send",
     "sending": "Sending...",
-    "errorMessage": "Sorry, I encountered an error. Please make sure Ollama is running and try again."
+    "errorMessage": "Sorry, I encountered an error. Please make sure Ollama is running and try again.",
+    "timeoutError": "Request timed out. The model might be taking too long to respond. Try using a smaller model or shorter message."
   },
   "status": {
     "connected": "🟢 Connected",

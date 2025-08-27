@@ -12,7 +12,8 @@
     "inputPlaceholder": "Digite sua mensagem aqui... (Pressione Enter para enviar, Shift+Enter para nova linha)",
     "send": "Enviar",
     "sending": "Enviando...",
-    "errorMessage": "Desculpe, encontrei um erro. Certifique-se de que o Ollama esteja rodando e tente novamente."
+    "errorMessage": "Desculpe, encontrei um erro. Certifique-se de que o Ollama esteja rodando e tente novamente.",
+    "timeoutError": "Tempo limite excedido. O modelo pode estar demorando muito para responder. Tente usar um modelo menor ou uma mensagem mais curta."
   },
   "status": {
     "connected": "🟢 Conectado",

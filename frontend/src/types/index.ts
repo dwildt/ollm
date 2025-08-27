@@ -4,6 +4,10 @@ export interface Message {
   isUser: boolean;
   timestamp: Date;
   model?: string;
+  error?: {
+    details: string;
+    type?: 'timeout' | 'network' | 'server' | 'unknown';
+  };
 }
 
 export interface Model {

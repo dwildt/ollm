@@ -31,10 +31,23 @@ const Chat: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showParameterForm, setShowParameterForm] = useState(false);
   const [templateParameters, setTemplateParameters] = useState<Record<string, string>>({});
+  const [expandedErrors, setExpandedErrors] = useState<Set<string>>(new Set());
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const toggleErrorDetails = (messageId: string) => {
+    setExpandedErrors(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(messageId)) {
+        newSet.delete(messageId);
+      } else {
+        newSet.add(messageId);
+      }
+      return newSet;
+    });
   };
 
   const checkOllamaHealth = useCallback(async () => {
@@ -146,15 +159,52 @@ const Chat: React.FC = () => {
       };
 
       setMessages(prev => [...prev, botMessage]);
-    } catch (error) {
+    } catch (error: unknown) {
       // eslint-disable-next-line no-console
       console.error('Failed to send message:', error);
       
+      let errorText = t('chat.errorMessage');
+      let errorType: 'timeout' | 'network' | 'server' | 'unknown' = 'unknown';
+      let errorDetails = String(error);
+      
+      // Handle specific error types and extract detailed information
+      if (error && typeof error === 'object') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const err = error as any;
+        
+        // Extract detailed error information
+        if (err.response) {
+          errorDetails = `HTTP ${err.response.status}: ${err.response.statusText}\n${JSON.stringify(err.response.data, null, 2)}`;
+          errorType = err.response.status >= 500 ? 'server' : 'network';
+        } else if (err.request) {
+          errorDetails = `Network Error: ${err.message}\nRequest: ${err.request.responseURL || 'Unknown URL'}`;
+          errorType = 'network';
+        } else {
+          errorDetails = `Error: ${err.message}\nStack: ${err.stack}`;
+        }
+        
+        // Determine user-friendly message
+        if (err.code === 'ECONNABORTED' || err.message?.includes('timeout')) {
+          errorText = t('chat.timeoutError');
+          errorType = 'timeout';
+          errorDetails = `Timeout Error: ${err.message}\nCode: ${err.code}\nTimeout: ${err.timeout}ms`;
+        } else if (err.response?.status === 408) {
+          errorText = err.response.data?.error || t('chat.timeoutError');
+          errorType = 'timeout';
+        } else if (err.response?.data?.error) {
+          errorText = err.response.data.error;
+        }
+      }
+      
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: t('chat.errorMessage'),
+        text: errorText,
         isUser: false,
         timestamp: new Date(),
+        error: {
+          details: errorDetails,
+          type: errorType,
+        },
       };
 
       setMessages(prev => [...prev, errorMessage]);
@@ -189,15 +239,52 @@ const Chat: React.FC = () => {
       };
 
       setMessages(prev => [...prev, botMessage]);
-    } catch (error) {
+    } catch (error: unknown) {
       // eslint-disable-next-line no-console
       console.error('Failed to send message:', error);
       
+      let errorText = t('chat.errorMessage');
+      let errorType: 'timeout' | 'network' | 'server' | 'unknown' = 'unknown';
+      let errorDetails = String(error);
+      
+      // Handle specific error types and extract detailed information
+      if (error && typeof error === 'object') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const err = error as any;
+        
+        // Extract detailed error information
+        if (err.response) {
+          errorDetails = `HTTP ${err.response.status}: ${err.response.statusText}\n${JSON.stringify(err.response.data, null, 2)}`;
+          errorType = err.response.status >= 500 ? 'server' : 'network';
+        } else if (err.request) {
+          errorDetails = `Network Error: ${err.message}\nRequest: ${err.request.responseURL || 'Unknown URL'}`;
+          errorType = 'network';
+        } else {
+          errorDetails = `Error: ${err.message}\nStack: ${err.stack}`;
+        }
+        
+        // Determine user-friendly message
+        if (err.code === 'ECONNABORTED' || err.message?.includes('timeout')) {
+          errorText = t('chat.timeoutError');
+          errorType = 'timeout';
+          errorDetails = `Timeout Error: ${err.message}\nCode: ${err.code}\nTimeout: ${err.timeout}ms`;
+        } else if (err.response?.status === 408) {
+          errorText = err.response.data?.error || t('chat.timeoutError');
+          errorType = 'timeout';
+        } else if (err.response?.data?.error) {
+          errorText = err.response.data.error;
+        }
+      }
+      
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: t('chat.errorMessage'),
+        text: errorText,
         isUser: false,
         timestamp: new Date(),
+        error: {
+          details: errorDetails,
+          type: errorType,
+        },
       };
 
       setMessages(prev => [...prev, errorMessage]);
@@ -376,6 +463,31 @@ const Chat: React.FC = () => {
                     <ReactMarkdown>
                       {message.text}
                     </ReactMarkdown>
+                    
+                    {/* Error details expansion for error messages */}
+                    {message.error && (
+                      <div className="error-details-container">
+                        <button 
+                          className="error-details-toggle"
+                          onClick={() => toggleErrorDetails(message.id)}
+                          title="Ver detalhes do erro"
+                        >
+                          {expandedErrors.has(message.id) ? '▼ Ocultar detalhes' : '▶ Ver detalhes do erro'}
+                        </button>
+                        
+                        {expandedErrors.has(message.id) && (
+                          <div className="error-details-content">
+                            <div className="error-type">
+                              <strong>Tipo:</strong> {message.error.type}
+                            </div>
+                            <div className="error-details">
+                              <strong>Detalhes:</strong>
+                              <pre className="error-details-text">{message.error.details}</pre>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
                 <div className="message-meta">

@@ -51,6 +51,10 @@ app.post('/api/chat', async (req, res): Promise<any> => {
   try {
     const selectedModel = model || 'llama3.2:latest';
     
+    // Set a longer timeout for larger models (5 minutes)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 300000); // 5 minutes
+
     const ollamaResponse = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
       method: 'POST',
       headers: {
@@ -61,7 +65,10 @@ app.post('/api/chat', async (req, res): Promise<any> => {
         prompt: message,
         stream: false
       }),
+      signal: controller.signal,
     });
+    
+    clearTimeout(timeoutId);
 
     if (!ollamaResponse.ok) {
       throw new Error(`Ollama API error: ${ollamaResponse.status}`);
@@ -75,6 +82,9 @@ app.post('/api/chat', async (req, res): Promise<any> => {
     });
   } catch (error: any) {
     console.error('Error in chat:', error);
+    if (error.name === 'AbortError') {
+      return res.status(408).json({ error: 'Request timeout - The model is taking too long to respond. Try a smaller model or a shorter message.' });
+    }
     return res.status(500).json({ error: 'Failed to get response from Ollama' });
   }
 });
