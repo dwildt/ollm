@@ -90,6 +90,7 @@ Thumbs.db
 tmp/
 temp/
 .tmp/
+debug-screenshot.png
 
 # Test results and artifacts
 test-results/
