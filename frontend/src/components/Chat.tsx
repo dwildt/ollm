@@ -330,6 +330,13 @@ const Chat: React.FC = () => {
   };
 
   const loadConversation = (conversation: SavedConversation) => {
+    // Limpar chat atual antes de carregar nova conversa
+    setMessages([]);
+    setCurrentConversationId(null);
+    
+    // Fechar menu lateral automaticamente
+    setIsSidebarOpen(false);
+    
     const loadedMessages: Message[] = conversation.messages.map(msg => ({
       ...msg,
       timestamp: new Date(msg.timestamp)
