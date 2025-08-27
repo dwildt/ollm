@@ -73,6 +73,11 @@
   font-size: 14px;
   font-family: inherit;
   transition: border-color 0.2s, box-shadow 0.2s;
+  pointer-events: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  position: relative;
+  z-index: 1;
 }
 
 .parameter-input:focus {

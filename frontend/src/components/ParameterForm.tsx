@@ -23,8 +23,21 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
   const [previewPrompt, setPreviewPrompt] = useState('');
 
   useEffect(() => {
-    setParameters(initialParameters);
-  }, [initialParameters, template]);
+    // Only reset parameters if template changes or if initial parameters are provided for first time
+    if (template) {
+      const hasInitialParams = Object.keys(initialParameters).length > 0;
+      const currentParamsEmpty = Object.keys(parameters).length === 0;
+      
+      if (hasInitialParams && currentParamsEmpty) {
+        // First time loading with initial parameters
+        setParameters(initialParameters);
+      } else if (hasInitialParams && JSON.stringify(parameters) !== JSON.stringify(initialParameters)) {
+        // Initial parameters have changed and are different from current
+        setParameters(initialParameters);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialParameters, template?.id]); // Use template?.id to handle null template
 
   useEffect(() => {
     updatePreview();
@@ -33,6 +46,12 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
   }, [parameters, template, onParametersChange]);
 
   const updatePreview = () => {
+    if (!template) {
+      setPreviewPrompt('');
+      setErrors({});
+      return;
+    }
+    
     try {
       const validation = templateService.validateParameters(template, parameters);
       if (validation.isValid) {
@@ -68,6 +87,8 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!template) return;
+    
     const validation = templateService.validateParameters(template, parameters);
     if (validation.isValid) {
       try {
@@ -84,7 +105,7 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
   };
 
   const renderParameterInput = (param: TemplateParameter) => {
-    const value = parameters[param.name] || '';
+    const value = parameters[param.name] ?? '';
     const hasError = errors[param.name];
 
     const inputProps = {
@@ -127,6 +148,10 @@ const ParameterForm: React.FC<ParameterFormProps> = ({
   };
 
   if (!isVisible) {
+    return null;
+  }
+  
+  if (!template) {
     return null;
   }
 
