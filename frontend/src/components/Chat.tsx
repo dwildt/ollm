@@ -206,14 +206,17 @@ const Chat: React.FC = () => {
     }
   };
 
-  const clearChat = () => {
+  const clearChat = useCallback(() => {
+    // Clear all chat-related state
     setMessages([]);
     setCurrentConversationId(null);
     setSelectedTemplate(null);
     setShowParameterForm(false);
     setTemplateParameters({});
-    navigate('/');
-  };
+    
+    // Always navigate to root to ensure URL is cleared of any conversation/template parameters
+    navigate('/', { replace: true });
+  }, [navigate]);
 
   const handleTemplateSelect = (template: ConversationTemplate | null) => {
     setSelectedTemplate(template);
