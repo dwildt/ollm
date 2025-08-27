@@ -50,6 +50,27 @@ const Chat: React.FC = () => {
     });
   };
 
+  const copyMessageText = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // Could add a toast notification here if needed
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+      } catch (fallbackErr) {
+        // eslint-disable-next-line no-console
+        console.error('Failed to copy text:', fallbackErr);
+      }
+      document.body.removeChild(textArea);
+    }
+  };
+
   const checkOllamaHealth = useCallback(async () => {
     try {
       const health = await apiService.checkHealth();
@@ -476,6 +497,16 @@ const Chat: React.FC = () => {
                   <div className="message-text">{message.text}</div>
                 ) : (
                   <div className="message-text markdown-content">
+                    <div className="bot-message-header">
+                      <button 
+                        className="copy-button"
+                        onClick={() => copyMessageText(message.text)}
+                        title="Copiar resposta"
+                        aria-label="Copiar resposta"
+                      >
+                        📋
+                      </button>
+                    </div>
                     <ReactMarkdown>
                       {message.text}
                     </ReactMarkdown>

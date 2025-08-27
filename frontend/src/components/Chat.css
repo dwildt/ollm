@@ -268,6 +268,43 @@
   font-style: italic;
 }
 
+/* Bot message header with copy button */
+.bot-message-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+  margin-top: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.copy-button {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #666;
+  opacity: 0.7;
+}
+
+.copy-button:hover {
+  background: rgba(0, 123, 255, 0.1);
+  opacity: 1;
+  color: #007bff;
+  transform: scale(1.05);
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+.copy-button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
 .typing-indicator {
   display: flex;
   align-items: center;
