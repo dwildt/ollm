@@ -108,11 +108,19 @@ const Chat: React.FC = () => {
 
   // Handle conversation loading from URL
   useEffect(() => {
-    if (conversationId && conversationId !== currentConversationId) {
-      loadConversationById(conversationId);
+    if (conversationId) {
+      // Sempre carregar se a URL tem um conversationId diferente do atual
+      if (conversationId !== currentConversationId) {
+        loadConversationById(conversationId);
+      }
+    } else {
+      // Se não há conversationId na URL, limpar a conversa atual se necessário
+      if (currentConversationId) {
+        clearChat();
+      }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [conversationId, currentConversationId]);
+  }, [conversationId]);
 
   // Auto-save conversation whenever messages change
   useEffect(() => {
@@ -330,12 +338,13 @@ const Chat: React.FC = () => {
   };
 
   const loadConversation = (conversation: SavedConversation) => {
-    // Limpar chat atual antes de carregar nova conversa
-    setMessages([]);
-    setCurrentConversationId(null);
-    
     // Fechar menu lateral automaticamente
     setIsSidebarOpen(false);
+    
+    // Limpar chat atual apenas se for uma conversa diferente
+    if (currentConversationId !== conversation.id) {
+      setMessages([]);
+    }
     
     const loadedMessages: Message[] = conversation.messages.map(msg => ({
       ...msg,
