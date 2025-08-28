@@ -419,8 +419,8 @@ Remember: **Quality is not negotiable**. Tests are not optional extras - they ar
 
 ### Port Configuration
 - **Development**:
-  - Frontend: Port 5000 (`http://localhost:5000`)
-  - Backend: Port 5002 (`http://localhost:5002`)
+  - Frontend: Port 4000 (`http://localhost:4000`)
+  - Backend: Port 4001 (`http://localhost:4001`)
 - **Docker**:
   - Frontend: Port 3000 (`http://localhost:3000`)
   - Backend: Port 3002 (`http://localhost:3002`)

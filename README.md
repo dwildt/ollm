@@ -65,14 +65,14 @@ A simple and clean web interface for interacting with Ollama directly via HTTP A
    
    Edit `backend/.env` to match your Ollama configuration:
    ```env
-   PORT=5002
+   PORT=4001
    OLLAMA_BASE_URL=http://localhost:11434
    DEFAULT_MODEL=llama2
    ```
 
 ## Development
 
-> **Note**: Development uses ports 5000 (frontend) and 5002 (backend) to avoid conflicts with other projects. Docker uses the traditional ports 3000 and 3002.
+> **Note**: Development uses ports 4000 (frontend) and 4001 (backend) to avoid conflicts with other projects. Docker uses the traditional ports 3000 and 3002.
 
 ### Quick Start (Recommended)
 Run both frontend and backend simultaneously:
@@ -81,8 +81,8 @@ npm run dev
 ```
 
 This will start:
-- Frontend on `http://localhost:5000`
-- Backend on `http://localhost:5002`
+- Frontend on `http://localhost:4000`
+- Backend on `http://localhost:4001`
 
 ### Individual Services
 
@@ -161,7 +161,7 @@ npm start
 ### Backend Configuration
 Environment variables in `backend/.env`:
 
-- `PORT` - Backend server port (default: 5002 for development)
+- `PORT` - Backend server port (default: 4001 for development)
 - `OLLAMA_BASE_URL` - Ollama server URL (default: http://localhost:11434)
 - `DEFAULT_MODEL` - Default model to use (default: llama2)
 
@@ -169,7 +169,7 @@ Environment variables in `backend/.env`:
 Create `frontend/.env` for frontend-specific variables:
 
 ```env
-REACT_APP_API_URL=http://localhost:5002/api
+REACT_APP_API_URL=http://localhost:4001/api
 ```
 
 ## Using with Ollama
@@ -382,13 +382,13 @@ npm run build:backend      # Backend only
 **Process Management:**
 ```bash
 # Check what's running on ports (Development)
-lsof -i :5000              # Check frontend port
-lsof -i :5002              # Check backend port
+lsof -i :4000              # Check frontend port
+lsof -i :4001              # Check backend port
 lsof -i :11434             # Check Ollama port
 
 # Kill processes on ports (Development)
-npx kill-port 5000         # Kill frontend
-npx kill-port 5002         # Kill backend
+npx kill-port 4000         # Kill frontend
+npx kill-port 4001         # Kill backend
 ```
 
 **Dependency Management:**
@@ -446,7 +446,7 @@ docker stats              # Docker container resources
 top -p $(pgrep node)      # Node.js processes
 
 # Network debugging
-curl -v http://localhost:5002/api/models  # Test backend API (Development)
+curl -v http://localhost:4001/api/models  # Test backend API (Development)
 curl -v http://localhost:3002/api/models  # Test backend API (Docker)
 curl -v http://localhost:11434/api/tags   # Test Ollama connection
 ```
@@ -477,7 +477,7 @@ tar -czf ollm-config-backup.tar.gz backend/.env frontend/.env docker-compose.yml
    - Restart the backend after pulling new models
 
 3. **CORS errors**
-   - Ensure backend is running on correct port (5002 for development, 3002 for Docker)
+   - Ensure backend is running on correct port (4001 for development, 3002 for Docker)
    - Check `REACT_APP_API_URL` in frontend configuration
 
 4. **Build errors**
@@ -490,7 +490,7 @@ tar -czf ollm-config-backup.tar.gz backend/.env frontend/.env docker-compose.yml
    - Verify logs: `docker-compose logs -f ollm-chat`
 
 6. **Port conflicts**
-   - **Development**: Check `lsof -i :5000` and `lsof -i :5002`
+   - **Development**: Check `lsof -i :4000` and `lsof -i :4001`
    - **Docker**: Check `lsof -i :3000` and `lsof -i :3002`
    - Kill conflicting processes: `npx kill-port [port]`
    - Or change ports in configuration files
