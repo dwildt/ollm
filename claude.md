@@ -418,8 +418,12 @@ Remember: **Quality is not negotiable**. Tests are not optional extras - they ar
 ## Current Configuration
 
 ### Port Configuration
-- **Frontend**: Port 3000 (`http://localhost:3000`)
-- **Backend**: Port 3002 (`http://localhost:3002`)
+- **Development**:
+  - Frontend: Port 5000 (`http://localhost:5000`)
+  - Backend: Port 5002 (`http://localhost:5002`)
+- **Docker**:
+  - Frontend: Port 3000 (`http://localhost:3000`)
+  - Backend: Port 3002 (`http://localhost:3002`)
 - **Ollama**: Port 11434 (default, running locally)
 
 ### Docker Configuration
