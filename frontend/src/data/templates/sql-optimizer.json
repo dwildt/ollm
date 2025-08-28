@@ -1,0 +1,23 @@
+{
+  "id": "sql-optimizer",
+  "slug": "sql-optimizer",
+  "name": "Otimizador SQL",
+  "description": "Analisa queries SQL e sugere otimizações de performance",
+  "category": "Banco de Dados",
+  "tags": ["sql", "database", "optimization"],
+  "prompt": "Você é um especialista em otimização de banco de dados. Analise a seguinte query SQL para {database} e sugira melhorias de performance:\n\n{query}\n\nConsidere: índices, joins, subqueries e estrutura da query.",
+  "parameters": [
+    {
+      "name": "database",
+      "type": "string",
+      "required": true,
+      "description": "Tipo de banco de dados (MySQL, PostgreSQL, etc.)"
+    },
+    {
+      "name": "query",
+      "type": "text",
+      "required": true,
+      "description": "Query SQL para otimização"
+    }
+  ]
+}

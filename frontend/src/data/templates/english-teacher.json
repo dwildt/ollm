@@ -1,0 +1,17 @@
+{
+  "id": "english-teacher",
+  "slug": "english-teacher",
+  "name": "Professor de Inglês",
+  "description": "Corrige textos em inglês e explica erros gramaticais e de estilo",
+  "category": "Educação",
+  "tags": ["english", "grammar", "writing"],
+  "prompt": "Você é um professor de inglês experiente. Corrija o seguinte texto e explique os erros encontrados:\n\n{text}",
+  "parameters": [
+    {
+      "name": "text",
+      "type": "text",
+      "required": true,
+      "description": "Texto em inglês para correção"
+    }
+  ]
+}

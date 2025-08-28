@@ -1,0 +1,31 @@
+{
+  "id": "brainstorm",
+  "slug": "brainstorm",
+  "name": "Sessão de Brainstorm",
+  "description": "Geração de ideias criativas sobre um tópico específico",
+  "category": "Criatividade",
+  "tags": ["brainstorm", "ideas", "creativity"],
+  "prompt": "Vamos fazer uma sessão de brainstorm sobre: {topic}\n\nObjetivo: {goal}\nPúblico-alvo: {audience}\n\nGere 10 ideias criativas e práticas.",
+  "parameters": [
+    {
+      "name": "topic",
+      "type": "string",
+      "required": true,
+      "description": "Tópico principal do brainstorm"
+    },
+    {
+      "name": "goal",
+      "type": "string", 
+      "required": false,
+      "description": "Objetivo específico",
+      "default": "explorar possibilidades"
+    },
+    {
+      "name": "audience",
+      "type": "string",
+      "required": false,
+      "description": "Público-alvo das ideias",
+      "default": "geral"
+    }
+  ]
+}

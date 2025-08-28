@@ -1,5 +1,5 @@
 import { ConversationTemplate, TemplateCollection } from '../types/templates';
-import templateData from '../data/conversation-templates.json';
+import templateData from '../data/templates/index';
 
 class TemplateService {
   private templates: ConversationTemplate[] = [];
