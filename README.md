@@ -233,7 +233,7 @@ ollm/
 - `GET /api/health` - Check Ollama connection status
 - `GET /api/models` - List available Ollama models
 - `POST /api/chat` - Send message to Ollama model
-- `GET /api/chat/:templateSlug.json` - Template API with JSON response
+- `GET /api/:templateSlug` - Template API with JSON response
 
 ## Template System
 
@@ -250,7 +250,7 @@ http://localhost:4000/chat/{template-slug}?param1=value1&param2=value2
 
 For automated/programmatic access, use the JSON API:
 ```
-http://localhost:4000/chat/{template-slug}.json?param1=value1&param2=value2
+http://localhost:4001/api/{template-slug}?param1=value1&param2=value2
 ```
 
 **JSON Response Format:**
@@ -284,7 +284,7 @@ http://localhost:4000/chat/brainstorm?topic=mobile app&goal=innovation&audience=
 
 **JSON API Access:**
 ```bash
-curl "http://localhost:4000/chat/brainstorm.json?topic=mobile%20app&goal=innovation&audience=teenagers"
+curl "http://localhost:4001/api/brainstorm?topic=mobile%20app&goal=innovation&audience=teenagers"
 ```
 
 **Response:**

@@ -13,6 +13,62 @@ const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
 app.use(cors());
 app.use(express.json());
 
+// Template API endpoint - /api/:templateSlug for JSON responses
+app.get('/api/:templateSlug', async (req, res): Promise<any> => {
+  const { templateSlug } = req.params;
+  const parameters = req.query as Record<string, string>;
+  
+  try {
+    const template = loadTemplate(templateSlug);
+    if (!template) {
+      return res.status(404).json({ error: `Template '${templateSlug}' not found` });
+    }
+    
+    const processedPrompt = processTemplatePrompt(template, parameters);
+    const selectedModel = await getBestAvailableModel(template.model);
+    
+    // Set timeout for API calls
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 300000); // 5 minutes
+
+    const ollamaResponse = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: selectedModel,
+        prompt: processedPrompt,
+        stream: false
+      }),
+      signal: controller.signal,
+    });
+    
+    clearTimeout(timeoutId);
+
+    if (!ollamaResponse.ok) {
+      throw new Error(`Ollama API error: ${ollamaResponse.status}`);
+    }
+
+    const data: any = await ollamaResponse.json();
+
+    return res.json({ 
+      template: templateSlug,
+      prompt: processedPrompt,
+      response: data.response,
+      model: selectedModel,
+      parameters: parameters
+    });
+    
+  } catch (error: any) {
+    console.error('Error in template API:', error);
+    if (error.name === 'AbortError') {
+      return res.status(408).json({ error: 'Request timeout - The model is taking too long to respond. Try a smaller model or a shorter message.' });
+    }
+    return res.status(500).json({ error: 'Failed to process template request' });
+  }
+});
+
 // Helper function to get the best available model
 const getBestAvailableModel = async (preferredModel?: string): Promise<string> => {
   try {
@@ -169,61 +225,6 @@ const processTemplatePrompt = (template: any, parameters: Record<string, string>
   return prompt;
 };
 
-// JSON API endpoint for templates
-app.get('/api/chat/:templateSlug.json', async (req, res): Promise<any> => {
-  const { templateSlug } = req.params;
-  const parameters = req.query as Record<string, string>;
-  
-  try {
-    const template = loadTemplate(templateSlug);
-    if (!template) {
-      return res.status(404).json({ error: `Template '${templateSlug}' not found` });
-    }
-    
-    const processedPrompt = processTemplatePrompt(template, parameters);
-    const selectedModel = await getBestAvailableModel(template.model);
-    
-    // Set timeout for API calls
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 300000); // 5 minutes
-
-    const ollamaResponse = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: selectedModel,
-        prompt: processedPrompt,
-        stream: false
-      }),
-      signal: controller.signal,
-    });
-    
-    clearTimeout(timeoutId);
-
-    if (!ollamaResponse.ok) {
-      throw new Error(`Ollama API error: ${ollamaResponse.status}`);
-    }
-
-    const data: any = await ollamaResponse.json();
-
-    return res.json({ 
-      template: templateSlug,
-      prompt: processedPrompt,
-      response: data.response,
-      model: selectedModel,
-      parameters: parameters
-    });
-    
-  } catch (error: any) {
-    console.error('Error in template API:', error);
-    if (error.name === 'AbortError') {
-      return res.status(408).json({ error: 'Request timeout - The model is taking too long to respond. Try a smaller model or a shorter message.' });
-    }
-    return res.status(500).json({ error: 'Failed to process template request' });
-  }
-});
 
 // Handle 404 errors
 app.use((_req, res) => {

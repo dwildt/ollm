@@ -83,7 +83,7 @@ Este diretório contém templates individuais de conversação que são automati
 
 Todos os templates podem ser acessados via API JSON usando URLs no formato:
 ```
-http://localhost:4000/chat/{template-slug}.json?param1=value1&param2=value2
+http://localhost:4001/api/{template-slug}?param1=value1&param2=value2
 ```
 
 ### Templates Disponíveis e Parâmetros
@@ -97,7 +97,7 @@ http://localhost:4000/chat/{template-slug}.json?param1=value1&param2=value2
 
 **Exemplo**:
 ```bash
-curl "http://localhost:4000/chat/brainstorm.json?topic=startup de delivery&goal=inovação&audience=millennials"
+curl "http://localhost:4001/api/brainstorm?topic=startup de delivery&goal=inovação&audience=millennials"
 ```
 
 #### 2. Code Review (`code-review`)
@@ -109,7 +109,7 @@ curl "http://localhost:4000/chat/brainstorm.json?topic=startup de delivery&goal=
 
 **Exemplo**:
 ```bash
-curl "http://localhost:4000/chat/code-review.json?language=JavaScript&code=function test(){return 1}&focus=performance"
+curl "http://localhost:4001/api/code-review?language=JavaScript&code=function test(){return 1}&focus=performance"
 ```
 
 #### 3. English Teacher (`english-teacher`)
@@ -121,7 +121,7 @@ curl "http://localhost:4000/chat/code-review.json?language=JavaScript&code=funct
 
 **Exemplo**:
 ```bash
-curl "http://localhost:4000/chat/english-teacher.json?level=intermediate&topic=business&skill=writing"
+curl "http://localhost:4001/api/english-teacher?level=intermediate&topic=business&skill=writing"
 ```
 
 #### 4. Spanish Teacher (`spanish-teacher`)
@@ -133,7 +133,7 @@ curl "http://localhost:4000/chat/english-teacher.json?level=intermediate&topic=b
 
 **Exemplo**:
 ```bash
-curl "http://localhost:4000/chat/spanish-teacher.json?level=beginner&topic=travel&skill=vocabulary"
+curl "http://localhost:4001/api/spanish-teacher?level=beginner&topic=travel&skill=vocabulary"
 ```
 
 #### 5. SQL Optimizer (`sql-optimizer`)
@@ -145,7 +145,7 @@ curl "http://localhost:4000/chat/spanish-teacher.json?level=beginner&topic=trave
 
 **Exemplo**:
 ```bash
-curl "http://localhost:4000/chat/sql-optimizer.json?database=MySQL&query=SELECT * FROM users&performance=memory"
+curl "http://localhost:4001/api/sql-optimizer?database=MySQL&query=SELECT * FROM users&performance=memory"
 ```
 
 #### 6. Marketing Copy (`marketing-copy`)
@@ -157,7 +157,7 @@ curl "http://localhost:4000/chat/sql-optimizer.json?database=MySQL&query=SELECT 
 
 **Exemplo**:
 ```bash
-curl "http://localhost:4000/chat/marketing-copy.json?product=SaaS de gestão&audience=PMEs&tone=profissional"
+curl "http://localhost:4001/api/marketing-copy?product=SaaS de gestão&audience=PMEs&tone=profissional"
 ```
 
 ### Formato da Resposta JSON
@@ -182,7 +182,7 @@ Todos os endpoints retornam uma resposta no formato:
 ```python
 import requests
 
-response = requests.get('http://localhost:4000/chat/brainstorm.json', {
+response = requests.get('http://localhost:4001/api/brainstorm', {
     'topic': 'app mobile',
     'goal': 'inovação',
     'audience': 'jovens'
@@ -193,12 +193,12 @@ print(data['response'])
 
 **JavaScript**:
 ```javascript
-fetch('http://localhost:4000/chat/brainstorm.json?topic=app%20mobile&goal=inovação&audience=jovens')
+fetch('http://localhost:4001/api/brainstorm?topic=app%20mobile&goal=inovação&audience=jovens')
   .then(response => response.json())
   .then(data => console.log(data.response));
 ```
 
 **cURL**:
 ```bash
-curl "http://localhost:4000/chat/brainstorm.json?topic=app%20mobile&goal=inovação&audience=jovens" | jq '.response'
+curl "http://localhost:4001/api/brainstorm?topic=app%20mobile&goal=inovação&audience=jovens" | jq '.response'
 ```
