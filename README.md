@@ -355,6 +355,10 @@ npm run quality
 npm run lint                 # Check code style
 npm run lint:fix            # Fix auto-fixable issues
 npm run type-check          # TypeScript type validation
+
+# Commit validation
+npm run validate-commit      # Validate last commit message
+npm run pre-commit          # Run pre-commit checks manually
 ```
 
 **Testing Commands:**
@@ -495,13 +499,69 @@ tar -czf ollm-config-backup.tar.gz backend/.env frontend/.env docker-compose.yml
    - Kill conflicting processes: `npx kill-port [port]`
    - Or change ports in configuration files
 
+## Commit Standards
+
+This project uses **Conventional Commits** with automated validation via pre-commit hooks.
+
+### Commit Message Format
+```
+type: description (max 100 characters)
+
+[optional body]
+
+[optional footer]
+```
+
+### Allowed Types
+- `feat`: New feature for users
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code formatting (no logic changes)
+- `refactor`: Code refactoring
+- `test`: Adding or modifying tests
+- `build`: Build system or dependencies
+- `ci`: CI/CD configuration
+- `chore`: Maintenance tasks
+- `perf`: Performance improvements
+- `revert`: Revert previous commit
+
+### Examples
+```bash
+# Good commit messages
+git commit -m "feat: adicionar template professor de espanhol"
+git commit -m "fix: corrigir validação de parâmetros de template"
+git commit -m "docs: atualizar README com configuração de portas"
+git commit -m "test: simplificar testes E2E de templates"
+
+# Bad commit messages (will be rejected)
+git commit -m "update stuff"          # Missing type
+git commit -m "Fix bug"              # Wrong case, no colon
+git commit -m "feat: add new feature that does many things and has a very long description that exceeds the character limit"  # Too long
+```
+
+### Automated Validation
+The system automatically:
+- ✅ **Pre-commit**: Runs lint, type-check, and tests on modified files
+- ✅ **Commit-msg**: Validates message format and type
+- ❌ **Rejects**: Invalid messages or code that doesn't pass checks
+
+### Manual Validation
+```bash
+# Check if your last commit message is valid
+npm run validate-commit
+
+# Run pre-commit checks manually
+npm run pre-commit
+```
+
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
+3. Make your changes following commit standards
 4. Add tests if applicable
-5. Submit a pull request
+5. Ensure `npm run quality` passes
+6. Submit a pull request
 
 ## License
 

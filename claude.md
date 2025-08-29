@@ -415,6 +415,108 @@ All code changes must:
 
 Remember: **Quality is not negotiable**. Tests are not optional extras - they are a fundamental part of the codebase that ensure reliability, enable confident refactoring, and provide living documentation of how the system should behave.
 
+## Commit Standards and Quality Gates
+
+### Conventional Commits
+
+This project enforces **Conventional Commits** through automated pre-commit hooks to ensure consistent commit history and enable automated tooling.
+
+#### Required Format
+```
+type: description (max 100 characters)
+
+[optional body]
+
+[optional footer]
+```
+
+#### Allowed Commit Types
+- **feat**: New feature for users
+- **fix**: Bug fixes
+- **docs**: Documentation changes
+- **style**: Code formatting (no functionality change)
+- **refactor**: Code restructuring without feature changes
+- **test**: Adding or updating tests
+- **build**: Build system or dependency changes
+- **ci**: CI/CD configuration changes
+- **chore**: Maintenance tasks
+- **perf**: Performance improvements
+- **revert**: Reverting previous commits
+
+#### Examples
+```bash
+# Good examples
+feat: adicionar template professor de espanhol
+fix: corrigir validação de parâmetros de template
+docs: atualizar README com configuração de portas
+test: adicionar testes E2E para templates
+build: atualizar dependências para versões mais recentes
+
+# Bad examples (will be rejected)
+update stuff                    # No type prefix
+Fix: something                  # Wrong case
+feat: add new feature...        # Too long (>100 chars)
+```
+
+### Pre-commit Quality Gates
+
+Every commit automatically triggers quality checks via **Husky** and **lint-staged**:
+
+#### Pre-commit Hook
+- **ESLint**: Auto-fixes code style issues
+- **TypeScript**: Validates type safety
+- **Tests**: Runs relevant tests for modified files
+- **Scope**: Only processes staged files for performance
+
+#### Commit Message Hook  
+- **Format validation**: Ensures conventional commit format
+- **Type validation**: Checks allowed commit types
+- **Length validation**: Enforces 100-character limit
+- **Structure validation**: Validates required elements
+
+### Development Workflow Integration
+
+#### Before Every Commit
+```bash
+# Automatic (via pre-commit hook)
+git add .
+git commit -m "feat: your feature description"
+# → Runs lint-staged automatically
+# → Validates commit message format
+# → Rejects if quality checks fail
+```
+
+#### Manual Quality Checks
+```bash
+npm run quality           # Full quality suite
+npm run pre-commit       # Manual pre-commit checks
+npm run validate-commit  # Validate last commit message
+```
+
+#### Quality Gate Requirements
+All commits must:
+1. ✅ Pass TypeScript compilation
+2. ✅ Pass ESLint validation (auto-fixed when possible)
+3. ✅ Pass relevant unit/E2E tests
+4. ✅ Follow conventional commit message format
+5. ✅ Stay within 100-character header limit
+
+#### Bypassing Quality Gates
+**Never bypass quality gates** in the main branch. If you must bypass locally during development:
+```bash
+git commit --no-verify -m "temp: work in progress"
+```
+
+**Important**: All bypassed commits must be cleaned up before merging to main.
+
+### Benefits of This Approach
+
+- **Consistent History**: All commits follow the same format
+- **Automated Tooling**: Enables changelogs, versioning, and CI/CD automation
+- **Quality Assurance**: Prevents broken code from entering the repository
+- **Developer Experience**: Immediate feedback on code quality
+- **Collaboration**: Clear expectations for all contributors
+
 ## Current Configuration
 
 ### Port Configuration
