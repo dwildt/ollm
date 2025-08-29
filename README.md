@@ -233,6 +233,74 @@ ollm/
 - `GET /api/health` - Check Ollama connection status
 - `GET /api/models` - List available Ollama models
 - `POST /api/chat` - Send message to Ollama model
+- `GET /api/chat/:templateSlug.json` - Template API with JSON response
+
+## Template System
+
+The application includes a powerful template system for predefined conversation starters with customizable parameters.
+
+### Using Templates via Interface
+
+Access templates through the web interface using URLs like:
+```
+http://localhost:4000/chat/{template-slug}?param1=value1&param2=value2
+```
+
+### Using Templates via JSON API
+
+For automated/programmatic access, use the JSON API:
+```
+http://localhost:4000/chat/{template-slug}.json?param1=value1&param2=value2
+```
+
+**JSON Response Format:**
+```json
+{
+  "template": "brainstorm",
+  "prompt": "Processed prompt with parameters",
+  "response": "AI model response",
+  "model": "llama3.2:latest", 
+  "parameters": { "param1": "value1" }
+}
+```
+
+### Available Templates
+
+| Template | Slug | Description | Parameters |
+|----------|------|-------------|------------|
+| **Brainstorm** | `brainstorm` | Creative idea generation | `topic` (required), `goal`, `audience` |
+| **Code Review** | `code-review` | Code analysis and feedback | `language`, `code`, `focus` |
+| **English Teacher** | `english-teacher` | English language learning | `level`, `topic`, `skill` |
+| **Spanish Teacher** | `spanish-teacher` | Spanish language learning | `level`, `topic`, `skill` |
+| **SQL Optimizer** | `sql-optimizer` | Database query optimization | `database`, `query`, `performance` |
+| **Marketing Copy** | `marketing-copy` | Marketing content creation | `product`, `audience`, `tone` |
+
+### Examples
+
+**Interface Access:**
+```
+http://localhost:4000/chat/brainstorm?topic=mobile app&goal=innovation&audience=teenagers
+```
+
+**JSON API Access:**
+```bash
+curl "http://localhost:4000/chat/brainstorm.json?topic=mobile%20app&goal=innovation&audience=teenagers"
+```
+
+**Response:**
+```json
+{
+  "template": "brainstorm", 
+  "prompt": "Vamos fazer uma sessão de brainstorm sobre: mobile app\n\nObjetivo: innovation\nPúblico-alvo: teenagers\n\nGere 10 ideias criativas e práticas.",
+  "response": "Aqui estão 10 ideias criativas para um app móvel focado em teenagers...",
+  "model": "llama3.2:latest",
+  "parameters": {
+    "topic": "mobile app",
+    "goal": "innovation", 
+    "audience": "teenagers"
+  }
+}
+```
 
 ## Docker Support
 

@@ -1,0 +1,24 @@
+{
+  "id": "code-review",
+  "name": "Revisor de Código",
+  "slug": "code-review",
+  "description": "Analisa código e sugere melhorias focando em performance, legibilidade e boas práticas",
+  "category": "Desenvolvimento",
+  "tags": ["code", "review", "programming"],
+  "model": "llama3.2:latest",
+  "prompt": "Você é um revisor de código experiente. Analise o seguinte código em {language} e forneça sugestões de melhoria:\n\n{code}\n\nFoque em: performance, legibilidade, boas práticas e possíveis bugs.",
+  "parameters": [
+    {
+      "name": "language",
+      "type": "string",
+      "required": true,
+      "description": "Linguagem de programação do código"
+    },
+    {
+      "name": "code",
+      "type": "text",
+      "required": true,
+      "description": "Código a ser revisado"
+    }
+  ]
+}

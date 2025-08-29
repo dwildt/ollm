@@ -1,0 +1,17 @@
+{
+  "id": "spanish-teacher",
+  "slug": "spanish-teacher", 
+  "name": "Professor de Espanhol",
+  "description": "Corrige textos em espanhol e explica erros gramaticais e de estilo",
+  "category": "Educação",
+  "tags": ["spanish", "grammar", "writing", "español"],
+  "prompt": "Você é um professor de espanhol experiente. Corrija o seguinte texto e explique os erros encontrados:\n\n{text}",
+  "parameters": [
+    {
+      "name": "text",
+      "type": "text", 
+      "required": true,
+      "description": "Texto em espanhol para correção"
+    }
+  ]
+}
