@@ -2,6 +2,10 @@
 
 A simple and clean web interface for interacting with Ollama directly via HTTP API. This application provides a modern chat interface with model selection, internationalization support, comprehensive testing, and Docker support.
 
+![Ollama Chat Interface - Modern web interface showing chat conversation with AI model, model selector, and responsive design](./docs/images/interface-screenshot.png)
+
+![Ollama Chat Interface Templates - Template system with predefined conversation starters and parameter customization](./docs/images/interface-screenshot-templates.png)
+
 ## Features
 
 - 🚀 **Modern Chat Interface**: Clean, responsive design with markdown support
