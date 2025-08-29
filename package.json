@@ -28,7 +28,10 @@
     "type-check": "npm run type-check:frontend && npm run type-check:backend",
     "type-check:frontend": "cd frontend && npm run type-check",
     "type-check:backend": "cd backend && npm run type-check",
-    "quality": "npm run type-check && npm run lint && npm run test"
+    "quality": "npm run type-check && npm run lint && npm run test",
+    "prepare": "husky",
+    "pre-commit": "lint-staged",
+    "validate-commit": "commitlint --from=HEAD~1 --to=HEAD --verbose"
   },
   "keywords": [
     "ollama",
