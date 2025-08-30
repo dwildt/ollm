@@ -547,10 +547,10 @@ git commit --no-verify -m "temp: work in progress"
 ## Documentação de APIs
 
 ### Swagger/OpenAPI
-- **Endpoint**: `/api-docs` (disponível apenas em desenvolvimento)
+- **Endpoint**: `/api-docs` (habilitado por padrão em todos os ambientes)
 - **Ferramenta**: Swagger UI para documentação interativa e testes
 - **Configuração**: swagger-jsdoc + swagger-ui-express
-- **Ambiente**: Habilitado somente em `NODE_ENV !== 'production'`
+- **Controle**: Pode ser desabilitado com `ENABLE_SWAGGER=false`
 
 ### Manutenção da Documentação
 **OBRIGATÓRIO ao criar/modificar APIs:**

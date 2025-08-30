@@ -14,8 +14,9 @@ const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
 app.use(cors());
 app.use(express.json());
 
-// Swagger documentation (development only)
-if (process.env.NODE_ENV !== 'production') {
+// Swagger documentation (enabled by default, can be disabled with ENABLE_SWAGGER=false)
+const enableSwagger = process.env.ENABLE_SWAGGER !== 'false';
+if (enableSwagger) {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 }
 

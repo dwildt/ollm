@@ -168,7 +168,8 @@ Environment variables in `backend/.env`:
 - `PORT` - Backend server port (default: 4001 for development)
 - `OLLAMA_BASE_URL` - Ollama server URL (default: http://localhost:11434)
 - `DEFAULT_MODEL` - Default model to use (default: llama2)
-- `NODE_ENV` - Environment mode (development/production) - affects Swagger availability
+- `NODE_ENV` - Environment mode (development/production)
+- `ENABLE_SWAGGER` - Enable/disable Swagger UI (default: enabled, set to 'false' to disable)
 
 ### Frontend Configuration
 Create `frontend/.env` for frontend-specific variables:
@@ -201,9 +202,9 @@ REACT_APP_API_URL=http://localhost:4001/api
 
 The API includes interactive Swagger documentation for easy testing and integration:
 
-**Access:** `http://localhost:4001/api-docs` (development only)
+**Access:** `http://localhost:4001/api-docs` (enabled by default)
 
-#### Available in Development
+#### Features
 - **Interactive API Testing**: Test all endpoints directly from the browser
 - **Schema Validation**: View request/response schemas for all endpoints
 - **Live Documentation**: Automatically updated when endpoints change
@@ -221,10 +222,10 @@ The API includes interactive Swagger documentation for easy testing and integrat
 3. **Try endpoints**: Click "Try it out" on any endpoint
 4. **View responses**: See live API responses and schema validation
 
-#### Production Notes
-- Swagger documentation is **automatically disabled** in production
-- Access to `/api-docs` returns 404 in production environment
-- No performance impact on production deployments
+#### Configuration
+- **Default**: Swagger is **enabled** in all environments
+- **Disable**: Set environment variable `ENABLE_SWAGGER=false` to disable
+- **Docker**: Available at `http://localhost:3002/api-docs` in Docker containers
 
 ### API Integration Examples
 
