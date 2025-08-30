@@ -12,3 +12,4 @@ services:
       - FRONTEND_PORT=3000
       - OLLAMA_BASE_URL=http://host.docker.internal:11434
       - DEFAULT_MODEL=llama3.2
+      - ENABLE_SWAGGER=true

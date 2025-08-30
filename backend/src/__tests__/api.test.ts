@@ -1,6 +1,6 @@
 import request from 'supertest';
 import express from 'express';
-import app from '../index';
+import mainApp from '../index';
 import cors from 'cors';
 
 // Mock fetch globally before any imports
@@ -92,7 +92,7 @@ const createTestApp = () => {
 describe('API Endpoints', () => {
   describe('Swagger Documentation', () => {
     test('should serve swagger docs by default', async () => {
-      const response = await request(app)
+      const response = await request(mainApp)
         .get('/api-docs/')
         .expect(200);
       
@@ -115,7 +115,7 @@ describe('API Endpoints', () => {
     });
 
     test('should serve swagger.json spec', async () => {
-      const response = await request(app)
+      const response = await request(mainApp)
         .get('/api-docs/swagger.json')
         .expect(200);
       

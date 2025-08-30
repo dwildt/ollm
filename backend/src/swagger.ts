@@ -132,7 +132,11 @@ const options = {
       }
     }
   },
-  apis: ['./src/index.ts'], // Path to the API files
+  apis: [
+    process.env.NODE_ENV === 'production' 
+      ? './build/index.js'  // Compiled JavaScript in production
+      : './src/index.ts'    // TypeScript source in development
+  ], // Path to the API files
 };
 
 const specs = swaggerJsdoc(options);
