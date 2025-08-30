@@ -1,4 +1,4 @@
-import { ConversationTemplate, TemplateCollection } from '../../types/templates';
+import { ConversationTemplate, TemplateCollection } from '../types/templates';
 
 // Import all template JSON files
 import codeReviewTemplate from './code-review.json';

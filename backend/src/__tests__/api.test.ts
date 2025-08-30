@@ -1,5 +1,6 @@
 import request from 'supertest';
 import express from 'express';
+import app from '../index';
 import cors from 'cors';
 
 // Mock fetch globally before any imports
@@ -89,6 +90,49 @@ const createTestApp = () => {
 };
 
 describe('API Endpoints', () => {
+  describe('Swagger Documentation', () => {
+    test('should serve swagger docs in development', async () => {
+      // Set development environment
+      const originalEnv = process.env.NODE_ENV;
+      process.env.NODE_ENV = 'development';
+      
+      const response = await request(app)
+        .get('/api-docs/')
+        .expect(200);
+      
+      expect(response.text).toContain('Swagger UI');
+      
+      // Restore environment
+      process.env.NODE_ENV = originalEnv;
+    });
+
+    test('should not serve swagger docs in production', async () => {
+      // Set production environment
+      const originalEnv = process.env.NODE_ENV;
+      process.env.NODE_ENV = 'production';
+      
+      await request(app)
+        .get('/api-docs/')
+        .expect(404);
+      
+      // Restore environment
+      process.env.NODE_ENV = originalEnv;
+    });
+
+    test('should serve swagger.json spec in development', async () => {
+      const originalEnv = process.env.NODE_ENV;
+      process.env.NODE_ENV = 'development';
+      
+      const response = await request(app)
+        .get('/api-docs/swagger.json')
+        .expect(200);
+      
+      expect(response.body.openapi).toBe('3.0.0');
+      expect(response.body.info.title).toBe('OLLM API');
+      
+      process.env.NODE_ENV = originalEnv;
+    });
+  });
   let app: express.Application;
   const mockFetch = global.fetch as jest.MockedFunction<typeof fetch>;
 

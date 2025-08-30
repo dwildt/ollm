@@ -544,4 +544,62 @@ git commit --no-verify -m "temp: work in progress"
 - No external dependencies like LlamaIndex
 - Uses native Node.js `fetch()` for HTTP requests
 
+## Documentação de APIs
+
+### Swagger/OpenAPI
+- **Endpoint**: `/api-docs` (disponível apenas em desenvolvimento)
+- **Ferramenta**: Swagger UI para documentação interativa e testes
+- **Configuração**: swagger-jsdoc + swagger-ui-express
+- **Ambiente**: Habilitado somente em `NODE_ENV !== 'production'`
+
+### Manutenção da Documentação
+**OBRIGATÓRIO ao criar/modificar APIs:**
+1. **Comentários JSDoc**: Documentar todos os endpoints com schemas
+2. **Schemas TypeScript**: Definir tipos para requests/responses
+3. **Atualização automática**: Swagger reflete automaticamente mudanças no código
+4. **Testes**: Validar schemas e documentação nos testes automatizados
+
+### Diretrizes para Novos Templates
+**Ao adicionar um template (`backend/src/data/templates/novo-template.json`):**
+1. **Estrutura**: Seguir schema padrão com `id`, `name`, `description`, `parameters`
+2. **API**: O endpoint `GET /api/:templateSlug` automaticamente suporta o novo template
+3. **Swagger**: Documentação é gerada automaticamente baseada nos parâmetros
+4. **Testes**: Criar teste específico em `backend/src/__tests__/api.test.ts`
+5. **Validação**: Testar via Swagger UI em `http://localhost:4001/api-docs`
+
+### Exemplo de JSDoc para Endpoints
+```typescript
+/**
+ * @swagger
+ * /api/chat:
+ *   post:
+ *     summary: Send message to AI model
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - message
+ *             properties:
+ *               message:
+ *                 type: string
+ *               model:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: AI response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 response:
+ *                   type: string
+ *                 model:
+ *                   type: string
+ */
+```
+
 Remember: The goal is to keep this project simple, maintainable, and focused on providing an excellent chat experience with Ollama.

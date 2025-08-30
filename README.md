@@ -168,6 +168,7 @@ Environment variables in `backend/.env`:
 - `PORT` - Backend server port (default: 4001 for development)
 - `OLLAMA_BASE_URL` - Ollama server URL (default: http://localhost:11434)
 - `DEFAULT_MODEL` - Default model to use (default: llama2)
+- `NODE_ENV` - Environment mode (development/production) - affects Swagger availability
 
 ### Frontend Configuration
 Create `frontend/.env` for frontend-specific variables:
@@ -193,6 +194,61 @@ REACT_APP_API_URL=http://localhost:4001/api
    ```
 
 4. **Start the chat interface** and select your preferred model from the dropdown.
+
+## API Documentation
+
+### Swagger Documentation
+
+The API includes interactive Swagger documentation for easy testing and integration:
+
+**Access:** `http://localhost:4001/api-docs` (development only)
+
+#### Available in Development
+- **Interactive API Testing**: Test all endpoints directly from the browser
+- **Schema Validation**: View request/response schemas for all endpoints
+- **Live Documentation**: Automatically updated when endpoints change
+- **Example Requests**: Pre-filled examples for quick testing
+
+#### Endpoints Documented
+- `GET /api/models` - List available AI models
+- `GET /api/health` - Check service and Ollama connection status
+- `POST /api/chat` - Send messages to AI models
+- `GET /api/{templateSlug}` - Process templates with parameters
+
+#### Using Swagger UI
+1. **Start development server**: `npm run dev`
+2. **Open Swagger UI**: Navigate to `http://localhost:4001/api-docs`
+3. **Try endpoints**: Click "Try it out" on any endpoint
+4. **View responses**: See live API responses and schema validation
+
+#### Production Notes
+- Swagger documentation is **automatically disabled** in production
+- Access to `/api-docs` returns 404 in production environment
+- No performance impact on production deployments
+
+### API Integration Examples
+
+**Get Available Models:**
+```bash
+curl http://localhost:4001/api/models
+```
+
+**Check Health Status:**
+```bash
+curl http://localhost:4001/api/health
+```
+
+**Send Chat Message:**
+```bash
+curl -X POST http://localhost:4001/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Hello, how are you?", "model": "llama2"}'
+```
+
+**Use Template (English Teacher):**
+```bash
+curl "http://localhost:4001/api/english-teacher?text=Hello world"
+```
 
 ## Internationalization
 

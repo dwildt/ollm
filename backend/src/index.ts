@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as path from 'path';
+import { specs, swaggerUi } from './swagger';
 
 dotenv.config();
 
@@ -12,6 +13,11 @@ const OLLAMA_BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434';
 
 app.use(cors());
 app.use(express.json());
+
+// Swagger documentation (development only)
+if (process.env.NODE_ENV !== 'production') {
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+}
 
 
 // Helper function to get the best available model
@@ -63,7 +69,32 @@ const getBestAvailableModel = async (preferredModel?: string): Promise<string> =
   }
 };
 
-// Get available models
+/**
+ * @swagger
+ * /api/models:
+ *   get:
+ *     summary: Get available AI models
+ *     description: Retrieves a list of available models from the Ollama server
+ *     tags: [Models]
+ *     responses:
+ *       200:
+ *         description: List of available models
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 models:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Model'
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 app.get('/api/models', async (_req, res) => {
   try {
     const response = await fetch(`${OLLAMA_BASE_URL}/api/tags`);
@@ -78,7 +109,27 @@ app.get('/api/models', async (_req, res) => {
   }
 });
 
-// Health check for Ollama
+/**
+ * @swagger
+ * /api/health:
+ *   get:
+ *     summary: Check service health
+ *     description: Checks the health status of the API and Ollama connection
+ *     tags: [Health]
+ *     responses:
+ *       200:
+ *         description: Service is healthy
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HealthResponse'
+ *       503:
+ *         description: Service is unhealthy
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HealthResponse'
+ */
 app.get('/api/health', async (_req, res) => {
   try {
     const response = await fetch(`${OLLAMA_BASE_URL}/api/tags`);
@@ -92,7 +143,45 @@ app.get('/api/health', async (_req, res) => {
   }
 });
 
-// Chat endpoint
+/**
+ * @swagger
+ * /api/chat:
+ *   post:
+ *     summary: Send message to AI model
+ *     description: Sends a message to the AI model and returns the response
+ *     tags: [Chat]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ChatRequest'
+ *     responses:
+ *       200:
+ *         description: AI response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ChatResponse'
+ *       400:
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       408:
+ *         description: Request timeout
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 app.post('/api/chat', async (req, res): Promise<any> => {
   const { message, model } = req.body;
   
@@ -141,7 +230,53 @@ app.post('/api/chat', async (req, res): Promise<any> => {
   }
 });
 
-// Template API endpoint - /api/:templateSlug for JSON responses
+/**
+ * @swagger
+ * /api/{templateSlug}:
+ *   get:
+ *     summary: Process template with parameters
+ *     description: Processes a template with query parameters and returns AI response
+ *     tags: [Templates]
+ *     parameters:
+ *       - in: path
+ *         name: templateSlug
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Template identifier (e.g., english-teacher, code-review)
+ *         example: english-teacher
+ *       - in: query
+ *         name: text
+ *         schema:
+ *           type: string
+ *         description: Text parameter (varies by template)
+ *         example: Hello world
+ *     responses:
+ *       200:
+ *         description: Template processed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TemplateResponse'
+ *       404:
+ *         description: Template not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       408:
+ *         description: Request timeout
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 app.get('/api/:templateSlug', async (req, res): Promise<any> => {
   const { templateSlug } = req.params;
   const parameters = req.query as Record<string, string>;
