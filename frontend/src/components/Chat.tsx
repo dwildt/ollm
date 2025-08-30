@@ -85,7 +85,32 @@ const Chat: React.FC = () => {
       const modelsResponse = await apiService.getModels();
       setModels(modelsResponse.models);
       if (modelsResponse.models.length > 0 && !selectedModel) {
-        setSelectedModel(modelsResponse.models[0].name);
+        // Smart model selection - prefer llama variants, fallback to first available
+        const getBestModel = (models: Model[]) => {
+          // Look for llama variants in order of preference
+          const llamaVariants = [
+            'llama3.2:latest',
+            'llama3.1:latest', 
+            'llama3:latest',
+            'llama2:latest',
+            'llama2',
+            'llama'
+          ];
+          
+          for (const variant of llamaVariants) {
+            const found = models.find(m => m.name === variant);
+            if (found) return variant;
+          }
+          
+          // Look for any llama model
+          const anyLlama = models.find(m => m.name.toLowerCase().includes('llama'));
+          if (anyLlama) return anyLlama.name;
+          
+          // If no llama found, return first available model
+          return models[0].name;
+        };
+        
+        setSelectedModel(getBestModel(modelsResponse.models));
       }
     } catch (error) {
       // eslint-disable-next-line no-console
