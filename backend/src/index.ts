@@ -17,6 +17,11 @@ app.use(express.json());
 // Swagger documentation (enabled by default, can be disabled with ENABLE_SWAGGER=false)
 const enableSwagger = process.env.ENABLE_SWAGGER !== 'false';
 if (enableSwagger) {
+  // JSON endpoint must come before the middleware
+  app.get('/api-docs/swagger.json', (_req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(specs);
+  });
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 }
 
