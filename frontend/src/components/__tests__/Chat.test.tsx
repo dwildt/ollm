@@ -32,6 +32,13 @@ jest.mock('react-i18next', () => ({
   })
 }));
 
+// Mock react-router-dom
+jest.mock('react-router-dom', () => ({
+  useParams: () => ({ conversationId: undefined }),
+  useNavigate: () => jest.fn(),
+  useSearchParams: () => [new URLSearchParams(), jest.fn()]
+}));
+
 // Mock LanguageSwitcher component
 jest.mock('../LanguageSwitcher', () => {
   return function MockLanguageSwitcher() {
@@ -45,6 +52,44 @@ jest.mock('react-markdown', () => {
     return <div data-testid="markdown-content">{children}</div>;
   };
 });
+
+// Mock TemplateSelector component
+jest.mock('../TemplateSelector', () => {
+  return function MockTemplateSelector({ onTemplateSelect }: { onTemplateSelect: Function }) {
+    return <div data-testid="template-selector">Template Selector</div>;
+  };
+});
+
+// Mock ParameterForm component
+jest.mock('../ParameterForm', () => {
+  return function MockParameterForm({ template, onSubmit }: { template: any, onSubmit: Function }) {
+    return <div data-testid="parameter-form">Parameter Form</div>;
+  };
+});
+
+// Mock ConversationSidebar component
+jest.mock('../ConversationSidebar', () => {
+  return function MockConversationSidebar() {
+    return <div data-testid="conversation-sidebar">Conversation Sidebar</div>;
+  };
+});
+
+// Mock conversation storage service
+jest.mock('../../services/conversationStorage', () => ({
+  conversationStorageService: {
+    saveConversation: jest.fn(),
+    getAllConversations: jest.fn(() => ({})),
+    deleteConversation: jest.fn()
+  }
+}));
+
+// Mock template service
+jest.mock('../../services/templateService', () => ({
+  templateService: {
+    getAllTemplates: jest.fn(() => []),
+    getTemplateById: jest.fn()
+  }
+}));
 
 // Mock scrollIntoView method
 window.Element.prototype.scrollIntoView = jest.fn();

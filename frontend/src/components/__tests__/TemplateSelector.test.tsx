@@ -8,6 +8,23 @@ import { ConversationTemplate } from '../../types/templates';
 jest.mock('../../services/templateService');
 const mockTemplateService = templateService as jest.Mocked<typeof templateService>;
 
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: { [key: string]: string } = {
+        'templates.conversationTemplate': 'Template de Conversa:',
+        'templates.showTemplates': 'Mostrar Templates',
+        'templates.hideTemplates': 'Ocultar Templates',
+        'templates.freeConversation': 'Conversa Livre',
+        'templates.category': 'Categoria:',
+        'templates.parameters': 'Parâmetros:'
+      };
+      return translations[key] || key;
+    }
+  })
+}));
+
 const mockTemplates: ConversationTemplate[] = [
   {
     id: 'code-review',
