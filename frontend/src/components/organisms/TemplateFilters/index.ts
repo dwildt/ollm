@@ -1,2 +1,2 @@
-export { default } from './TemplateFilters';
+export { default, default as TemplateFilters } from './TemplateFilters';
 export type { TemplateFiltersProps } from './TemplateFilters';

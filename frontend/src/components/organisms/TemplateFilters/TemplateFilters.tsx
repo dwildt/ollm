@@ -27,7 +27,7 @@ const TemplateFilters: React.FC<TemplateFiltersProps> = ({
   tags,
   selectedTags,
   onTagsChange,
-  onClearFilters,
+  onClearFilters: _onClearFilters,
   className = '',
   disabled = false,
   ...rest
@@ -67,7 +67,7 @@ const TemplateFilters: React.FC<TemplateFiltersProps> = ({
           label="Tags"
           tags={tags}
           selectedTags={selectedTags}
-          onTagToggle={(tag) => {
+          onTagToggle={(tag: string) => {
             const newSelectedTags = selectedTags.includes(tag)
               ? selectedTags.filter(t => t !== tag)
               : [...selectedTags, tag];

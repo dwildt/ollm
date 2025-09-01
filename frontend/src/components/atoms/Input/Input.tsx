@@ -17,7 +17,7 @@ interface BaseInputProps {
 }
 
 export interface TextInputProps extends BaseInputProps, Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  type?: 'text' | 'email' | 'password' | 'url' | 'tel';
+  type?: 'text' | 'email' | 'password' | 'url' | 'tel' | 'search';
 }
 
 export interface TextAreaProps extends BaseInputProps, Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
@@ -96,9 +96,9 @@ const TextInput: React.FC<TextInputProps> = ({
           <div className="input-icon input-icon--right">
             {isLoading ? (
               <div className="input-spinner" aria-hidden="true">
-                <div className="input-spinner__dot"></div>
-                <div className="input-spinner__dot"></div>
-                <div className="input-spinner__dot"></div>
+                <div className="input-spinner__dot" />
+                <div className="input-spinner__dot" />
+                <div className="input-spinner__dot" />
               </div>
             ) : rightIcon}
           </div>

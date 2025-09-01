@@ -34,7 +34,7 @@ const Heading: React.FC<HeadingProps> = ({
   children,
   ...rest
 }) => {
-  const Component = as || (`h${level}` as keyof JSX.IntrinsicElements);
+  const Component = as || (`h${level}` as React.ElementType);
   
   const headingClasses = [
     'typography-heading',
@@ -62,7 +62,7 @@ const Text: React.FC<TextProps> = ({
   children,
   ...rest
 }) => {
-  const Component = as;
+  const Component = as as React.ElementType;
   
   const textClasses = [
     'typography-text',

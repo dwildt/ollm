@@ -1,0 +1,40 @@
+/* TemplatePage Component Styles */
+
+.template-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.template-page__template {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Ensure proper scrolling behavior */
+.template-page .template-selection__content {
+  height: 100%;
+}
+
+/* Loading states */
+.template-page--loading {
+  cursor: wait;
+}
+
+.template-page--loading * {
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .template-page {
+    height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height on mobile */
+  }
+}
+
+/* Ensure accessibility for keyboard navigation */
+.template-page:focus-within {
+  outline: none;
+}

@@ -1,0 +1,118 @@
+/* ChatTemplate Component Styles */
+
+.chat-template {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+}
+
+.chat-template__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.chat-template__mode-selector {
+  align-self: center;
+  max-width: 400px;
+}
+
+.chat-template__header-content {
+  flex: 1;
+}
+
+.chat-template__body {
+  display: flex;
+  flex: 1;
+  min-height: 0; /* Allow flex children to shrink */
+}
+
+.chat-template__sidebar {
+  width: 300px;
+  background-color: var(--color-bg-secondary);
+  border-right: 1px solid var(--color-border-primary);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.chat-template__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Loading State */
+.chat-template--loading {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.chat-template--loading * {
+  cursor: wait !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .chat-template__sidebar {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-template__header {
+    padding: var(--spacing-3) var(--spacing-4);
+    gap: var(--spacing-3);
+  }
+  
+  .chat-template__body {
+    flex-direction: column;
+  }
+  
+  .chat-template__sidebar {
+    width: 100%;
+    max-height: 200px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+  
+  .chat-template__mode-selector {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-template__header {
+    padding: var(--spacing-2) var(--spacing-3);
+    gap: var(--spacing-2);
+  }
+  
+  .chat-template__sidebar {
+    max-height: 150px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .chat-template__header {
+    border-bottom-width: 2px;
+  }
+  
+  .chat-template__sidebar {
+    border-right-width: 2px;
+  }
+  
+  @media (max-width: 768px) {
+    .chat-template__sidebar {
+      border-bottom-width: 2px;
+    }
+  }
+}
