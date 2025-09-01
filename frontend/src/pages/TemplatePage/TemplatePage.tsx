@@ -39,6 +39,7 @@ const TemplatePage: React.FC = () => {
         const allTemplates = templateService.getAllTemplates();
         setTemplates(allTemplates);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error loading templates:', error);
         // TODO: Show error toast/notification
       } finally {
@@ -61,6 +62,7 @@ const TemplatePage: React.FC = () => {
 
   const handleTemplatePreview = (template: ConversationTemplate) => {
     // TODO: Show template preview modal/drawer
+    // eslint-disable-next-line no-console
     console.log('Preview template:', template);
   };
 

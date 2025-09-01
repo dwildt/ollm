@@ -9,16 +9,45 @@ jest.mock('./components/Chat', () => {
   };
 });
 
+// Mock the FreeConversationPage component
+jest.mock('./pages/FreeConversationPage', () => {
+  return function MockFreeConversationPage() {
+    return <div data-testid="free-conversation-page">Free Conversation Page</div>;
+  };
+});
+
+// Mock the TemplatePage component  
+jest.mock('./pages/TemplatePage', () => {
+  return function MockTemplatePage() {
+    return <div data-testid="template-page">Template Page</div>;
+  };
+});
+
 // Mock i18n
 jest.mock('./i18n', () => ({}));
 
-test('renders chat component', () => {
+// Mock matchMedia for dark mode hook
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
+test('renders free conversation page by default', () => {
   render(<App />);
-  const chatElement = screen.getByTestId('chat-component');
-  expect(chatElement).toBeInTheDocument();
+  const freeConversationElement = screen.getByTestId('free-conversation-page');
+  expect(freeConversationElement).toBeInTheDocument();
 });
 
 test('renders without crashing', () => {
   render(<App />);
-  expect(screen.getByRole('main')).toBeInTheDocument();
+  expect(screen.getByTestId('free-conversation-page')).toBeInTheDocument();
 });

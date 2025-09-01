@@ -57,6 +57,7 @@ export const useModeSwitch = (): UseModeSwitch => {
       }, 150);
 
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error switching modes:', error);
       setIsTransitioning(false);
     }

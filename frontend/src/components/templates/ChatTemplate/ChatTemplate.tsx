@@ -1,5 +1,6 @@
 import React from 'react';
 import { ModeSelector } from '../../organisms/ModeSelector';
+import { ThemeToggle } from '../../atoms/ThemeToggle';
 import type { Mode } from '../../organisms/ModeSelector';
 import './ChatTemplate.css';
 
@@ -32,17 +33,30 @@ const ChatTemplate: React.FC<ChatTemplateProps> = ({
   return (
     <div className={templateClasses} {...rest}>
       <div className="chat-template__header">
-        <ModeSelector
-          selectedMode={currentMode}
-          onModeChange={onModeChange}
-          disabled={isLoading}
-          className="chat-template__mode-selector"
-        />
-        {header && (
-          <div className="chat-template__header-content">
-            {header}
-          </div>
-        )}
+        <div className="chat-template__header-left">
+          <ModeSelector
+            selectedMode={currentMode}
+            onModeChange={onModeChange}
+            disabled={isLoading}
+            className="chat-template__mode-selector"
+          />
+        </div>
+        
+        <div className="chat-template__header-center">
+          {header && (
+            <div className="chat-template__header-content">
+              {header}
+            </div>
+          )}
+        </div>
+        
+        <div className="chat-template__header-right">
+          <ThemeToggle
+            size="sm"
+            variant="ghost"
+            className="chat-template__theme-toggle"
+          />
+        </div>
       </div>
 
       <div className="chat-template__body">

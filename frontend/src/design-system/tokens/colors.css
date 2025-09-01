@@ -1,17 +1,27 @@
 /* Design System - Color Tokens */
 
 :root {
-  /* Primary Colors */
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
+  /* Wildtech Brand Colors */
+  --color-wildtech-orange: #ff7b00;
+  --color-wildtech-orange-light: #ffab66;
+  --color-wildtech-orange-hover: #e66b00;
+  --color-wildtech-orange-active: #cc5f00;
+  --color-wildtech-brown: #8b4513;
+  --color-wildtech-brown-light: #a0622e;
+  --color-wildtech-brown-hover: #7a3c0f;
+  --color-wildtech-brown-active: #693309;
+
+  /* Primary Colors (Wildtech Orange) */
+  --color-primary-50: #fff7ed;
+  --color-primary-100: #ffedd5;
+  --color-primary-200: #fed7aa;
+  --color-primary-300: #fdba74;
+  --color-primary-400: #fb923c;
+  --color-primary-500: var(--color-wildtech-orange);
+  --color-primary-600: var(--color-wildtech-orange-hover);
+  --color-primary-700: var(--color-wildtech-orange-active);
+  --color-primary-800: #9a3412;
+  --color-primary-900: #7c2d12;
 
   /* Neutral Colors */
   --color-neutral-50: #f9fafb;
@@ -35,10 +45,10 @@
   --color-info: #3b82f6;
   --color-info-light: #dbeafe;
 
-  /* Background Colors */
+  /* Background Colors - Maximum White Philosophy */
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f9fafb;
-  --color-bg-tertiary: #f3f4f6;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #ffffff;
   --color-bg-card: #ffffff;
   --color-bg-overlay: rgba(0, 0, 0, 0.5);
 
@@ -51,16 +61,16 @@
   /* Border Colors */
   --color-border-primary: #e5e7eb;
   --color-border-secondary: #d1d5db;
-  --color-border-focus: #0ea5e9;
+  --color-border-focus: var(--color-wildtech-orange);
   --color-border-error: #ef4444;
 
-  /* Interactive Colors */
-  --color-interactive-primary: #0ea5e9;
-  --color-interactive-primary-hover: #0284c7;
-  --color-interactive-primary-active: #0369a1;
-  --color-interactive-secondary: #f3f4f6;
-  --color-interactive-secondary-hover: #e5e7eb;
-  --color-interactive-secondary-active: #d1d5db;
+  /* Interactive Colors - Wildtech Theme */
+  --color-interactive-primary: var(--color-wildtech-orange);
+  --color-interactive-primary-hover: var(--color-wildtech-orange-hover);
+  --color-interactive-primary-active: var(--color-wildtech-orange-active);
+  --color-interactive-secondary: var(--color-wildtech-brown);
+  --color-interactive-secondary-hover: var(--color-wildtech-brown-hover);
+  --color-interactive-secondary-active: var(--color-wildtech-brown-active);
 
   /* Tag/Badge Colors */
   --color-tag-blue: #dbeafe;
@@ -77,19 +87,68 @@
   --color-tag-gray-text: #374151;
 }
 
-/* Dark theme tokens (future implementation) */
+/* Dark Mode Implementation */
+[data-theme="dark"] {
+  /* Background Colors - Dark Theme */
+  --color-bg-primary: #111111;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #222222;
+  --color-bg-card: #222222;
+  --color-bg-overlay: rgba(255, 255, 255, 0.1);
+  
+  /* Text Colors - Dark Theme */
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #b0b0b0;
+  --color-text-tertiary: #888888;
+  --color-text-inverse: #111111;
+  
+  /* Border Colors - Dark Theme */
+  --color-border-primary: #333333;
+  --color-border-secondary: #444444;
+  
+  /* Neutral Colors - Dark Theme */
+  --color-neutral-50: #1f1f1f;
+  --color-neutral-100: #2a2a2a;
+  --color-neutral-200: #404040;
+  --color-neutral-300: #525252;
+  --color-neutral-400: #737373;
+  --color-neutral-500: #a3a3a3;
+  --color-neutral-600: #d4d4d4;
+  --color-neutral-700: #e5e5e5;
+  --color-neutral-800: #f5f5f5;
+  --color-neutral-900: #fafafa;
+  
+  /* Tag/Badge Colors - Dark Theme */
+  --color-tag-blue: #1e3a8a;
+  --color-tag-blue-text: #93c5fd;
+  --color-tag-green: #14532d;
+  --color-tag-green-text: #86efac;
+  --color-tag-yellow: #92400e;
+  --color-tag-yellow-text: #fbbf24;
+  --color-tag-purple: #581c87;
+  --color-tag-purple-text: #c084fc;
+  --color-tag-pink: #be185d;
+  --color-tag-pink-text: #f9a8d4;
+  --color-tag-gray: #374151;
+  --color-tag-gray-text: #d1d5db;
+}
+
+/* Auto dark mode based on system preference */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-primary: #111827;
-    --color-bg-secondary: #1f2937;
-    --color-bg-tertiary: #374151;
-    --color-bg-card: #1f2937;
+  :root:not([data-theme="light"]) {
+    /* Inherit all dark theme variables */
+    --color-bg-primary: #111111;
+    --color-bg-secondary: #1a1a1a;
+    --color-bg-tertiary: #222222;
+    --color-bg-card: #222222;
+    --color-bg-overlay: rgba(255, 255, 255, 0.1);
     
-    --color-text-primary: #f9fafb;
-    --color-text-secondary: #d1d5db;
-    --color-text-tertiary: #9ca3af;
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #b0b0b0;
+    --color-text-tertiary: #888888;
+    --color-text-inverse: #111111;
     
-    --color-border-primary: #374151;
-    --color-border-secondary: #4b5563;
+    --color-border-primary: #333333;
+    --color-border-secondary: #444444;
   }
 }

@@ -78,9 +78,9 @@ const LoadingDots: React.FC<LoadingProps> = ({
       style={{ color }}
       {...rest}
     >
-      <div className="loading-dots__dot"></div>
-      <div className="loading-dots__dot"></div>
-      <div className="loading-dots__dot"></div>
+      <div className="loading-dots__dot" />
+      <div className="loading-dots__dot" />
+      <div className="loading-dots__dot" />
       <span className="sr-only">{label}</span>
     </div>
   );
@@ -105,7 +105,7 @@ const LoadingPulse: React.FC<LoadingProps> = ({
       aria-label={label}
       {...rest}
     >
-      <div className="loading-pulse__circle"></div>
+      <div className="loading-pulse__circle" />
       <span className="sr-only">{label}</span>
     </div>
   );

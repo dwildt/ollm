@@ -1,0 +1,62 @@
+/* ThemeToggle Component Styles */
+
+.theme-toggle {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Theme-specific styles */
+.theme-toggle--light .icon {
+  color: var(--color-wildtech-orange);
+}
+
+.theme-toggle--dark .icon {
+  color: var(--color-wildtech-orange);
+}
+
+/* Animation for smooth icon transition */
+.theme-toggle .icon {
+  transition: all 0.3s ease-in-out;
+}
+
+.theme-toggle:hover .icon {
+  transform: rotate(15deg);
+}
+
+/* Focus styles for accessibility */
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .theme-toggle {
+    border: 2px solid var(--color-border-primary);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle .icon {
+    transition: none;
+  }
+  
+  .theme-toggle:hover {
+    transform: none;
+  }
+  
+  .theme-toggle:hover .icon {
+    transform: none;
+  }
+}

@@ -77,7 +77,7 @@ describe('ParameterForm', () => {
         template={mockTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -105,7 +105,7 @@ describe('ParameterForm', () => {
         template={mockTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -123,7 +123,7 @@ describe('ParameterForm', () => {
         template={mockTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -148,7 +148,7 @@ describe('ParameterForm', () => {
         template={mockTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -165,7 +165,7 @@ describe('ParameterForm', () => {
         template={mockTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -191,7 +191,7 @@ describe('ParameterForm', () => {
         template={mockTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -200,6 +200,9 @@ describe('ParameterForm', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Preview do Prompt:')).toBeInTheDocument();
+    });
+    
+    await waitFor(() => {
       expect(screen.getByText('Hello John, you are a developer.')).toBeInTheDocument();
     });
   });
@@ -214,7 +217,7 @@ describe('ParameterForm', () => {
         template={mockTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -235,7 +238,7 @@ describe('ParameterForm', () => {
         initialParameters={initialParameters}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -257,7 +260,7 @@ describe('ParameterForm', () => {
         template={noParamTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -289,7 +292,7 @@ describe('ParameterForm', () => {
         template={multiTypeTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 
@@ -319,7 +322,7 @@ describe('ParameterForm', () => {
         template={mockTemplate}
         onParametersChange={mockOnParametersChange}
         onSubmit={mockOnSubmit}
-        isVisible={true}
+        isVisible
       />
     );
 

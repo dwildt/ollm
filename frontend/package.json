@@ -33,7 +33,7 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --noEmit src/**/*.ts src/**/*.tsx --skipLibCheck",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { useTemplateFromUrl } from '../useTemplateFromUrl';
 import { templateService } from '../../services/templateService';
 
@@ -9,9 +9,21 @@ jest.mock('../../services/templateService');
 const mockTemplateService = templateService as jest.Mocked<typeof templateService>;
 
 const renderHookWithRouter = (initialEntries: string[]) => {
+  const RouterWrapper = ({ children }: { children: React.ReactNode }) => 
+    React.createElement(
+      MemoryRouter,
+      { initialEntries },
+      React.createElement(
+        Routes,
+        null,
+        React.createElement(Route, { path: "/chat/:templateSlug", element: React.createElement('div', null, children) }),
+        React.createElement(Route, { path: "/chat", element: React.createElement('div', null, children) }),
+        React.createElement(Route, { path: "/", element: React.createElement('div', null, children) })
+      )
+    );
+    
   return renderHook(() => useTemplateFromUrl(), {
-    wrapper: ({ children }: { children: React.ReactNode }) => 
-      React.createElement(MemoryRouter, { initialEntries }, children)
+    wrapper: RouterWrapper
   });
 };
 

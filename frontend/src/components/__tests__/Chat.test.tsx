@@ -55,14 +55,14 @@ jest.mock('react-markdown', () => {
 
 // Mock TemplateSelector component
 jest.mock('../TemplateSelector', () => {
-  return function MockTemplateSelector({ onTemplateSelect }: { onTemplateSelect: Function }) {
+  return function MockTemplateSelector({ onTemplateSelect: _onTemplateSelect }: { onTemplateSelect: Function }) {
     return <div data-testid="template-selector">Template Selector</div>;
   };
 });
 
 // Mock ParameterForm component
 jest.mock('../ParameterForm', () => {
-  return function MockParameterForm({ template, onSubmit }: { template: any, onSubmit: Function }) {
+  return function MockParameterForm({ template: _template, onSubmit: _onSubmit }: { template: any, onSubmit: Function }) {
     return <div data-testid="parameter-form">Parameter Form</div>;
   };
 });

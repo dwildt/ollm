@@ -50,25 +50,33 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
     });
 
     await page.goto('/');
+    
+    // Click "Iniciar Conversa" to enter chat mode
+    await page.waitForSelector('button:has-text("Iniciar Conversa")', { timeout: 10000 });
+    await page.click('button:has-text("Iniciar Conversa")');
+    
+    // Wait for chat interface to load
+    await page.waitForSelector('#model-select', { timeout: 10000 });
   });
 
   test('loads the chat interface successfully', async ({ page }) => {
     // Check if the main elements are present
     await expect(page.getByRole('heading', { name: 'Ollama Chat Interface' })).toBeVisible();
     await expect(page.getByText('Welcome to Ollama Chat!')).toBeVisible();
-    await expect(page.getByPlaceholder('Type your message here')).toBeVisible();
+    await expect(page.getByPlaceholder('Type your message here...')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Send' })).toBeVisible();
   });
 
   test('shows connected status when Ollama is available', async ({ page }) => {
-    await expect(page.getByText('🟢 Connected')).toBeVisible();
+    // Wait for status to be visible, it might take a moment to check connection
+    await expect(page.locator('.status.connected')).toBeVisible({ timeout: 10000 });
   });
 
   test('loads and displays available models', async ({ page }) => {
     // Wait for models to load
-    await page.waitForSelector('select');
+    await page.waitForSelector('#model-select', { timeout: 10000 });
     
-    const modelSelect = page.locator('select');
+    const modelSelect = page.locator('#model-select');
     await expect(modelSelect).toBeVisible();
     
     // Check if models are loaded in the dropdown
@@ -78,12 +86,11 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
   });
 
   test('sends a message and receives a response', async ({ page }) => {
-    // Wait for the interface to be ready
-    await page.waitForSelector('select');
-    await expect(page.getByText('🟢 Connected')).toBeVisible();
+    // Wait for connection status
+    await expect(page.locator('.status.connected')).toBeVisible({ timeout: 10000 });
 
     // Type a message
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('Hello, world!');
 
     // Click send button
@@ -93,28 +100,28 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
     await expect(page.locator('.user-message .message-text').filter({ hasText: 'Hello, world!' })).toBeVisible();
 
     // Check if the response appears
-    await expect(page.locator('.bot-message .message-text').filter({ hasText: 'Echo: Hello, world!' })).toBeVisible();
+    await expect(page.locator('.bot-message .markdown-content').filter({ hasText: 'Echo: Hello, world!' })).toBeVisible();
 
     // Check if the input is cleared
     await expect(messageInput).toHaveValue('');
   });
 
   test('sends message using Enter key', async ({ page }) => {
-    await page.waitForSelector('select');
-    await expect(page.getByText('🟢 Connected')).toBeVisible();
+    await page.waitForSelector('#model-select', { timeout: 10000 });
+    await expect(page.locator('.status.connected')).toBeVisible({ timeout: 10000 });
 
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('Test message via Enter');
     await messageInput.press('Enter');
 
     await expect(page.locator('.user-message .message-text').filter({ hasText: 'Test message via Enter' })).toBeVisible();
-    await expect(page.locator('.bot-message .message-text').filter({ hasText: 'Echo: Test message via Enter' })).toBeVisible();
+    await expect(page.locator('.bot-message .markdown-content').filter({ hasText: 'Echo: Test message via Enter' })).toBeVisible();
   });
 
   test('does not send message with Shift+Enter', async ({ page }) => {
-    await page.waitForSelector('select');
+    await page.waitForSelector('#model-select', { timeout: 10000 });
 
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('Line 1');
     await messageInput.press('Shift+Enter');
     await messageInput.type('Line 2');
@@ -127,11 +134,11 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
   });
 
   test('clears chat when clear button is clicked', async ({ page }) => {
-    await page.waitForSelector('select');
-    await expect(page.getByText('🟢 Connected')).toBeVisible();
+    await page.waitForSelector('#model-select', { timeout: 10000 });
+    await expect(page.locator('.status.connected')).toBeVisible({ timeout: 10000 });
 
     // Send a message first
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('Message to be cleared');
     await page.getByRole('button', { name: 'Send' }).click();
 
@@ -149,9 +156,9 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
   });
 
   test('changes model selection', async ({ page }) => {
-    await page.waitForSelector('select');
+    await page.waitForSelector('#model-select', { timeout: 10000 });
 
-    const modelSelect = page.locator('select');
+    const modelSelect = page.locator('#model-select');
     
     // Default should be first model (llama2)
     await expect(modelSelect).toHaveValue('llama2');
@@ -161,12 +168,12 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
     await expect(modelSelect).toHaveValue('mistral');
 
     // Send a message to verify the correct model is used
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('Test with mistral');
     await page.getByRole('button', { name: 'Send' }).click();
 
     await expect(page.locator('.user-message .message-text').filter({ hasText: 'Test with mistral' })).toBeVisible();
-    await expect(page.locator('.bot-message .message-text').filter({ hasText: 'Echo: Test with mistral' })).toBeVisible();
+    await expect(page.locator('.bot-message .markdown-content').filter({ hasText: 'Echo: Test with mistral' })).toBeVisible();
   });
 
   test('switches languages', async ({ page }) => {
@@ -200,8 +207,8 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
   });
 
   test('shows loading state while sending message', async ({ page }) => {
-    await page.waitForSelector('select');
-    await expect(page.getByText('🟢 Connected')).toBeVisible();
+    await page.waitForSelector('#model-select', { timeout: 10000 });
+    await expect(page.locator('.status.connected')).toBeVisible({ timeout: 10000 });
 
     // Mock a delayed response
     await page.route('**/api/chat', async route => {
@@ -217,7 +224,7 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
       });
     });
 
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('Test loading state');
     await page.getByRole('button', { name: 'Send' }).click();
 
@@ -244,18 +251,18 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
 
     await page.goto('/');
 
-    await expect(page.getByText('🔴 Disconnected')).toBeVisible();
+    await expect(page.locator('.status.disconnected')).toBeVisible({ timeout: 10000 });
     await expect(page.getByText('Ollama appears to be disconnected')).toBeVisible();
   });
 
   test('disables send button when no message is typed', async ({ page }) => {
-    await page.waitForSelector('select');
+    await page.waitForSelector('#model-select', { timeout: 10000 });
     
     const sendButton = page.getByRole('button', { name: 'Send' });
     await expect(sendButton).toBeDisabled();
 
     // Type something
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('Hello');
 
     await expect(sendButton).toBeEnabled();
@@ -271,43 +278,43 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
     await page.setViewportSize({ width: 375, height: 667 });
 
     await page.goto('/');
-    await page.waitForSelector('select');
+    await page.waitForSelector('#model-select', { timeout: 10000 });
 
     // Check if interface is still functional
     await expect(page.getByRole('heading', { name: 'Ollama Chat Interface' })).toBeVisible();
-    await expect(page.getByPlaceholder('Type your message here')).toBeVisible();
+    await expect(page.getByPlaceholder('Type your message here...')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Send' })).toBeVisible();
 
     // Test sending a message on mobile
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('Mobile test message');
     await page.getByRole('button', { name: 'Send' }).click();
 
     await expect(page.locator('.user-message .message-text').filter({ hasText: 'Mobile test message' })).toBeVisible();
-    await expect(page.locator('.bot-message .message-text').filter({ hasText: 'Echo: Mobile test message' })).toBeVisible();
+    await expect(page.locator('.bot-message .markdown-content').filter({ hasText: 'Echo: Mobile test message' })).toBeVisible();
   });
 
   test('handles long messages', async ({ page }) => {
-    await page.waitForSelector('select');
-    await expect(page.getByText('🟢 Connected')).toBeVisible();
+    await page.waitForSelector('#model-select', { timeout: 10000 });
+    await expect(page.locator('.status.connected')).toBeVisible({ timeout: 10000 });
 
     const longMessage = 'This is a very long message that tests how the application handles lengthy text input. '.repeat(10);
     
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill(longMessage);
     await page.getByRole('button', { name: 'Send' }).click();
 
     await expect(page.locator('.user-message .message-text').filter({ hasText: longMessage })).toBeVisible();
-    await expect(page.locator('.bot-message .message-text').filter({ hasText: `Echo: ${longMessage}` })).toBeVisible();
+    await expect(page.locator('.bot-message .markdown-content').filter({ hasText: `Echo: ${longMessage}` })).toBeVisible();
   });
 
   test('auto-scrolls to bottom when new messages arrive', async ({ page }) => {
-    await page.waitForSelector('select');
-    await expect(page.getByText('🟢 Connected')).toBeVisible();
+    await page.waitForSelector('#model-select', { timeout: 10000 });
+    await expect(page.locator('.status.connected')).toBeVisible({ timeout: 10000 });
 
     // Send multiple messages to create scroll
     for (let i = 1; i <= 5; i++) {
-      const messageInput = page.getByPlaceholder('Type your message here');
+      const messageInput = page.getByPlaceholder('Type your message here...');
       await messageInput.fill(`Message ${i}`);
       await page.getByRole('button', { name: 'Send' }).click();
       await page.waitForTimeout(500); // Small delay between messages
@@ -315,11 +322,11 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
 
     // Check if the last message is visible (indicating auto-scroll worked)
     await expect(page.locator('.user-message .message-text').filter({ hasText: 'Message 5' })).toBeVisible();
-    await expect(page.locator('.bot-message .message-text').filter({ hasText: 'Echo: Message 5' })).toBeVisible();
+    await expect(page.locator('.bot-message .markdown-content').filter({ hasText: 'Echo: Message 5' })).toBeVisible();
   });
 
   test('shows expandable error details when message fails', async ({ page }) => {
-    await page.waitForSelector('select');
+    await page.waitForSelector('#model-select', { timeout: 10000 });
     
     // Mock a network error by intercepting the API call
     await page.route('**/api/chat', route => {
@@ -327,12 +334,12 @@ test.describe('Ollama Chat Interface - E2E Tests', () => {
     });
 
     // Try to send a message
-    const messageInput = page.getByPlaceholder('Type your message here');
+    const messageInput = page.getByPlaceholder('Type your message here...');
     await messageInput.fill('This will fail');
     await page.getByRole('button', { name: 'Send' }).click();
 
     // Wait for error message to appear
-    await page.waitForSelector('.bot-message .message-text', { timeout: 10000 });
+    await page.waitForSelector('.bot-message .markdown-content', { timeout: 10000 });
     
     // Check if error details toggle button is present
     const errorToggle = page.locator('.error-details-toggle');

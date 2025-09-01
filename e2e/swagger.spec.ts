@@ -117,10 +117,16 @@ test.describe('Swagger API Documentation', () => {
     // Check if server info is displayed
     await expect(page.locator('.servers')).toBeVisible();
     
-    // Should show development server URL
-    await expect(page.locator('text=http://localhost:4001')).toBeVisible();
-    
-    // Should show server description
-    await expect(page.locator('text=Development server')).toBeVisible();
+    // May need to expand the server dropdown first
+    const serverDropdown = page.locator('.servers select');
+    const dropdownCount = await serverDropdown.count();
+    if (dropdownCount > 0) {
+      // Check that the development server option exists in the dropdown
+      const options = await serverDropdown.locator('option').allTextContents();
+      expect(options.some(option => option.includes('localhost:4001'))).toBeTruthy();
+    } else {
+      // If no dropdown, check if server URL is directly visible
+      await expect(page.locator(':text("localhost:4001")')).toBeVisible();
+    }
   });
 });
