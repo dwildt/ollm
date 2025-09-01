@@ -1,0 +1,311 @@
+/* TemplateCard Component Styles */
+
+.template-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 12px;
+  padding: var(--spacing-4);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.template-card:hover:not(.template-card--disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border-secondary);
+}
+
+.template-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  border-color: var(--color-border-focus);
+}
+
+.template-card:active:not(.template-card--disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/* Header */
+.template-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.template-card__title-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.template-card__title {
+  margin: 0 0 var(--spacing-2) 0;
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+.template-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-wrap: wrap;
+}
+
+.template-card__category {
+  flex-shrink: 0;
+}
+
+.template-card__params-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  flex-shrink: 0;
+}
+
+.template-card__params-info .icon {
+  color: var(--color-text-tertiary);
+}
+
+.template-card__required-params {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-warning);
+}
+
+.template-card__preview-btn {
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.template-card:hover .template-card__preview-btn,
+.template-card:focus-within .template-card__preview-btn {
+  opacity: 1;
+}
+
+/* Body */
+.template-card__body {
+  flex: 1;
+  margin-bottom: var(--spacing-3);
+}
+
+.template-card__description {
+  line-height: var(--line-height-relaxed);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Footer */
+.template-card__footer {
+  margin-top: auto;
+}
+
+.template-card__tags {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  flex-wrap: wrap;
+}
+
+.template-card__tag {
+  font-size: var(--font-size-xs);
+  opacity: 0.9;
+}
+
+.template-card__tag-overflow {
+  white-space: nowrap;
+}
+
+/* Indicators */
+.template-card__indicator {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 6px;
+  padding: var(--spacing-1);
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.template-card:hover .template-card__indicator {
+  opacity: 1;
+}
+
+.template-card__indicator-icon {
+  color: var(--color-text-secondary);
+}
+
+.template-card__selection-indicator {
+  position: absolute;
+  top: var(--spacing-2);
+  right: var(--spacing-2);
+  background-color: var(--color-interactive-primary);
+  border-radius: 50%;
+  padding: var(--spacing-1);
+  animation: template-card-select 0.3s ease-out;
+}
+
+.template-card__check-icon {
+  color: var(--color-text-inverse);
+}
+
+@keyframes template-card-select {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* States */
+.template-card--selected {
+  border-color: var(--color-interactive-primary);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.1);
+  background-color: var(--color-primary-50);
+}
+
+.template-card--selected .template-card__title {
+  color: var(--color-primary-700);
+}
+
+.template-card--selected:hover {
+  border-color: var(--color-interactive-primary-hover);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.15), var(--shadow-lg);
+}
+
+.template-card--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .template-card {
+    padding: var(--spacing-3);
+    min-height: 180px;
+  }
+  
+  .template-card__header {
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .template-card__body {
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .template-card__title {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-1);
+  }
+  
+  .template-card__meta {
+    gap: var(--spacing-1);
+  }
+  
+  .template-card__description {
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .template-card {
+    padding: var(--spacing-2);
+    min-height: 160px;
+  }
+  
+  .template-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+  
+  .template-card__preview-btn {
+    align-self: flex-end;
+    margin-top: calc(var(--spacing-2) * -1);
+  }
+  
+  .template-card__params-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-1);
+  }
+  
+  .template-card__tags {
+    gap: 2px;
+  }
+  
+  .template-card__tag {
+    font-size: 10px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .template-card {
+    border-width: 2px;
+  }
+  
+  .template-card--selected {
+    border-width: 3px;
+  }
+  
+  .template-card__indicator {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .template-card {
+    transition: none;
+  }
+  
+  .template-card:hover:not(.template-card--disabled) {
+    transform: none;
+  }
+  
+  .template-card:active:not(.template-card--disabled) {
+    transform: none;
+  }
+  
+  .template-card__preview-btn {
+    transition: none;
+  }
+  
+  .template-card__indicator {
+    transition: none;
+  }
+  
+  .template-card__selection-indicator {
+    animation: none;
+  }
+}
+
+/* Focus-visible support for better keyboard navigation */
+.template-card:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.template-card__preview-btn:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}

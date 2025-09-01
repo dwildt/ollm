@@ -1,0 +1,250 @@
+/* Loading Component Styles */
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Spinner Loading */
+.loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-interactive-primary);
+}
+
+.loading-spinner__svg {
+  animation: loading-spin 1s linear infinite;
+}
+
+.loading-spinner__circle {
+  stroke-dasharray: 31.416; /* 2 * π * r (r=10) */
+  stroke-dashoffset: 31.416;
+  animation: loading-stroke 1.5s ease-in-out infinite;
+}
+
+/* Spinner Sizes */
+.loading-spinner--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.loading-spinner--sm .loading-spinner__svg {
+  width: 16px;
+  height: 16px;
+}
+
+.loading-spinner--md {
+  width: 20px;
+  height: 20px;
+}
+
+.loading-spinner--md .loading-spinner__svg {
+  width: 20px;
+  height: 20px;
+}
+
+.loading-spinner--lg {
+  width: 24px;
+  height: 24px;
+}
+
+.loading-spinner--lg .loading-spinner__svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Spinner Animations */
+@keyframes loading-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-stroke {
+  0% {
+    stroke-dasharray: 0 31.416;
+  }
+  50% {
+    stroke-dasharray: 15.708 15.708;
+  }
+  100% {
+    stroke-dasharray: 31.416 0;
+  }
+}
+
+/* Dots Loading */
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.loading-dots__dot {
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: loading-dots-bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots__dot:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots__dot:nth-child(2) { animation-delay: -0.16s; }
+.loading-dots__dot:nth-child(3) { animation-delay: 0s; }
+
+/* Dots Sizes */
+.loading-dots--sm .loading-dots__dot {
+  width: 4px;
+  height: 4px;
+}
+
+.loading-dots--md .loading-dots__dot {
+  width: 6px;
+  height: 6px;
+}
+
+.loading-dots--lg .loading-dots__dot {
+  width: 8px;
+  height: 8px;
+}
+
+/* Dots Animation */
+@keyframes loading-dots-bounce {
+  0%, 80%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse Loading */
+.loading-pulse {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-pulse__circle {
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: loading-pulse-scale 1.5s infinite ease-in-out;
+}
+
+/* Pulse Sizes */
+.loading-pulse--sm .loading-pulse__circle {
+  width: 16px;
+  height: 16px;
+}
+
+.loading-pulse--md .loading-pulse__circle {
+  width: 20px;
+  height: 20px;
+}
+
+.loading-pulse--lg .loading-pulse__circle {
+  width: 24px;
+  height: 24px;
+}
+
+/* Pulse Animation */
+@keyframes loading-pulse-scale {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Skeleton Loading */
+.loading-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-tertiary) 0%,
+    var(--color-bg-secondary) 50%,
+    var(--color-bg-tertiary) 100%
+  );
+  background-size: 200% 100%;
+  animation: loading-skeleton-shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.loading-skeleton--rounded {
+  border-radius: 9999px;
+}
+
+/* Skeleton Animation */
+@keyframes loading-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Accessibility - Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner__svg {
+    animation: none;
+  }
+  
+  .loading-spinner__circle {
+    animation: none;
+    stroke-dasharray: 15.708 15.708;
+  }
+  
+  .loading-dots__dot {
+    animation: none;
+    opacity: 0.6;
+  }
+  
+  .loading-pulse__circle {
+    animation: none;
+    opacity: 0.6;
+  }
+  
+  .loading-skeleton {
+    animation: none;
+    background: var(--color-bg-tertiary);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .loading-spinner__circle {
+    stroke-width: 3;
+  }
+  
+  .loading-skeleton {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .loading-skeleton {
+    background: linear-gradient(
+      90deg,
+      #374151 0%,
+      #4b5563 50%,
+      #374151 100%
+    );
+    background-size: 200% 100%;
+  }
+}

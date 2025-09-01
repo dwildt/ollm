@@ -1,0 +1,59 @@
+/* Design System - Spacing Tokens */
+
+:root {
+  /* Base spacing scale (8px base) */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem;  /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem;    /* 16px */
+  --spacing-5: 1.25rem; /* 20px */
+  --spacing-6: 1.5rem;  /* 24px */
+  --spacing-8: 2rem;    /* 32px */
+  --spacing-10: 2.5rem; /* 40px */
+  --spacing-12: 3rem;   /* 48px */
+  --spacing-16: 4rem;   /* 64px */
+  --spacing-20: 5rem;   /* 80px */
+  --spacing-24: 6rem;   /* 96px */
+  --spacing-32: 8rem;   /* 128px */
+
+  /* Semantic spacing */
+  --spacing-xs: var(--spacing-1);
+  --spacing-sm: var(--spacing-2);
+  --spacing-md: var(--spacing-4);
+  --spacing-lg: var(--spacing-6);
+  --spacing-xl: var(--spacing-8);
+  --spacing-2xl: var(--spacing-12);
+  --spacing-3xl: var(--spacing-16);
+
+  /* Component-specific spacing */
+  --spacing-button-padding-y: var(--spacing-2);
+  --spacing-button-padding-x: var(--spacing-4);
+  --spacing-button-padding-y-sm: var(--spacing-1);
+  --spacing-button-padding-x-sm: var(--spacing-3);
+  --spacing-button-padding-y-lg: var(--spacing-3);
+  --spacing-button-padding-x-lg: var(--spacing-6);
+
+  --spacing-input-padding-y: var(--spacing-2);
+  --spacing-input-padding-x: var(--spacing-3);
+
+  --spacing-card-padding: var(--spacing-4);
+  --spacing-card-gap: var(--spacing-4);
+
+  --spacing-grid-gap: var(--spacing-4);
+  --spacing-grid-gap-sm: var(--spacing-2);
+  --spacing-grid-gap-lg: var(--spacing-6);
+
+  --spacing-section-margin: var(--spacing-8);
+  --spacing-section-margin-sm: var(--spacing-4);
+  --spacing-section-margin-lg: var(--spacing-12);
+}
+
+/* Responsive spacing adjustments */
+@media (max-width: 768px) {
+  :root {
+    --spacing-section-margin: var(--spacing-4);
+    --spacing-card-padding: var(--spacing-3);
+    --spacing-grid-gap: var(--spacing-3);
+  }
+}

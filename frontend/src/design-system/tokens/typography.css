@@ -1,0 +1,114 @@
+/* Design System - Typography Tokens */
+
+:root {
+  /* Font Families */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'Fira Code', 'Monaco', 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem;  /* 36px */
+  --font-size-5xl: 3rem;     /* 48px */
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* Letter Spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+
+  /* Heading Styles */
+  --typography-h1-size: var(--font-size-3xl);
+  --typography-h1-weight: var(--font-weight-bold);
+  --typography-h1-line-height: var(--line-height-tight);
+  --typography-h1-letter-spacing: var(--letter-spacing-tight);
+
+  --typography-h2-size: var(--font-size-2xl);
+  --typography-h2-weight: var(--font-weight-semibold);
+  --typography-h2-line-height: var(--line-height-tight);
+  --typography-h2-letter-spacing: var(--letter-spacing-tight);
+
+  --typography-h3-size: var(--font-size-xl);
+  --typography-h3-weight: var(--font-weight-semibold);
+  --typography-h3-line-height: var(--line-height-snug);
+  --typography-h3-letter-spacing: var(--letter-spacing-normal);
+
+  --typography-h4-size: var(--font-size-lg);
+  --typography-h4-weight: var(--font-weight-medium);
+  --typography-h4-line-height: var(--line-height-snug);
+  --typography-h4-letter-spacing: var(--letter-spacing-normal);
+
+  /* Body Text Styles */
+  --typography-body-size: var(--font-size-base);
+  --typography-body-weight: var(--font-weight-normal);
+  --typography-body-line-height: var(--line-height-normal);
+  --typography-body-letter-spacing: var(--letter-spacing-normal);
+
+  --typography-body-sm-size: var(--font-size-sm);
+  --typography-body-sm-weight: var(--font-weight-normal);
+  --typography-body-sm-line-height: var(--line-height-normal);
+  --typography-body-sm-letter-spacing: var(--letter-spacing-normal);
+
+  --typography-caption-size: var(--font-size-xs);
+  --typography-caption-weight: var(--font-weight-normal);
+  --typography-caption-line-height: var(--line-height-normal);
+  --typography-caption-letter-spacing: var(--letter-spacing-wide);
+
+  /* Button Text Styles */
+  --typography-button-size: var(--font-size-sm);
+  --typography-button-weight: var(--font-weight-medium);
+  --typography-button-line-height: var(--line-height-tight);
+  --typography-button-letter-spacing: var(--letter-spacing-wide);
+
+  --typography-button-lg-size: var(--font-size-base);
+  --typography-button-lg-weight: var(--font-weight-medium);
+  --typography-button-lg-line-height: var(--line-height-tight);
+  --typography-button-lg-letter-spacing: var(--letter-spacing-wide);
+
+  /* Code Text Styles */
+  --typography-code-size: var(--font-size-sm);
+  --typography-code-weight: var(--font-weight-normal);
+  --typography-code-line-height: var(--line-height-relaxed);
+  --typography-code-letter-spacing: var(--letter-spacing-normal);
+  --typography-code-family: var(--font-family-mono);
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  :root {
+    --typography-h1-size: var(--font-size-2xl);
+    --typography-h2-size: var(--font-size-xl);
+    --typography-h3-size: var(--font-size-lg);
+    --typography-h4-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --typography-h1-size: var(--font-size-xl);
+    --typography-h2-size: var(--font-size-lg);
+    --typography-h3-size: var(--font-size-base);
+    --typography-h4-size: var(--font-size-sm);
+  }
+}

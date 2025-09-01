@@ -1,0 +1,204 @@
+/* TagFilter Component Styles */
+
+.tag-filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+/* Header */
+.tag-filter__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+}
+
+.tag-filter__clear {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-xs);
+  opacity: 0.8;
+}
+
+.tag-filter__clear:hover {
+  opacity: 1;
+}
+
+/* Content */
+.tag-filter__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.tag-filter__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  align-items: center;
+}
+
+.tag-filter__tag {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  position: relative;
+}
+
+.tag-filter__tag:hover:not(.badge--selected) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.tag-filter__tag:active {
+  transform: translateY(0);
+}
+
+.tag-filter__tag-label {
+  display: flex;
+  align-items: center;
+}
+
+.tag-filter__tag-count {
+  margin-left: var(--spacing-1);
+  font-size: 0.85em;
+  opacity: 0.8;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Toggle Button */
+.tag-filter__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  align-self: flex-start;
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.tag-filter__toggle:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-interactive-secondary);
+}
+
+/* Summary */
+.tag-filter__summary {
+  padding-top: var(--spacing-1);
+  border-top: 1px solid var(--color-border-primary);
+}
+
+/* States */
+.tag-filter--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.tag-filter--has-selection .tag-filter__header {
+  padding-bottom: var(--spacing-1);
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+/* Tag selection animations */
+.tag-filter__tag.badge--selected {
+  animation: tag-select 0.2s ease-out;
+}
+
+@keyframes tag-select {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .tag-filter__tags {
+    gap: var(--spacing-1);
+  }
+  
+  .tag-filter__tag {
+    font-size: var(--font-size-sm);
+  }
+  
+  .tag-filter__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+  
+  .tag-filter__clear {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .tag-filter {
+    gap: var(--spacing-2);
+  }
+  
+  .tag-filter__content {
+    gap: var(--spacing-1);
+  }
+  
+  .tag-filter__tags {
+    gap: var(--spacing-1);
+  }
+  
+  .tag-filter__tag {
+    font-size: var(--font-size-xs);
+  }
+  
+  .tag-filter__toggle {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .tag-filter__summary {
+    border-top-width: 2px;
+  }
+  
+  .tag-filter--has-selection .tag-filter__header {
+    border-bottom-width: 2px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tag-filter__tag {
+    transition: none;
+  }
+  
+  .tag-filter__tag:hover:not(.badge--selected) {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .tag-filter__tag:active {
+    transform: none;
+  }
+  
+  .tag-filter__tag.badge--selected {
+    animation: none;
+  }
+}
+
+/* Focus management for keyboard navigation */
+.tag-filter__tag:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.tag-filter__toggle:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}

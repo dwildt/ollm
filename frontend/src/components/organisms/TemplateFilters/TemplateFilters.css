@@ -1,0 +1,63 @@
+/* TemplateFilters Component Styles */
+
+.template-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  background-color: var(--color-bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--color-border-primary);
+}
+
+.template-filters__primary {
+  display: flex;
+  gap: var(--spacing-3);
+  align-items: flex-start;
+}
+
+.template-filters__search {
+  flex: 1;
+  min-width: 0;
+}
+
+.template-filters__category {
+  flex-shrink: 0;
+}
+
+.template-filters__tags {
+  margin-top: var(--spacing-1);
+}
+
+.template-filters--active {
+  border-color: var(--color-interactive-primary);
+  box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.1);
+}
+
+.template-filters--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .template-filters {
+    padding: var(--spacing-3);
+    gap: var(--spacing-3);
+  }
+  
+  .template-filters__primary {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+  
+  .template-filters__category {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .template-filters {
+    padding: var(--spacing-2);
+    gap: var(--spacing-2);
+  }
+}

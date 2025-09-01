@@ -1,0 +1,37 @@
+/* SearchBar Component Styles */
+
+.search-bar {
+  width: 100%;
+  position: relative;
+}
+
+.search-bar .input-container {
+  margin: 0;
+}
+
+.search-bar .input {
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.search-bar .input:focus {
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+/* Enhanced focus styles for search context */
+.search-bar .input:focus-within {
+  border-color: var(--color-border-focus);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-bar {
+    min-width: 0;
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar .input {
+    font-size: 16px; /* Prevents zoom on iOS Safari */
+  }
+}

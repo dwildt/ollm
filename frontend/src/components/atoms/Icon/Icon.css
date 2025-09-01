@@ -1,0 +1,62 @@
+/* Icon Component Styles */
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  color: currentColor;
+  fill: none;
+  vertical-align: middle;
+}
+
+/* Size Variants */
+.icon--xs {
+  width: 12px;
+  height: 12px;
+}
+
+.icon--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--md {
+  width: 20px;
+  height: 20px;
+}
+
+.icon--lg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon--xl {
+  width: 32px;
+  height: 32px;
+}
+
+/* Ensure crisp rendering */
+.icon {
+  shape-rendering: geometricPrecision;
+}
+
+/* Interactive states for clickable icons */
+.icon--interactive {
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.icon--interactive:hover {
+  color: var(--color-interactive-primary);
+}
+
+/* Accessibility improvements */
+.icon[aria-hidden="false"] {
+  /* Icons with labels should be focusable if interactive */
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .icon {
+    stroke-width: 2.5;
+  }
+}
