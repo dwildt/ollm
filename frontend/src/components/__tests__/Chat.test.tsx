@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Chat from '../Chat';
+import ChatNew from '../ChatNew';
 import { apiService } from '../../services/api';
 
 // Mock the API service
@@ -39,7 +39,7 @@ jest.mock('react-router-dom', () => ({
   useSearchParams: () => [new URLSearchParams(), jest.fn()]
 }));
 
-// Mock LanguageSwitcher component
+// Mock LanguageSwitcher component - prepared for ChatHeader integration
 jest.mock('../LanguageSwitcher', () => {
   return function MockLanguageSwitcher() {
     return <div data-testid="language-switcher">Language Switcher</div>;
@@ -53,21 +53,21 @@ jest.mock('react-markdown', () => {
   };
 });
 
-// Mock TemplateSelector component
+// Mock TemplateSelector component - prepared for ChatHeader integration  
 jest.mock('../TemplateSelector', () => {
   return function MockTemplateSelector({ onTemplateSelect: _onTemplateSelect }: { onTemplateSelect: Function }) {
     return <div data-testid="template-selector">Template Selector</div>;
   };
 });
 
-// Mock ParameterForm component
+// Mock ParameterForm component - prepared for ChatHeader integration
 jest.mock('../ParameterForm', () => {
   return function MockParameterForm({ template: _template, onSubmit: _onSubmit }: { template: any, onSubmit: Function }) {
     return <div data-testid="parameter-form">Parameter Form</div>;
   };
 });
 
-// Mock ConversationSidebar component
+// Mock ConversationSidebar component - independent of chat modularization
 jest.mock('../ConversationSidebar', () => {
   return function MockConversationSidebar() {
     return <div data-testid="conversation-sidebar">Conversation Sidebar</div>;
@@ -111,16 +111,18 @@ describe('Chat Component', () => {
     });
   });
 
-  test('renders chat interface', async () => {
-    render(<Chat />);
+  test('renders chat interface with all components', async () => {
+    render(<ChatNew />);
     
+    // Test main chat interface elements (future ChatHeader content)
     expect(screen.getByText('Ollama Chat Interface')).toBeInTheDocument();
     expect(screen.getByText('Welcome to Ollama Chat!')).toBeInTheDocument();
     expect(screen.getByTestId('language-switcher')).toBeInTheDocument();
+    expect(screen.getByTestId('template-selector')).toBeInTheDocument();
   });
 
   test('loads models on mount', async () => {
-    render(<Chat />);
+    render(<ChatNew />);
     
     await waitFor(() => {
       expect(mockApiService.getModels).toHaveBeenCalled();
@@ -132,7 +134,7 @@ describe('Chat Component', () => {
   });
 
   test('checks Ollama health on mount', async () => {
-    render(<Chat />);
+    render(<ChatNew />);
     
     await waitFor(() => {
       expect(mockApiService.checkHealth).toHaveBeenCalled();
@@ -146,26 +148,27 @@ describe('Chat Component', () => {
   test('displays disconnected status when health check fails', async () => {
     mockApiService.checkHealth.mockRejectedValue(new Error('Connection failed'));
     
-    render(<Chat />);
+    render(<ChatNew />);
     
     await waitFor(() => {
       expect(screen.getByText('🔴 Disconnected')).toBeInTheDocument();
     });
   });
 
-  test('sends message when send button is clicked', async () => {
+  test('sends message when send button is clicked (future ChatInput + ChatMessages)', async () => {
     mockApiService.sendMessage.mockResolvedValue({
       response: 'Hello! How can I help you?',
       model: 'llama2'
     });
 
-    render(<Chat />);
+    render(<ChatNew />);
 
-    // Wait for models to load
+    // Wait for models to load (future ChatHeader functionality)
     await waitFor(() => {
       expect(screen.getByDisplayValue('llama2')).toBeInTheDocument();
     });
 
+    // Test input and send functionality (future ChatInput component)
     const textarea = screen.getByPlaceholderText('Type your message here...');
     const sendButton = screen.getByText('Send');
 
@@ -176,6 +179,7 @@ describe('Chat Component', () => {
       expect(mockApiService.sendMessage).toHaveBeenCalledWith('Hello, world!', 'llama2');
     });
 
+    // Test message display (future ChatMessages component)
     await waitFor(() => {
       expect(screen.getByText('Hello, world!')).toBeInTheDocument();
     });
@@ -185,13 +189,13 @@ describe('Chat Component', () => {
     });
   });
 
-  test('clears chat when clear button is clicked', async () => {
+  test('clears chat when clear button is clicked (future ChatHeader + ChatMessages)', async () => {
     mockApiService.sendMessage.mockResolvedValue({
       response: 'Test response',
       model: 'llama2'
     });
 
-    render(<Chat />);
+    render(<ChatNew />);
 
     // Wait for models to load and send a message first
     await waitFor(() => {
@@ -206,17 +210,18 @@ describe('Chat Component', () => {
       expect(screen.getByText('Test message')).toBeInTheDocument();
     });
 
-    // Clear the chat
+    // Clear the chat (future ChatHeader functionality)
     const clearButton = screen.getByText('Clear Chat');
     fireEvent.click(clearButton);
 
+    // Verify messages are cleared (future ChatMessages state management)
     expect(screen.queryByText('Test message')).not.toBeInTheDocument();
   });
 
   test('handles API error gracefully', async () => {
     mockApiService.sendMessage.mockRejectedValue(new Error('API Error'));
 
-    render(<Chat />);
+    render(<ChatNew />);
 
     // Wait for models to load
     await waitFor(() => {
@@ -235,7 +240,7 @@ describe('Chat Component', () => {
   test('disables send button when no model is selected', async () => {
     mockApiService.getModels.mockResolvedValue({ models: [] });
     
-    render(<Chat />);
+    render(<ChatNew />);
 
     await waitFor(() => {
       expect(screen.getByText('No models available')).toBeInTheDocument();
@@ -246,7 +251,7 @@ describe('Chat Component', () => {
   });
 
   test('changes model when dropdown selection changes', async () => {
-    render(<Chat />);
+    render(<ChatNew />);
 
     await waitFor(() => {
       expect(screen.getByDisplayValue('llama2')).toBeInTheDocument();

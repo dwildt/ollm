@@ -4,7 +4,7 @@ import { useModeSwitch } from '../../hooks/useModeSwitch';
 import { Button } from '../../components/atoms/Button';
 import { Icon } from '../../components/atoms/Icon';
 import { Heading, Text } from '../../components/atoms/Typography';
-import Chat from '../../components/Chat'; // Import existing Chat component
+import ChatNew from '../../components/ChatNew'; // Import new modular Chat component
 import './FreeConversationPage.css';
 
 const FreeConversationPage: React.FC = () => {
@@ -49,7 +49,7 @@ const FreeConversationPage: React.FC = () => {
           }
         >
           <div className="free-conversation-page__chat-container">
-            <Chat />
+            <ChatNew />
           </div>
         </ChatTemplate>
       </div>

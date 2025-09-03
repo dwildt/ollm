@@ -33,14 +33,8 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "type-check": "tsc --noEmit src/**/*.ts src/**/*.tsx --skipLibCheck",
+    "type-check": "tsc --project tsconfig.check.json",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

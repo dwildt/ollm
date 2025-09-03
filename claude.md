@@ -11,10 +11,26 @@ This document outlines the key architectural decisions, coding standards, and de
 - **RESTful API**: Simple REST endpoints for communication between frontend and backend
 
 ### Frontend Architecture (React + TypeScript)
-- **Component-based**: Each UI element is a reusable React component
-- **Custom hooks**: Use React hooks for state management and side effects
+- **Modular Component Architecture**: Fully implemented atomic design principles
+  - **Atoms**: Basic UI elements (`Button`, `Input`, `Badge`, etc.)
+  - **Molecules**: Component combinations (`SearchBar`, `TemplateCard`, etc.)
+  - **Organisms**: Complex components (`ChatHeader`, `ChatMessages`, `ChatInput`)
+  - **Templates**: Page-level layouts with proper composition (`ChatNew`)
+- **Custom hooks**: Business logic separated into specialized hooks
+  - `useChat()` - Main chat state management with performance monitoring
+  - `useChatMessages()` - Message handling and auto-scroll
+  - `useChatInput()` - Input management with keyboard shortcuts  
+  - `useOllamaHealth()` - Connection status monitoring
+  - `useModelSelector()` - Model selection and management
+  - `usePerformance()` - Performance monitoring and optimization
+- **Performance optimizations**: 
+  - **Lazy loading**: Route-level and component-level code splitting
+  - **Code splitting**: Automatic chunk generation for optimal loading
+  - **Performance monitoring**: Built-in hooks for tracking render times and operations
+  - **Memoization**: Optimized callbacks and expensive computations
 - **Service layer**: API calls abstracted into service modules
-- **Type-safe**: All components and functions have proper TypeScript types
+- **Type-safe**: All components, hooks, and functions have proper TypeScript types
+- **Production ready**: Full Docker support with optimized builds
 
 ### Backend Architecture (Node.js + Express)
 - **Minimal and focused**: Single-purpose Express server
@@ -33,12 +49,27 @@ This document outlines the key architectural decisions, coding standards, and de
 
 ### File Organization
 ```
-src/
-├── components/     # Reusable UI components
-├── services/       # API and external service integrations  
-├── types/          # TypeScript type definitions
-├── i18n/          # Internationalization files
-└── styles/        # CSS files (keep with components)
+frontend/src/
+├── components/
+│   ├── organisms/      # Complex modular components
+│   │   ├── ChatHeader/     # Model selection, status, controls
+│   │   ├── ChatMessages/   # Message display with error handling
+│   │   └── ChatInput/      # Input with keyboard shortcuts
+│   ├── atoms/          # Basic UI elements  
+│   ├── molecules/      # Component combinations
+│   └── ChatNew.tsx     # Main chat template with lazy loading
+├── hooks/              # Custom hooks for business logic
+│   ├── useChat.ts          # Main chat state with performance monitoring
+│   ├── useChatMessages.ts  # Message handling and auto-scroll
+│   ├── useChatInput.ts     # Input management
+│   ├── useOllamaHealth.ts  # Connection monitoring
+│   ├── useModelSelector.ts # Model selection
+│   └── usePerformance.ts   # Performance optimization utilities
+├── services/           # API and external service integrations
+├── types/              # TypeScript type definitions
+├── i18n/              # Internationalization files
+├── pages/             # Route-level components with lazy loading
+└── design-system/     # CSS custom properties and design tokens
 ```
 
 ### Naming Conventions
@@ -49,17 +80,155 @@ src/
 - **Constants**: UPPER_SNAKE_CASE (`API_BASE_URL`, `DEFAULT_MODEL`)
 
 ### Component Guidelines
-- Keep components small and focused (under 200 lines)
-- Use functional components with hooks
+
+#### Modular Architecture Principles
+- **Atomic Design**: Follow atoms → molecules → organisms → templates hierarchy
+- **Single Responsibility**: Each component should have one clear purpose
+- **Composition over Inheritance**: Use component composition patterns
+- **Reusability**: Design components to be reusable across different contexts
+
+#### Component Structure
+- **Atoms** (under 50 lines): Basic UI elements with no business logic
+  - Examples: `Button`, `Input`, `Badge`, `Typography`, `Icon`
+  - Should only handle basic styling and accessibility
+- **Molecules** (50-100 lines): Combinations of atoms with simple logic
+  - Examples: `SearchBar`, `FilterDropdown`, `TemplateCard`
+  - Handle simple interactions and state
+- **Organisms** (100-200 lines): Complex components with business logic
+  - Examples: `ChatHeader`, `ChatMessages`, `ChatInput`, `TemplateGrid`
+  - Can use custom hooks for state management
+- **Templates** (200+ lines): Page-level layouts and complex compositions
+  - Examples: `ChatTemplate`, `TemplateSelectionTemplate`
+  - Orchestrate multiple organisms and handle routing
+
+#### Component Standards
+- Use functional components with hooks exclusively
 - Props should have explicit TypeScript interfaces
-- Handle loading and error states in UI components
+- Handle loading and error states appropriately at component level
 - Make components responsive by default
+- Use data-testid attributes for testing in key components
 
 ### State Management
+
+#### Custom Hooks Pattern
+- **Extract business logic** from components into custom hooks
+- **Naming convention**: All hooks must start with `use` (e.g., `useChat`, `useChatMessages`)
+- **Single purpose**: Each hook should handle one specific domain of state
+- **TypeScript interfaces**: Define clear return types for all custom hooks
+
+#### Hook Guidelines
+- **useChat()**: Main chat state management with performance monitoring
+  - Handles messages array, loading states, error handling
+  - Manages API calls and message persistence with performance tracking
+  - Optimized with `useOptimizedCallback` and `useOptimizedMemo`
+  - Returns: `{ messages, isLoading, error, sendMessage, clearMessages, selectedModel, models, isOllamaConnected }`
+
+- **useChatMessages()**: Message list management
+  - Handles message rendering optimization
+  - Auto-scroll behavior with `useEffect` and refs
+  - Error details toggle functionality
+  - Returns: `{ messagesEndRef, expandedErrors, toggleErrorDetails, copyMessageText }`
+
+- **useChatInput()**: Input handling with keyboard shortcuts
+  - Message composition state with validation
+  - Keyboard shortcuts (Enter sends, Shift+Enter new line)
+  - Input validation and character limits
+  - Returns: `{ inputValue, handleInputChange, handleKeyPress, handleSubmit }`
+
+- **useOllamaHealth()**: Connection status monitoring
+  - Real-time health checking with periodic updates
+  - Connection state management
+  - Error handling for disconnected states
+  - Returns: `{ isOllamaConnected, checkHealth, healthError }`
+
+- **useModelSelector()**: Model selection and management
+  - Loads available models from API
+  - Automatic best model selection with Llama variants preference
+  - Model validation and fallback logic
+  - Returns: `{ models, selectedModel, setSelectedModel, loadModels, modelsLoading, modelsError }`
+
+- **usePerformance()**: Performance monitoring utilities
+  - Component render time tracking
+  - Async operation measurement
+  - Performance logging and debugging
+  - Returns: `{ logPerformanceMetric, measureAsync }`
+
+#### State Management Rules
 - Use React's built-in state management (useState, useEffect)
 - No external state management libraries (Redux, Zustand) unless absolutely necessary
 - Keep state close to where it's used
 - Lift state up only when multiple components need it
+- Use custom hooks to share stateful logic between components
+
+## Modular Architecture Implementation
+
+### Current Architecture Status
+The project has been **fully migrated** from a monolithic chat component to a modular architecture following atomic design principles. This implementation provides:
+
+#### Implemented Components
+- **ChatNew.tsx**: Main chat template component using modular organisms
+- **ChatHeader**: Organism component handling model selection, status display, and controls
+- **ChatMessages**: Organism component managing message display with error handling
+- **ChatInput**: Organism component for message input with keyboard shortcuts
+- **ConversationSidebar**: Sidebar component for conversation management
+
+#### Performance Optimizations Implemented
+- **Route-level lazy loading**: All major pages use `React.lazy()` with `Suspense`
+- **Component-level lazy loading**: Organism components are lazy loaded with fallbacks
+- **Code splitting**: Webpack automatically generates chunks for optimal loading
+- **Performance monitoring**: Built-in hooks track render times and operation performance
+- **Optimized callbacks**: Using `useOptimizedCallback` and `useOptimizedMemo` for expensive operations
+
+#### Migration Benefits Achieved
+1. **Better performance**: Lazy loading reduces initial bundle size
+2. **Code splitting**: Multiple chunks enable progressive loading
+3. **Maintainability**: Separated concerns in focused hooks
+4. **Testability**: Modular components are easier to test in isolation
+5. **Reusability**: Organism components can be reused across different templates
+6. **Developer experience**: Clear separation of concerns and responsibility
+
+#### Code Splitting Results
+The modular architecture generates the following optimized chunks:
+- **Main bundle**: ~87KB (core React and routing)
+- **Component chunks**: Individual chunks for each organism (~4-12KB each)
+- **Route chunks**: Separate chunks for each page
+- **CSS chunks**: Separate CSS files for better caching
+
+### Using the Modular Architecture
+
+#### Adding New Organism Components
+```typescript
+// 1. Create in components/organisms/NewOrganismName/
+// 2. Follow the pattern:
+export interface NewOrganismProps {
+  // Define props with TypeScript
+}
+
+export const NewOrganism: React.FC<NewOrganismProps> = ({
+  // Props destructuring
+}) => {
+  // Use custom hooks for business logic
+  const { /* hook returns */ } = useCustomHook();
+  
+  return (
+    <div className="new-organism">
+      {/* JSX structure */}
+    </div>
+  );
+};
+
+// 3. Add lazy loading in parent component:
+const NewOrganism = React.lazy(() => 
+  import('./organisms/NewOrganismName/NewOrganism').then(module => ({ default: module.NewOrganism }))
+);
+```
+
+#### Performance Best Practices
+1. **Use performance hooks**: Import and use `usePerformance()` in components
+2. **Optimize callbacks**: Use `useOptimizedCallback` for event handlers
+3. **Memoize expensive computations**: Use `useOptimizedMemo` for complex calculations
+4. **Monitor performance**: Check console for performance warnings in development
+5. **Keep components focused**: Each organism should have a single responsibility
 
 ## Development Guidelines
 
@@ -265,11 +434,18 @@ Testing is **MANDATORY** for all new features and changes. The project follows a
 #### Frontend Testing (Jest + React Testing Library)
 - **Location**: `frontend/src/**/__tests__/` and `*.test.tsx` files
 - **Coverage**: All components, services, hooks, and utilities must have tests
+- **Modular Architecture Support**:
+  - **Component tests** with flexible selectors for atoms, molecules, organisms
+  - **Custom hooks tests** for `useChat`, `useChatMessages`, `useChatInput`, etc.
+  - **Integration tests** between modular components
+  - **Backwards compatibility** during refactoring from monolithic to modular
 - **Requirements**:
   - Unit tests for all React components with user interaction scenarios
   - Service layer tests with API mocking
+  - Custom hooks testing with `renderHook` from React Testing Library
   - Integration tests for complex component interactions
   - Accessibility testing where applicable
+  - **Test-driven refactoring**: Update tests before breaking down monolithic components
   - Minimum 80% code coverage for new code
 
 #### Backend Testing (Jest + Supertest)
@@ -285,13 +461,20 @@ Testing is **MANDATORY** for all new features and changes. The project follows a
 #### End-to-End Testing (Playwright)
 - **Location**: `e2e/` directory at project root
 - **Coverage**: Complete user workflows and critical paths
+- **Modular Architecture Compatibility**:
+  - **Flexible selectors** using data-testid and CSS class fallbacks
+  - **Future-proof locators** compatible with `ChatHeader`, `ChatMessages`, `ChatInput` components
+  - **Robust error handling** tests with expandable error details
+  - **Template system** testing with modular parameter forms
 - **Requirements**:
-  - Full chat functionality workflows
+  - Full chat functionality workflows (send, receive, clear messages)
   - Language switching and internationalization
   - Model selection and switching
-  - Error states and recovery
+  - Template selection and parameter validation
+  - Error states and recovery with detailed error handling
   - Mobile and desktop responsiveness
   - Cross-browser compatibility (Chrome, Firefox, Safari)
+  - **Backwards compatibility** during component refactoring
 
 ### Testing Commands
 

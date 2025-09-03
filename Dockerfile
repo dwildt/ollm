@@ -24,7 +24,9 @@ WORKDIR /app
 COPY frontend/ ./frontend/
 COPY backend/src ./backend/src
 
-# Build both applications
+# Build applications with environment variables
+ARG REACT_APP_API_URL=http://localhost:3002/api
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 RUN cd frontend && npm run build
 RUN cd backend && npm run build
 

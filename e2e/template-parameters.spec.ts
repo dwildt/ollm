@@ -7,8 +7,8 @@ test.describe('Template Parameters - E2E Tests', () => {
   });
 
   test('should interact with template parameters', async ({ page }) => {
-    // Find and click template button if it exists
-    const templateButtons = page.locator('button').filter({ hasText: /template|Template/i });
+    // Find and click template button if it exists - flexible selector for future TemplateSelector component
+    const templateButtons = page.locator('[data-testid="template-button"], button').filter({ hasText: /template|Template/i });
     const templateButtonCount = await templateButtons.count();
     
     if (templateButtonCount > 0) {
@@ -16,8 +16,8 @@ test.describe('Template Parameters - E2E Tests', () => {
       await page.waitForTimeout(1000);
     }
     
-    // Look for template selector
-    const templateSelect = page.locator('select');
+    // Look for template selector - flexible for modular TemplateSelector component
+    const templateSelect = page.locator('[data-testid="template-select"], select');
     const selectCount = await templateSelect.count();
     
     if (selectCount > 0) {
@@ -25,8 +25,8 @@ test.describe('Template Parameters - E2E Tests', () => {
       await templateSelect.first().selectOption('brainstorm');
       await page.waitForTimeout(1000);
       
-      // Look for any text input and test it
-      const textInputs = page.locator('input[type="text"]');
+      // Look for parameter inputs - flexible for future ParameterForm component
+      const textInputs = page.locator('[data-testid="parameter-input"], input[type="text"]');
       const inputCount = await textInputs.count();
       
       if (inputCount > 0) {
@@ -41,8 +41,8 @@ test.describe('Template Parameters - E2E Tests', () => {
   });
 
   test('should validate required fields', async ({ page }) => {
-    // Find template button
-    const templateButtons = page.locator('button').filter({ hasText: /template/i });
+    // Find template button - flexible selector for modular components
+    const templateButtons = page.locator('[data-testid="template-button"], button').filter({ hasText: /template/i });
     const buttonCount = await templateButtons.count();
     
     if (buttonCount > 0) {
@@ -50,15 +50,15 @@ test.describe('Template Parameters - E2E Tests', () => {
       await page.waitForTimeout(1000);
       
       // Select code-review template which has required fields
-      const templateSelect = page.locator('select');
+      const templateSelect = page.locator('[data-testid="template-select"], select');
       const selectCount = await templateSelect.count();
       
       if (selectCount > 0) {
         await templateSelect.first().selectOption('code-review');
         await page.waitForTimeout(1000);
         
-        // Look for required textarea (code field)
-        const textareas = page.locator('textarea');
+        // Look for required textarea (code field) - flexible for ParameterForm component
+        const textareas = page.locator('[data-testid="parameter-textarea"], textarea');
         const textareaCount = await textareas.count();
         
         if (textareaCount > 0) {

@@ -23,10 +23,13 @@ A simple and clean web interface for interacting with Ollama directly via HTTP A
 
 ### Frontend
 - React 18 with TypeScript
+- **Modular Component Architecture** - Atomic Design principles (atoms, molecules, organisms)
+- **Custom Hooks** - Separated logic with hooks like `useChat`, `useChatMessages`, `useChatInput`
 - React i18next for internationalization
 - Axios for API communication
-- React Markdown for message rendering
-- CSS Modules for styling
+- React Markdown for message rendering with enhanced features
+- **Modern CSS** - CSS custom properties with design system tokens
+- **Flexible UI Patterns** - Compatible with LlamaIndex Chat UI components
 
 ### Backend
 - Node.js with Express
@@ -132,8 +135,14 @@ npm run test:e2e:ui
 ### Test Structure
 
 - **Frontend Tests**: Located in `frontend/src/**/__tests__/` and `*.test.tsx` files
+  - Component tests with flexible selectors for modular architecture
+  - Custom hooks tests (prepared for `useChat`, `useChatMessages`, etc.)
+  - Integration tests between modular components
 - **Backend Tests**: Located in `backend/src/**/__tests__/` and `*.test.ts` files  
 - **E2E Tests**: Located in `e2e/` directory
+  - Updated with robust selectors for component modularity
+  - Compatible with future ChatHeader, ChatMessages, ChatInput components
+  - Maintains backward compatibility during refactoring
 
 ### Code Quality
 
@@ -267,13 +276,48 @@ The application supports multiple languages through react-i18next:
 
 See `frontend/src/i18n/README_TRANSLATORS.md` for detailed instructions.
 
+## Component Architecture
+
+This project follows modern React patterns with atomic design principles:
+
+### Component Structure
+- **Atoms**: Basic UI elements (`Button`, `Input`, `Badge`, `Typography`)
+- **Molecules**: Component combinations (`SearchBar`, `FilterDropdown`, `TemplateCard`)  
+- **Organisms**: Complex components (`TemplateGrid`, `ModeSelector`, `TemplateFilters`)
+- **Templates**: Page-level layouts (`ChatTemplate`, `TemplateSelectionTemplate`)
+
+### Custom Hooks (Future Implementation)
+- `useChat()` - Main chat state management
+- `useChatMessages()` - Message list and auto-scroll
+- `useChatInput()` - Input handling and keyboard shortcuts
+- `useOllamaHealth()` - Health check and connection status
+- `useModelSelector()` - Model loading and selection
+
+### Design System
+- **Tokens**: Spacing, colors, typography, breakpoints
+- **Themes**: Light theme (dark theme ready)
+- **Utilities**: Responsive helpers and common patterns
+
+### LlamaIndex Compatibility
+The architecture is designed to be compatible with LlamaIndex Chat UI patterns:
+- Modular component approach
+- Flexible theming with CSS variables
+- Extensible message rendering
+- Custom hook patterns for state management
+
 ## Project Structure
 
 ```
 ollm/
 ├── frontend/           # React TypeScript application
 │   ├── src/
-│   │   ├── components/ # React components
+│   │   ├── components/ # React components (modular architecture)
+│   │   │   ├── atoms/      # Basic UI elements (Button, Input, etc.)
+│   │   │   ├── molecules/  # Component combinations (SearchBar, etc.)
+│   │   │   ├── organisms/  # Complex components (TemplateGrid, etc.)
+│   │   │   ├── templates/  # Page-level templates
+│   │   │   └── __tests__/  # Component tests
+│   │   ├── hooks/      # Custom React hooks (useChat, useChatMessages)
 │   │   ├── services/   # API services
 │   │   ├── types/      # TypeScript types
 │   │   └── i18n/       # Internationalization
@@ -281,7 +325,9 @@ ollm/
 │   ├── src/
 │   │   └── index.ts    # Main server file
 │   └── .env            # Environment variables
-├── package.json        # Root package.json with scripts
+├── e2e/               # End-to-end tests (Playwright)
+├── .eslintrc.js       # ESLint configuration
+├── package.json       # Root package.json with scripts
 └── README.md
 ```
 
