@@ -9,7 +9,6 @@ import './design-system/themes/light.css';
 import './design-system/utilities/responsive.css';
 
 // Lazy load components for better performance
-const FreeConversationPage = React.lazy(() => import('./pages/FreeConversationPage'));
 const TemplatePage = React.lazy(() => import('./pages/TemplatePage'));
 const ChatNew = React.lazy(() => import('./components/ChatNew'));
 
@@ -33,11 +32,11 @@ function App() {
       <main className="App">
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
-            {/* Default route - redirect to free conversation */}
-            <Route path="/" element={<Navigate to="/chat" replace />} />
+            {/* Default route - go directly to chat interface */}
+            <Route path="/" element={<ChatNew />} />
             
             {/* Free Conversation Mode */}
-            <Route path="/chat" element={<FreeConversationPage />} />
+            <Route path="/chat" element={<ChatNew />} />
             
             {/* Templates Mode */}
             <Route path="/templates" element={<TemplatePage />} />

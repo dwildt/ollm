@@ -39,12 +39,29 @@ jest.mock('react-router-dom', () => ({
   useSearchParams: () => [new URLSearchParams(), jest.fn()]
 }));
 
-// Mock LanguageSwitcher component - prepared for ChatHeader integration
+// Mock LanguageSwitcher component
 jest.mock('../LanguageSwitcher', () => {
   return function MockLanguageSwitcher() {
     return <div data-testid="language-switcher">Language Switcher</div>;
   };
 });
+
+// Mock ChatHeaderMobile component
+jest.mock('../organisms/ChatHeaderMobile/ChatHeaderMobile', () => ({
+  ChatHeaderMobile: (props: any) => (
+    <div data-testid="chat-header-mobile">
+      <div data-testid="model-selector">{props.selectedModel || 'No model'}</div>
+      <div data-testid="status-indicator">{props.isOllamaConnected ? 'Connected' : 'Disconnected'}</div>
+      <button onClick={props.onClearChat} data-testid="clear-button">Clear</button>
+      <button onClick={props.onOpenSidebar} data-testid="sidebar-button">History</button>
+    </div>
+  )
+}));
+
+// Mock TemplateModalSelector component
+jest.mock('../molecules/TemplateModalSelector', () => ({
+  TemplateModalSelector: () => <div data-testid="template-modal">Template Modal</div>
+}));
 
 // Mock ReactMarkdown
 jest.mock('react-markdown', () => {

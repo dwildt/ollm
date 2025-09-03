@@ -6,8 +6,8 @@ import { useChat, useChatMessages } from '../hooks';
 import './Chat.css';
 
 // Lazy load heavy organism components with named exports
-const ChatHeader = React.lazy(() => 
-  import('./organisms/ChatHeader/ChatHeader').then(module => ({ default: module.ChatHeader }))
+const ChatHeaderMobile = React.lazy(() => 
+  import('./organisms/ChatHeaderMobile/ChatHeaderMobile').then(module => ({ default: module.ChatHeaderMobile }))
 );
 const ChatMessages = React.lazy(() => 
   import('./organisms/ChatMessages/ChatMessages').then(module => ({ default: module.ChatMessages }))
@@ -63,6 +63,9 @@ const ChatNew: React.FC = () => {
 
   // Handle template selection
   const handleTemplateSelect = useCallback((template: ConversationTemplate | null) => {
+    // Only clear messages if actually changing to a different template
+    const isChangingTemplate = selectedTemplate?.id !== template?.id;
+    
     setSelectedTemplate(template);
     setTemplateParameters({});
     
@@ -72,11 +75,11 @@ const ChatNew: React.FC = () => {
       setShowParameterForm(false);
     }
     
-    // Clear active conversation when changing templates
-    if (messages.length > 0) {
+    // Clear active conversation only when actually changing templates and there are messages
+    if (isChangingTemplate && messages.length > 0) {
       clearMessages();
     }
-  }, [messages.length, clearMessages]);
+  }, [selectedTemplate?.id, messages.length, clearMessages]);
 
   // Handle parameter form submission
   const handleParameterFormSubmit = useCallback(async (finalPrompt: string) => {
@@ -140,7 +143,7 @@ const ChatNew: React.FC = () => {
   return (
     <div className="chat-container">
       <Suspense fallback={<ComponentLoader name="Header" />}>
-        <ChatHeader
+        <ChatHeaderMobile
           selectedModel={selectedModel}
           models={models}
           onModelChange={setSelectedModel}

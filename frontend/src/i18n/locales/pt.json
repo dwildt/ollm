@@ -9,6 +9,7 @@
     "model": "Modelo:",
     "noModelsAvailable": "Nenhum modelo disponível",
     "clearChat": "Limpar Chat",
+    "openHistory": "Abrir Histórico",
     "inputPlaceholder": "Digite sua mensagem aqui... (Pressione Enter para enviar, Shift+Enter para nova linha)",
     "send": "Enviar",
     "sending": "Enviando...",
@@ -28,9 +29,11 @@
   },
   "templates": {
     "conversationTemplate": "Template de Conversa:",
+    "selectTemplate": "Selecionar Template",
     "showTemplates": "Mostrar Templates",
     "hideTemplates": "Ocultar Templates",
     "freeConversation": "Conversa Livre",
+    "freeConversationDescription": "Chat livre sem template específico",
     "configureParameters": "Configure os Parâmetros",
     "startConversation": "Iniciar Conversa",
     "promptPreview": "Preview do Prompt:",
@@ -40,6 +43,13 @@
     "renderError": "Erro ao renderizar template",
     "category": "Categoria:",
     "parameters": "Parâmetros:",
-    "required": "*"
+    "parametersCount": "{{count}} parâmetros",
+    "required": "*",
+    "searchPlaceholder": "Buscar templates...",
+    "allCategories": "Todas",
+    "noTemplatesFound": "Nenhum template encontrado"
+  },
+  "models": {
+    "selectModel": "Selecionar modelo..."
   }
 }

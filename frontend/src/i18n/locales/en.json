@@ -9,6 +9,7 @@
     "model": "Model:",
     "noModelsAvailable": "No models available",
     "clearChat": "Clear Chat",
+    "openHistory": "Open History",
     "inputPlaceholder": "Type your message here... (Press Enter to send, Shift+Enter for new line)",
     "send": "Send",
     "sending": "Sending...",
@@ -28,9 +29,11 @@
   },
   "templates": {
     "conversationTemplate": "Conversation Template:",
+    "selectTemplate": "Select Template",
     "showTemplates": "Show Templates",
     "hideTemplates": "Hide Templates",
     "freeConversation": "Free Conversation",
+    "freeConversationDescription": "Free chat without specific template",
     "configureParameters": "Configure Parameters",
     "startConversation": "Start Conversation",
     "promptPreview": "Prompt Preview:",
@@ -40,6 +43,13 @@
     "renderError": "Error rendering template",
     "category": "Category:",
     "parameters": "Parameters:",
-    "required": "*"
+    "parametersCount": "{{count}} parameters",
+    "required": "*",
+    "searchPlaceholder": "Search templates...",
+    "allCategories": "All",
+    "noTemplatesFound": "No templates found"
+  },
+  "models": {
+    "selectModel": "Select model..."
   }
 }

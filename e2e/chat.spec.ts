@@ -44,38 +44,84 @@ test.describe('Chat Interface - Modular Architecture', () => {
     await page.goto('/');
   });
 
-  test('displays modular chat interface components', async ({ page }) => {
-    // Wait for page load
+  test('displays mobile-first chat interface components', async ({ page }) => {
+    // Wait for page load and components to load
     await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(2000); // Wait for lazy loaded components
     
     // Check for main chat container
-    await expect(page.locator('.chat-container')).toBeVisible();
+    await expect(page.locator('.chat-container')).toBeVisible({ timeout: 10000 });
     
-    // Check for chat input area
-    await expect(page.locator('textarea, input[type="text"]')).toBeVisible();
+    // Check for simplified mobile header (wait for lazy loading)
+    await expect(page.locator('.chat-header-mobile')).toBeVisible({ timeout: 10000 });
     
-    // Check for model selector (part of ChatHeader)
-    await expect(page.locator('select')).toBeVisible();
+    // Check for dark mode toggle and language switcher
+    await expect(page.locator('.dark-mode-toggle')).toBeVisible({ timeout: 5000 });
+    await expect(page.locator('.language-switcher')).toBeVisible({ timeout: 5000 });
+    
+    // Check for template button
+    await expect(page.locator('.template-button')).toBeVisible({ timeout: 10000 });
+    
+    // Check for chat input area (also lazy loaded)
+    await expect(page.locator('textarea')).toBeVisible({ timeout: 10000 });
   });
 
   test('shows Ollama connection status', async ({ page }) => {
     await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(2000); // Wait for lazy loaded components
     
-    // Check for status indicator (may be icon, text, or color-based)
-    const statusElements = page.locator('.status, .connection-status, .indicator, .connected, .health-status');
-    await expect(statusElements.first()).toBeVisible({ timeout: 10000 });
+    // Check for status indicator in mobile header (specific to new architecture)
+    const statusIndicator = page.locator('.status-indicator');
+    await expect(statusIndicator).toBeVisible({ timeout: 10000 });
   });
 
-  test('loads and displays available models', async ({ page }) => {
+  test('tests dark mode and language functionality', async ({ page }) => {
     await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(2000); // Wait for lazy loaded components
     
-    // Find model selector (flexible for different implementations)
-    const modelSelect = page.locator('select, [data-testid="model-selector"]');
-    await expect(modelSelect.first()).toBeVisible({ timeout: 10000 });
+    // Find dark mode toggle in simplified header
+    const darkModeToggle = page.locator('.dark-mode-toggle');
+    await expect(darkModeToggle).toBeVisible({ timeout: 10000 });
     
-    // Check if models are loaded
-    const options = await modelSelect.first().locator('option').allTextContents();
-    expect(options.some(opt => opt.includes('llama3'))).toBeTruthy();
+    // Find language switcher in simplified header
+    const languageSwitcher = page.locator('.language-switcher');
+    await expect(languageSwitcher).toBeVisible({ timeout: 10000 });
+    
+    // Check if language buttons are present
+    const langButtons = page.locator('.lang-button');
+    await expect(langButtons.first()).toBeVisible({ timeout: 5000 });
+    
+    // Should have multiple language options
+    const buttonCount = await langButtons.count();
+    expect(buttonCount).toBeGreaterThan(1);
+  });
+
+  test('opens template modal and selects template', async ({ page }) => {
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(2000); // Wait for lazy loaded components
+    
+    // Find and click template button in mobile header
+    const templateButton = page.locator('.template-button');
+    await expect(templateButton).toBeVisible({ timeout: 10000 });
+    await templateButton.click();
+    
+    // Check if template modal opens with new modal component
+    const modal = page.locator('.modal-overlay');
+    await expect(modal).toBeVisible({ timeout: 5000 });
+    
+    // Check for modal content
+    const modalContent = page.locator('.modal-content');
+    await expect(modalContent).toBeVisible({ timeout: 5000 });
+    
+    // Check for template search functionality in new modal
+    const searchInput = page.locator('input[placeholder*="earch"], input[placeholder*="uscar"]');
+    if (await searchInput.isVisible()) {
+      await searchInput.fill('test');
+    }
+    
+    // Check for category filters in new modal
+    const categoryFilters = page.locator('.category-chip');
+    await expect(categoryFilters.first()).toBeVisible({ timeout: 5000 });
   });
 
   test('sends a message and receives a response', async ({ page }) => {

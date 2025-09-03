@@ -1,0 +1,82 @@
+/* Dark Mode Toggle - Mobile-first design */
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+.dark-mode-toggle:hover {
+  background: var(--color-surface-secondary);
+  color: var(--color-text-primary);
+}
+
+.dark-mode-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Icon */
+.dark-mode-toggle__icon {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform var(--transition-fast);
+}
+
+.dark-mode-toggle:hover .dark-mode-toggle__icon {
+  transform: scale(1.1);
+}
+
+/* Sizes */
+.dark-mode-toggle--sm {
+  padding: 0.375rem;
+}
+
+.dark-mode-toggle--sm .dark-mode-toggle__icon {
+  font-size: 0.875rem;
+}
+
+.dark-mode-toggle--md {
+  padding: 0.5rem;
+}
+
+.dark-mode-toggle--md .dark-mode-toggle__icon {
+  font-size: 1rem;
+}
+
+.dark-mode-toggle--lg {
+  padding: 0.625rem;
+}
+
+.dark-mode-toggle--lg .dark-mode-toggle__icon {
+  font-size: 1.125rem;
+}
+
+/* Focus styles */
+.dark-mode-toggle:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .dark-mode-toggle {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+  
+  .dark-mode-toggle--sm {
+    min-width: 2rem;
+    min-height: 2rem;
+  }
+  
+  .dark-mode-toggle--lg {
+    min-width: 3rem;
+    min-height: 3rem;
+  }
+}

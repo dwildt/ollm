@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Message, Model } from '../types';
 import { ConversationTemplate } from '../types/templates';
 import { apiService } from '../services/api';
@@ -21,7 +21,6 @@ export interface UseChatReturn {
 }
 
 export const useChat = (selectedTemplate?: ConversationTemplate | null): UseChatReturn => {
-  const navigate = useNavigate();
   const { conversationId } = useParams<{ conversationId?: string }>();
   const { logPerformanceMetric, measureAsync } = usePerformance('useChat');
   
@@ -189,8 +188,9 @@ export const useChat = (selectedTemplate?: ConversationTemplate | null): UseChat
     setMessages([]);
     setCurrentConversationId(null);
     setError(null);
-    navigate('/', { replace: true });
-  }, [navigate]);
+    // Remove navigation since '/' now points directly to ChatNew
+    // navigate('/', { replace: true });
+  }, []);
 
   // Load conversation by ID
   const loadConversation = useCallback((conversationId: string) => {
@@ -231,10 +231,11 @@ export const useChat = (selectedTemplate?: ConversationTemplate | null): UseChat
   useEffect(() => {
     if (conversationId && conversationId !== currentConversationId) {
       loadConversation(conversationId);
-    } else if (!conversationId && currentConversationId) {
+    } else if (!conversationId && currentConversationId && messages.length === 0) {
+      // Only clear if there are no messages to preserve user's conversation
       clearMessages();
     }
-  }, [conversationId, currentConversationId, loadConversation, clearMessages]);
+  }, [conversationId, currentConversationId, loadConversation, clearMessages, messages.length]);
 
   // Initialize health check and models
   useEffect(() => {
