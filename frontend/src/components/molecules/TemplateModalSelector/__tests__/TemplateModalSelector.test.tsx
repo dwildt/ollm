@@ -113,8 +113,8 @@ describe('TemplateModalSelector', () => {
     
     await waitFor(() => {
       expect(screen.getByText('Another Template')).toBeInTheDocument();
-      expect(screen.queryByText('Template 1')).not.toBeInTheDocument();
     });
+    expect(screen.queryByText('Template 1')).not.toBeInTheDocument();
   });
 
   it('filters templates by category', async () => {
@@ -126,9 +126,9 @@ describe('TemplateModalSelector', () => {
     
     await waitFor(() => {
       expect(screen.getByText('Template 1')).toBeInTheDocument();
-      expect(screen.getByText('Another Template')).toBeInTheDocument();
-      expect(screen.queryByText('Template 2')).not.toBeInTheDocument();
     });
+    expect(screen.getByText('Another Template')).toBeInTheDocument();
+    expect(screen.queryByText('Template 2')).not.toBeInTheDocument();
   });
 
   it('displays parameter count for templates with parameters', () => {
@@ -159,7 +159,7 @@ describe('TemplateModalSelector', () => {
   it('highlights selected template', () => {
     render(<TemplateModalSelector {...defaultProps} selectedTemplate={mockTemplates[0]} />);
     
-    const selectedCard = screen.getByText('Template 1').closest('.template-card');
+    const selectedCard = screen.getByTestId('template-card-1');
     expect(selectedCard).toHaveClass('selected');
   });
 
@@ -185,7 +185,7 @@ describe('TemplateModalSelector', () => {
     fireEvent.click(screen.getByTestId('modal-close'));
     
     // Reopen modal
-    rerender(<TemplateModalSelector {...defaultProps} isOpen={true} />);
+    rerender(<TemplateModalSelector {...defaultProps} isOpen />);
     
     // Check that search is cleared
     expect(screen.getByPlaceholderText('Search templates...')).toHaveValue('');

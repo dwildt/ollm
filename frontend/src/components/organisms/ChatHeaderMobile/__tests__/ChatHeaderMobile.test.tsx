@@ -197,7 +197,7 @@ describe('ChatHeaderMobile', () => {
 
   it('shows parameter form when showParameterForm is true', () => {
     render(<ChatHeaderMobile {...defaultProps} 
-      showParameterForm={true} 
+      showParameterForm 
       selectedTemplate={mockTemplate} 
     />);
     
@@ -206,7 +206,7 @@ describe('ChatHeaderMobile', () => {
 
   it('calls onParameterFormSubmit when form is submitted', () => {
     render(<ChatHeaderMobile {...defaultProps} 
-      showParameterForm={true} 
+      showParameterForm 
       selectedTemplate={mockTemplate} 
     />);
     

@@ -137,6 +137,7 @@ export const TemplateModalSelector: React.FC<TemplateModalSelectorProps> = ({
               key={template.id}
               className={`template-card ${selectedTemplate?.id === template.id ? 'selected' : ''}`}
               onClick={() => handleTemplateSelect(template)}
+              data-testid={`template-card-${template.id}`}
             >
               <div className="template-card-header">
                 <h3 className="template-name">{template.name}</h3>

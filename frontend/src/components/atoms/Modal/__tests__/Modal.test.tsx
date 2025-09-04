@@ -56,8 +56,8 @@ describe('Modal Component', () => {
   it('calls onClose when overlay is clicked', () => {
     render(<Modal {...defaultProps} />);
     
-    const overlay = screen.getByRole('dialog').parentElement;
-    fireEvent.click(overlay!);
+    const overlay = screen.getByTestId('modal-overlay');
+    fireEvent.click(overlay);
     expect(defaultProps.onClose).toHaveBeenCalledTimes(1);
   });
 
