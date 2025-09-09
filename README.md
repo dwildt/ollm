@@ -155,7 +155,36 @@ npm run lint:fix
 
 # TypeScript type checking
 npm run type-check
+
+# Security vulnerability audit
+npm run security
+
+# Fix security vulnerabilities (when possible)
+npm run audit:fix
 ```
+
+### Security Auditing
+
+This project includes comprehensive security vulnerability scanning using `npm audit`:
+
+```bash
+# Run security audit on all packages
+npm run security
+
+# Run audit on specific components
+npm run audit:frontend  # Frontend dependencies only
+npm run audit:backend   # Backend dependencies only
+
+# Attempt to fix vulnerabilities automatically
+npm run audit:fix       # Fix all packages
+npm run audit:fix:frontend  # Fix frontend only
+npm run audit:fix:backend   # Fix backend only
+```
+
+**Security checks are integrated into:**
+- Build process (`npm run build`)
+- Pre-commit hooks (when package.json files change)
+- Manual quality checks (`npm run security`)
 
 ## Production
 
