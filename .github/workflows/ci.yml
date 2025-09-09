@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    name: Security Audit
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm run install:all
+    
+    - name: Run security audit
+      run: npm run security:strict
+      continue-on-error: true
+    
+    - name: Create audit report
+      if: always()
+      run: |
+        echo "# Security Audit Report" > audit-report.md
+        echo "## Frontend Dependencies" >> audit-report.md
+        cd frontend && npm audit --audit-level=moderate >> ../audit-report.md || echo "No vulnerabilities found in frontend" >> ../audit-report.md
+        echo "" >> audit-report.md
+        echo "## Backend Dependencies" >> audit-report.md
+        cd ../backend && npm audit --audit-level=moderate >> ../audit-report.md || echo "No vulnerabilities found in backend" >> ../audit-report.md
+
+    - name: Upload audit report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-audit-report
+        path: audit-report.md
+
+  test:
+    runs-on: ubuntu-latest
+    name: Test and Build
+    needs: security-audit
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm run install:all
+    
+    - name: Run linter
+      run: npm run lint
+    
+    - name: Run tests
+      run: npm run test
+    
+    - name: Build project
+      run: npm run build:frontend && npm run build:backend

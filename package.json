@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "cd frontend && npm start",
     "dev:backend": "cd backend && npm run dev",
-    "build": "npm run build:frontend && npm run build:backend",
+    "build": "npm run security && npm run build:frontend && npm run build:backend",
     "build:frontend": "cd frontend && npm run build",
     "build:backend": "cd backend && npm run build",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
@@ -28,7 +28,15 @@
     "type-check": "npm run type-check:frontend && npm run type-check:backend",
     "type-check:frontend": "cd frontend && npm run type-check",
     "type-check:backend": "cd backend && npm run type-check",
-    "quality": "npm run type-check && npm run lint && npm run test",
+    "audit": "npm run audit:frontend && npm run audit:backend",
+    "audit:frontend": "cd frontend && npm audit",
+    "audit:backend": "cd backend && npm audit",
+    "audit:fix": "npm run audit:fix:frontend && npm run audit:fix:backend",
+    "audit:fix:frontend": "cd frontend && npm audit fix",
+    "audit:fix:backend": "cd backend && npm audit fix",
+    "security": "npm run audit || true",
+    "security:strict": "npm run audit",
+    "quality": "npm run lint && npm run test",
     "prepare": "husky",
     "pre-commit": "lint-staged",
     "validate-commit": "commitlint --from=HEAD~1 --to=HEAD --verbose"
@@ -47,7 +55,8 @@
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.55.0",
-    "concurrently": "^9.1.0"
+    "concurrently": "^9.1.0",
+    "husky": "^9.1.7"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.3.1",

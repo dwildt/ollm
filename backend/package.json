@@ -13,7 +13,9 @@
     "test:ci": "jest --ci --coverage --watchAll=false",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "audit": "npm audit",
+    "audit:fix": "npm audit fix"
   },
   "keywords": [],
   "author": "",

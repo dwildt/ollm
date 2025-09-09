@@ -34,6 +34,8 @@
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "type-check": "tsc --project tsconfig.check.json",
+    "audit": "npm audit",
+    "audit:fix": "npm audit fix",
     "eject": "react-scripts eject"
   },
   "browserslist": {
