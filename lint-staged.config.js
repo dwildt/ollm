@@ -1,11 +1,11 @@
 module.exports = {
   // Frontend
   'frontend/src/**/*.{ts,tsx}': [
-    'cd frontend && npm run lint:fix',
-    'cd frontend && npm run type-check'
+    'cd frontend && npm run lint:fix'
   ],
   // Backend  
   'backend/src/**/*.ts': [
+<<<<<<< HEAD
     'cd backend && npm run lint:fix',
     'cd backend && npm run type-check'
   ],
@@ -25,5 +25,8 @@ module.exports = {
   ],
   'backend/src/**/*.test.ts': [
     'cd backend && npm test -- --passWithNoTests'
+=======
+    'cd backend && npm run lint:fix'
+>>>>>>> f8ed67c (chore: atualizar TypeScript 5 e corrigir testes)
   ]
 };

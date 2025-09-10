@@ -159,7 +159,7 @@ describe('TemplateModalSelector', () => {
   it('highlights selected template', () => {
     render(<TemplateModalSelector {...defaultProps} selectedTemplate={mockTemplates[0]} />);
     
-    const selectedCard = screen.getByTestId('template-card-1');
+    const selectedCard = screen.getByTestId('template-card-template1');
     expect(selectedCard).toHaveClass('selected');
   });
 
