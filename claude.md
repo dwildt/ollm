@@ -482,7 +482,7 @@ Testing is **MANDATORY** for all new features and changes. The project follows a
 # Run all tests
 npm run test
 
-# Frontend unit tests
+# Frontend unit tests (with coverage)
 npm run test:frontend
 
 # Backend unit tests  
@@ -497,6 +497,15 @@ npm run test:e2e:ui
 # Get coverage reports
 cd frontend && npm run test:coverage
 cd backend && npm run test:coverage
+
+# Quality checks (lint + type-check + tests)
+npm run quality
+
+# Linting
+npm run lint
+
+# Type checking
+npm run type-check
 ```
 
 ### Development Workflow
@@ -646,10 +655,24 @@ feat: add new feature...        # Too long (>100 chars)
 Every commit automatically triggers quality checks via **Husky** and **lint-staged**:
 
 #### Pre-commit Hook
-- **ESLint**: Auto-fixes code style issues
-- **TypeScript**: Validates type safety
-- **Tests**: Runs relevant tests for modified files
+- **ESLint**: Auto-fixes code style issues via `lint:fix`
+- **TypeScript**: Type checking is done separately via `npm run type-check`
 - **Scope**: Only processes staged files for performance
+- **Configuration**: `lint-staged.config.js` defines which commands run on which files
+
+#### Lint-staged Configuration
+```javascript
+module.exports = {
+  // Frontend TypeScript files
+  'frontend/src/**/*.{ts,tsx}': [
+    'cd frontend && npm run lint:fix'
+  ],
+  // Backend TypeScript files  
+  'backend/src/**/*.ts': [
+    'cd backend && npm run lint:fix'
+  ]
+};
+```
 
 #### Commit Message Hook  
 - **Format validation**: Ensures conventional commit format
